@@ -2,7 +2,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+
 var clienteRoutes=require('./routes/cliente.routes');
+var enviarCorreo=reuire('./routers/correo.routers');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -25,6 +28,11 @@ app.get('/', (req, res) => {
 })
 */
 
-//apuntar a la ruta de clientes
-app.use('/', clienteRoutes) //archivo externo de todas las rutas
+/*¡¡¡Revisar el Agregar las sesiones!!!*/
+
+app.use(cookieParser());
+
+//apuntar a la ruta 
+app.use('/', clienteRoutes); //archivo externo de todas las rutas
+app.use('/', enviarCorreo);
 module.exports = app;
