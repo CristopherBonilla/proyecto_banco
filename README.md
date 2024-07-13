@@ -1,5 +1,5 @@
-# BanQuito
-Proyecto - Banca Web - Ingeniería de Software 2
+# PoliTech
+Proyecto de un banco politécnico para la materia de Ingenieria de Software II
 
 
 
