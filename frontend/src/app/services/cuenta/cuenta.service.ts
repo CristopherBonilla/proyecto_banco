@@ -15,7 +15,7 @@ export class CuentaService {
     urlGetCuentaByCI = "http://127.0.0.1:3600/get-Cuenta-byCI/";
     urlGenerarnumCuenta = "http://127.0.0.1:3600/generarNumero/";
     urlActualizarCuenta = "http://127.0.0.1:3600/actualizar-cuenta/"; 
-    urlTransferenciaInterna ="http://127.0.0.1:3600/transaccion-interna/";
+    urlTransferenciaInterna ="http://127.0.0.1:3600/transaccion-interna";
     urlGetCuenta = "http://127.0.0.1:3600/getCuenta/"
     constructor(
         private http: HttpClient
