@@ -1,96 +1,95 @@
-* {
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url(../../../assets/img/fondo.jpg) ;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
-  header {
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	background: url("../../../assets/media/patron.png");
+}
+header{
     display: flex;
     height: 70px;
-    background-color: rgb(6, 6, 104);
+    background-color: #161719;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-  }
-  
-  .logo {
+}
+.logo{
     display: flex;
     align-items: center;
-  }
-  
-  .logo img {
+}
+
+.logo img{
     height: 50px;
-    margin: 0 25px 0 10px;
-  }
-  
-  .nombre-banco {
-    color: white;
+    margin-right: 25px;
+    margin-left: 10px;
+}
+.nombre-banco{
+    color: #9e0004;
     font-size: 50px;
-  }
-  
-  .formulario {
-    background: #aaaaaa80;
+}
+
+.contenedor{
+    width: 100%;
+    padding: 15px;
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+.formulario{
+    background: #85725F;
     padding: 20px;
-    margin: 150px auto;
+    margin: auto;
     width: 500px;
+    margin-top: 150px;
     border-radius: 2%;
-  }
-  
-  .formulario h1 {
+    margin-bottom: 150px;
+
+}
+.formulario h1{
     text-align: center;
-    color: #fff;
+    color: #ffffff;
     font-size: 35px;
-  }
-  
-  input[type="text"],
-  input[type="password"],
-  input[type="number"] {
+}
+input[type="text"],
+input[type="password"],
+input[type="number"]{
     font-size: 20px;
     width: 82%;
     padding: 10px;
     border: none;
-  }
-  
-  .input-contenedor {
+}
+.input-contenedor{
     margin-bottom: 20px;
     border: 1px solid #aaa;
-    display: flex;
-    align-items: center;
-  }
-  
-  .icon {
+}
+.input-contenedor span{
+    background: rgb(229, 100, 100);
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    border-radius: 5px;
+}
+.icon{
     min-width: 50px;
     text-align: center;
     color: #060606;
-  }
-  
-  .button {
+}
+.button{
     border: none;
     color: white;
     font-size: 20px;
-    background: #b30309;
+    background:  #9E0004;
     padding: 15px 20px;
     margin: 10px;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .button:hover {
-    background: #a10208;
-  }
-  
-  .button:disabled {
+}
+.button:hover{
+    background: #610105;
+}
+.button:disabled{
     background: #ab595b;
-  }
-  
-  .invalid-feedback {
+}
+#validationServerUsernameFeedback{
     color: white;
     background: #ab595b;
-  }
-  
+}
