@@ -73,7 +73,7 @@ var controller = {
 
         usuario.password = params.password;
         usuario.pregunta = params.pregunta;
-        usuario.isNew = params.isNew;
+        usuario.isNew= params.isNew;
         usuario.otp = params.otp;
 
         usuario.save((err, usuarioGuardado) => {

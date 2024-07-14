@@ -9,7 +9,7 @@ var controller = {
         var nodemailer = require('nodemailer');
         var params = req.body;
         var correo = params.correo;
-        var mensaje1 = "Hola, Bienvenido al su Banco PoliTech" + '\n\n' + "Gracias por registrarse en nuestro servicio bancario en línea. Para completar el proceso de registro, necesitamos verificar su dirección de correo electrónico. " + '\n\n' + "Para hacerlo, simplemente proporcione el siguiente código al ascesor." + '\n\n';
+        var mensaje1 = "Hola, Bienvenido" + '\n\n' + "Gracias por registrarse en nuestro servicio bancario en línea. Para completar el proceso de registro, necesitamos verificar su dirección de correo electrónico. " + '\n\n' + "Para hacerlo, simplemente proporcione el siguiente código al ascesor." + '\n\n';
         var mensaje2 = '\n\n' + "Tenga en cuenta que si no verifica su dirección de correo electrónico, su cuenta no estará completamente activa y no podrá acceder a todos los servicios en línea que ofrecemos." + '\n\n' + "Si tiene alguna pregunta o necesita ayuda, no dude en ponerse en contacto con nuestro equipo de soporte al cliente. Estamos disponibles las 24 horas del día para ayudarlo en todo lo que necesite." + '\n\n' + "Gracias por elegir BanQuito. Esperamos poder servirle en el futuro." + '\n\n';
         var otp = "";
         //generacion del número de validacion
@@ -83,7 +83,7 @@ var controller = {
         });
         //Redactar correo
         var mailOptions = {
-            from: "Banco PoliTech - Cambio de correo <sfqaeab@gmail.com>",
+            from: "Banquito - Cambio de correo <sfqaeab@gmail.com>",
             to: correo,
             subject: "Validar correo electrónico",
             text: mensaje1 + '\n' + otp + '\n' + mensaje2
@@ -181,7 +181,7 @@ var controller = {
         var username = params.username;
         var pass = params.pass;
         var correo = params.correo;
-        var mensaje1 = "¡Bienvenido/a a su Banco PoliTech!" + '\n\n' + "Estamos muy contentos de que hayas decidido abrir una cuenta con nosotros. Sabemos que la elección de una institución financiera es una decisión importante y estamos comprometidos en ofrecerte el mejor servicio posible.\n\nNos aseguraremos de que el proceso de apertura de cuenta sea sencillo y rápido, y que te sientas seguro/a y cómodo/a en todo momento. Queremos que te sientas en confianza al confiar en nosotros con tus finanzas.\n\nPara que puedas acceder a tu cuenta en la nuestra Banca Web utiliza estas credenciales:";
+        var mensaje1 = "¡Bienvenido/a a Banco PoliTech!" + '\n\n' + "Estamos muy contentos de que hayas decidido abrir una cuenta con nosotros. Sabemos que la elección de una institución financiera es una decisión importante y estamos comprometidos en ofrecerte el mejor servicio posible.\n\nNos aseguraremos de que el proceso de apertura de cuenta sea sencillo y rápido, y que te sientas seguro/a y cómodo/a en todo momento. Queremos que te sientas en confianza al confiar en nosotros con tus finanzas.\n\nPara que puedas acceder a tu cuenta en la nuestra Banca Web utiliza estas credenciales:";
         var credenciales = "\n\n\t Username: " + username + "\n\n\t Password: " + pass;
         var mensaje2 = '\n\n' + "Tenga en cuenta que estas credenciales son temporales y debe actualizarlas ingresando por primera ves a la Banca Web.\n\nNuestro equipo de expertos en servicios financieros estará disponible para ayudarte en todo momento. Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con nosotros. Nos complace ayudarte en todo lo que necesites.\n\n¡Gracias por confiar en nosotros!";
 
@@ -286,7 +286,7 @@ var controller = {
         var nodemailer = require('nodemailer');
         var params = req.body;
         var correo = params.correo;
-        var mensaje1 = "Estimado cliente," + '\n\n' + "Banco PoliTech le informa: a las " + getTime() + " se han actualizado sus credenciales para acceder a la Banca Web. \n\n Si no realizó esta acción, por favor póngase en contacto con nuestro equipo de soporte al cliente";
+        var mensaje1 = "Estimado cliente," + '\n\n' + "BanQuito le informa: a las " + getTime() + " se han actualizado sus credenciales para acceder a la Banca Web. \n\n Si no realizó esta acción, por favor póngase en contacto con nuestro equipo de soporte al cliente";
         //Funcion para mostrar la fecha y hora actual para el correo
         function getTime() {
             var date = new Date();
@@ -326,7 +326,7 @@ var controller = {
         });
         //Redactar correo
         var mailOptions = {
-            from: "Banco PoliTech - Actualización Exitoso <sfqaeab@gmail.com>",
+            from: "Banco PoliTech- Actualización Exitoso <sfqaeab@gmail.com>",
             to: correo,
             subject: "Tus credenciales están al día",
             text: mensaje1
