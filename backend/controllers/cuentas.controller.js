@@ -11,7 +11,7 @@ var controller = {
     },
     getCuentas: function (req, res) {
         Cuenta.find({}).sort().exec((err, cuentas) => {
-            if (err) return res.status(500).send({ message: 'Error al recuperar los datos' });
+            if (err) return res.status(500).send({ message: 'Error al recuperar los datos!!!' });
             if (!cuentas) return res.status(404).send({ message: 'No hay usuarios para mostrar' });
             return res.status(200).send({ cuentas });
         })
@@ -91,7 +91,7 @@ var controller = {
 
             if (cuenta1.monto_maximo <= monto) {
 
-                return res.status(404).send({ message: 'No puede transferir mas de 5000 en un solo dia' });
+                return res.status(404).send({ message: 'No puede transferir mas de 5000 en un solo día' });
 
             }
             
@@ -110,7 +110,7 @@ var controller = {
             return res.status(200).send({ message: 'Transacción realizada con éxito' });
         } catch (error) {
             console.error(error);
-            return res.status(500).send({ message: 'Error al procesar la transacción' });
+            return res.status(500).send({ message: 'Error al procesar la transacción!!!' });
         }
     },
     generarNumeroCuenta: async function (req, res) {
@@ -144,7 +144,7 @@ var controller = {
             } while (bucle)
         } catch (error) {
             console.error(error);
-            return res.status(500).send({ message: 'Error al generar el numero' });
+            return res.status(500).send({ message: 'Error al generar el número!!!' });
         }
     },
     actualizarCuenta: function (req, res) {
@@ -165,7 +165,7 @@ var controller = {
 
 async function actualizarCuenta(cuentaActualizada, res) {
     Cuenta.findOneAndUpdate({ "_id": cuentaActualizada._id }, cuentaActualizada, { new: true }, (err, cuenta) => {
-        if (err) return res.status(500).send({ message: 'Error al actualizar los datos' });
+        if (err) return res.status(500).send({ message: 'Error al actualizar los datos!!!' });
         if (!cuenta) return res.status(404).send({ message: 'La cuenta no existe para actualizar' });
         //return res.status(200).send(cuenta);
     });
