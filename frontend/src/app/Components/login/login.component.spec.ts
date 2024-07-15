@@ -46,7 +46,7 @@ describe('Pruebas TDD para LoginComponent', () => {
 
   it('Enviar por correo el código', () => {
     // Llamar la función enviarCorreo con un correo simulado
-    const correo = 'jordy.quishpe@epn.edu.ec';
+    const correo = 'cristopher.bonilla@epn.edu.ec';
     component.enviarCorreo(correo);
 
     // Comprobar que la variable codigo se actualiza correctamente
