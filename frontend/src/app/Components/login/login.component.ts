@@ -12,7 +12,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  title = 'BanQuito';
+  title = 'EPN Wallet';
   public myForm!: FormGroup;
   public LOGIN_USUARIO: any;
 
