@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Pregunta de seguridad</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <link rel="icon" type="favicon/x-icon" href="../../../assets/media/Logo.png">
+        <link rel="stylesheet" type="text/css" href="../pregunta-seguridad/pregunta-seguridad.component.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+        
+
+    </head>
+
+    <body>
+      <header>
+        <div class="logo">
+          <img src="../../../assets/media/Logo.png" alt="logo">
+          <h1 class="nombre-banco">EPN Wallet</h1>
+        </div>
+
+        <div class="container mt-3">
+          <div class="row mb-3 w-75 mx-auto">
+            <div class="col-12 float-end">
+              <button routerLink="/login" type="submit" class="btn btn-danger col-2 float-end">Salir</button>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      
+
+      <form class="formulario" id="form" [formGroup]="respuestaForm" method="POST"  (ngSubmit)="validar()">
+
+        <h1 class="titulo1">Responde la pregunta de seguridad</h1>
+        <h2 class="titulo2">Pregunta de seguridad</h2>
+        
+        
+          
+            <select class="combo">
+                <option value="mascota">¿Cu&aacute;l
+                  es tu sabor de helado
+                  favorito?</option>
+                
+            </select>
+
+            <input  formControlName="respuesta" type="text" id="respuesta" class="respuesta" placeholder="respuesta">
+            
+            
+            <button    type="submit" [disabled]="respuestaForm.invalid"   class="button" >Enviar</button>
+            
+        
+
+      </form>
+
+      <script src="respuesta.js"></script>
+      
+
+     
+    </body>
+</html>

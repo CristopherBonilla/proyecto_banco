@@ -11,10 +11,14 @@ import { Usuario } from "src/app/models/usuarios";
     
 })
 export class UsuarioService{
-    url= "http://54.219.51.93:3600/guardar-usuario/";
-    urlgetUsuario= "http://54.219.51.93:3600/getUsuario/";
-    urlPregunta= "http://54.219.51.93:3600/verificarPregunta/";
-    urlconfigurarusuario ="http://54.219.51.93:3600/configurar-usuario/"; 
+    //url= "http://localhost:3000/guardar-usuario/";
+    url= "http://127.0.0.1:3600/guardar-usuario/";
+    //urlgetUsuario= "http://localhost:3000/getUsuario/"
+    urlgetUsuario= "http://127.0.0.1:3600/getUsuario/";
+    //urlPregunta= "http://localhost:3000/verificarPregunta/";
+    urlPregunta= "http://127.0.0.1:3600/verificarPregunta/";
+    //urlconfigurarusuario ="http://localhost:3000/configurar-usuario/";
+    urlconfigurarusuario ="http://127.0.0.1:3600/configurar-usuario/"; 
     constructor(
         private http: HttpClient
     ){}
