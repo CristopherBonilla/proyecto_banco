@@ -8,7 +8,7 @@ router.post('/validar-email',correoController.validarCorreo);
 
 router.post('/verificar-email',correoController.verificarCorreoLogin);
 
-router.post('/bienvenido',correoController.bienvenidoBanquito);
+router.post('/bienvenido',correoController.bienvenido);
 
 router.post('/actualizar-usuario',correoController.actualizarUsuario);
 
