@@ -16,9 +16,8 @@ import { Usuario } from "../models/usuarios";
 })
 
 export class UsuarioService{
-
     url= 'http://127.0.0.1:3600/verificar-usuario/';
-
+    
     constructor(private http: HttpClient) { }
 
     verificarUsuario(usuario: LoginUsuario): Observable <any>{
@@ -32,7 +31,6 @@ export class UsuarioService{
     actualizarUsuario(cedulaObj: object): Observable <any>{
         return this.http.post(this.url2, cedulaObj);
     }
-
     url3= 'http://127.0.0.1:3600/validarUsername/';
 
     verificarUsername(usuario: LoginUsuario): Observable <any>{

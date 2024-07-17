@@ -5,7 +5,7 @@
   
   body {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url(../../../assets/img/fondo.jpg) ;
+    background-image: url(../../../assets/img/fondo.jpg);
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -13,7 +13,7 @@
   header {
     display: flex;
     height: 70px;
-    background-color: rgb(6, 6, 104);
+    background-color: #042068;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -35,7 +35,7 @@
   }
   
   .formulario {
-    background: #aaaaaa80;
+    background: #a7a7a7;
     padding: 20px;
     margin: 150px auto;
     width: 500px;
@@ -74,7 +74,7 @@
     border: none;
     color: white;
     font-size: 20px;
-    background: #b30309;
+    background: #1048c6;
     padding: 15px 20px;
     margin: 10px;
     border-radius: 5px;
@@ -82,15 +82,15 @@
   }
   
   .button:hover {
-    background: #a10208;
+    background: #042067;
   }
   
   .button:disabled {
-    background: #ab595b;
+    background: rgb(230, 48, 41);
   }
   
   .invalid-feedback {
     color: white;
-    background: #ab595b;
+    background: rgb(230, 48, 41);
   }
   

@@ -16,14 +16,13 @@ app.use(cors())
 
 const user = 'jojy';
 const password = 'jojy';
-//const dbname = 'BanQuito'
 const dbname = 'Banco'
 const uri = `mongodb+srv://${user}:${password}@pruebas.vuuremx.mongodb.net/${dbname}?retryWrites=true&w=majority`;
-
+//const uri = "mongodb://localhost:27017/banco";
 
 mongoose.connect(uri)
 .then(()=>{
-    console.log("Conexion establecida con la bdd BANCO'");
+    console.log("Conexion establecida con la bdd");
     app.listen(port,()=>{
         console.log("Conexion establecida en el url: localhost:3600");
     })

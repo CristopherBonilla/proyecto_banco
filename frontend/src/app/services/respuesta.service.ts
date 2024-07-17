@@ -13,7 +13,6 @@ import { respuesta } from "../models/respuesta";
 export class RespuestaService{
 
     url= 'http://127.0.0.1:3600/guardar-respuesta/';
-
     constructor(private http: HttpClient) { }
 
     saveRespuesta(respuesta: respuesta): Observable <any>{

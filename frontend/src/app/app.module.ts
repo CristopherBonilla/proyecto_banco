@@ -17,7 +17,6 @@ import { TransferenciasInternasResumenComponent } from './Components/transferenc
 import { NuevasCredencialesComponent } from './Components/nuevas-credenciales/nuevas-credenciales.component';
 import { PreguntaSeguridadComponent } from './Components/pregunta-seguridad/pregunta-seguridad.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TransferenciasExternasComponent } from './Components/transferencias-externas/transferencias-externas.component';
 
 import { MenuAdminComponent } from './Components/menu-admin/menu-admin.component';
 import { RegistroCuentaComponent } from './Components/registro-cuenta/registro-cuenta.component';
@@ -37,7 +36,6 @@ import {MatSelectModule} from '@angular/material/select';
     TransferenciasInternasResumenComponent,
     NuevasCredencialesComponent,
     PreguntaSeguridadComponent,
-    TransferenciasExternasComponent,
     MenuAdminComponent,
     RegistroCuentaComponent,
     SuspencionClientesComponent,
