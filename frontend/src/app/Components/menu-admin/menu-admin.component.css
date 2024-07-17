@@ -1,7 +1,7 @@
 header{
     display: flex;
     height: 70px;
-    background-color: #161719;
+    background-color: #0a36a6;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -17,6 +17,6 @@ header{
     margin-left: 10px;
 }
 .nombre-banco{
-    color: #9e0004;
+    color: white;
     font-size: 50px;
 }
