@@ -9,7 +9,7 @@ body{
 header{
     display: flex;
     height: 70px;
-    background-color: #161719;
+    background-color: #042068;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -25,7 +25,7 @@ header{
     margin-left: 10px;
 }
 .nombre-banco{
-    color: #9e0004;
+    color: white;
     font-size: 50px;
 }
 
@@ -33,7 +33,7 @@ header{
 
 .formulario{
 
-    background: #85725F;
+    background: #a7a7a7;
     margin: auto;
     width: 800px;
     margin-top: 150px;
@@ -80,7 +80,7 @@ header{
     border: none;
     color: white;
     font-size: 20px;
-    background:  #9E0004;
+    background: #1048c6;
     padding: 15px 20px;
     margin: 10px;
     margin-left: 40px;
@@ -88,8 +88,8 @@ header{
     cursor: pointer;
 }
 .button:hover{
-    background: #9E0004;
+    background: #042067;
 }
 .button:disabled{
-    background: #ab595b;
+    background: rgb(230, 48, 41);
 }
