@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transferencias-internas-resumen',
@@ -6,21 +7,26 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
   styleUrls: ['./transferencias-internas-resumen.component.css']
 })
 export class TransferenciasInternasResumenComponent implements OnInit {
-  @ViewChild('resumeTransferencia') resumenTransfer!: ElementRef;
+  clienteNombre: string = '';
+  resumenTransferencia: string = '';
 
-constructor(
-  private renderer2: Renderer2
-){
+  constructor(private router: Router) {}
 
-}
   ngOnInit(): void {
-    
+    this.cargarDatos();
   }
-  MostrarDatos(){
-        //Mostramos info de la cuenta
-        const resumen = this.resumenTransfer.nativeElement;
 
-        this.renderer2.setProperty(resumen, 'innerHTML', "Este es un resumen actualizado desde ts"
-        )
+  cargarDatos(): void {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.state) {
+      const transferenciaObj = navigation.extras.state['transferenciaObj'];
+      if (transferenciaObj) {
+        this.clienteNombre = `${transferenciaObj.nombre} ${transferenciaObj.apellidos}`;  // Ajusta esto según cómo recibas los datos
+        this.resumenTransferencia = `Cuenta Origen: ${transferenciaObj.cuenta1} <br>
+                                     Cuenta Destino: ${transferenciaObj.cuenta2} <br>
+                                     Monto: ${transferenciaObj.monto} <br>
+                                     Descripción: ${transferenciaObj.descripcion}`; // Ajusta según los datos
+      }
+    }
   }
 }
