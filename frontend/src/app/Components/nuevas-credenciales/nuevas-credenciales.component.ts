@@ -12,7 +12,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./nuevas-credenciales.component.css']
 })
 export class NuevasCredencialesComponent implements OnInit{
-  title = 'Nuevas credenciales BanQuito';
+  title = 'Nuevas credenciales EPN Wallet';
 
   public FormNuevasCredenciales!:FormGroup;
   public NEW_USUARIO: any;
