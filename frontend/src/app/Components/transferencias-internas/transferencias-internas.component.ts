@@ -81,34 +81,33 @@ export class TransferenciasInternasComponent {
       })
   }
 
-  transferir() {
-    var cuenta1: String = "";
+  transferir(){
+    var cuenta1:String="";
     var monto = document.getElementById("monto-campo") as HTMLInputElement;
-    var c1 = document.getElementById("cuentasOrigen") as HTMLInputElement;
+    var c1 =  document.getElementById("cuentasOrigen")as HTMLInputElement;
     var cuenta2 = document.getElementById("cuentaDestino-campo") as HTMLInputElement;
-    var descripcion = document.getElementById("descripcion-campo") as HTMLInputElement;
-  
-    for (var i = 0; i < this.cuentas.length; i++) {
-      if (this.numeroCuentas[i] == c1.value) {
+    var descripcion=document.getElementById("descripcion-campo") as HTMLInputElement;
+    for(var i=0; i<this.cuentas.length; i++){
+      if(this.numeroCuentas[i]==c1.value){
         cuenta1 = this.cuentas[i].numero_cuenta;
         break;
       }
     }
-  
-    const transferir = { cuenta1: cuenta1, cuenta2: cuenta2.value, monto: monto.value };
-  
-    this._CuentaService.transaccionInterna(transferir).subscribe(data => {
+  const transferir = {cuenta1: cuenta1, cuenta2: cuenta2.value, monto:monto.value };
+    this._CuentaService.transaccionInterna(transferir).subscribe(data =>{
       console.log(data);
-  
-      const resumen = { cuenta1: cuenta1, cuenta2: cuenta2.value, monto: monto.value, descripcion: descripcion.value, correo: this.correo };
-      this._clienteService.resumen(resumen).subscribe(data => {
-        console.log(data);
-  
-        const transferenciaObj = { cuenta1: cuenta1, cuenta2: cuenta2.value, monto: monto.value, descripcion: descripcion.value, correo: this.correo };
-        this.router.navigate(['/transferencias-internas-resumen'], { state: { transferenciaObj } });
-      });
-    });
-  }  
+    })
+    //Enviar correo confirmando la transferencia bancaria
+    const resumen = {cuenta1: cuenta1, cuenta2: cuenta2.value, monto:monto.value, descripcion:descripcion.value, correo:this.correo};
+    this._clienteService.resumen(resumen).subscribe(data=>{
+      console.log(data);
+
+    })
+    //this.menu();
+    const transferenciaObj = { cuenta1: cuenta1, cuenta2: cuenta2.value, monto: monto.value, descripcion: descripcion.value, correo: this.correo };
+    this.router.navigate(['/transferencias-internas-resumen'], { state: { transferenciaObj } });
+  }
+     
 
   otp() {
     // Deshabilitar el botón de correo
