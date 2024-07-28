@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,38 +7,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./transferencias-internas-resumen.component.css']
 })
 export class TransferenciasInternasResumenComponent implements OnInit {
-  @ViewChild('resumeTransferencia') resumenTransfer!: ElementRef;
-  transferenciaObj: any;
+  clienteNombre: string = '';
+  resumenTransferencia: string = '';
 
-  constructor(
-    private renderer2: Renderer2,
-    private router: Router
-  ) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const navigation = this.router.getCurrentNavigation();
-    this.transferenciaObj = navigation && navigation.extras && navigation.extras.state ? navigation.extras.state['transferenciaObj'] : null;
-    
-    if (this.transferenciaObj) {
-      this.MostrarDatos();
-    } else {
-      console.error('No transfer object found in navigation state');
-    }
+    this.cargarDatos();
   }
 
-  MostrarDatos(){
-    if (!this.transferenciaObj) {
-      return;
+  cargarDatos(): void {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.state) {
+      const transferenciaObj = navigation.extras.state['transferenciaObj'];
+      if (transferenciaObj) {
+        this.clienteNombre = `${transferenciaObj.nombre} ${transferenciaObj.apellidos}`;  // Ajusta esto según cómo recibas los datos
+        this.resumenTransferencia = `Cuenta Origen: ${transferenciaObj.cuenta1} <br>
+                                     Cuenta Destino: ${transferenciaObj.cuenta2} <br>
+                                     Monto: ${transferenciaObj.monto} <br>
+                                     Descripción: ${transferenciaObj.descripcion}`; // Ajusta según los datos
+      }
     }
-
-    const resumen = this.resumenTransfer.nativeElement;
-
-    this.renderer2.setProperty(resumen, 'innerHTML', `
-      Cuenta Origen: ${this.transferenciaObj.cuenta1}<br>
-      Cuenta Destino: ${this.transferenciaObj.cuenta2}<br>
-      Monto: ${this.transferenciaObj.monto}<br>
-      Descripción: ${this.transferenciaObj.descripcion}<br>
-      Correo: ${this.transferenciaObj.correo}
-    `);
   }
 }
