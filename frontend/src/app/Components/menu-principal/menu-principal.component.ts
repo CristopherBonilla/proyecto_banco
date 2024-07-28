@@ -67,6 +67,13 @@ export class MenuPrincipalComponent {
     this.router.navigate(['/transferencia'],{state:{transferenciaObj}});
   }
 
+  misDatos(){
+    const cedulaObj = history.state.cedula.cedula;
+    const cuentasObj = this.listCuentas;
+    const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
+    this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
+  }
+
 }
 
 
