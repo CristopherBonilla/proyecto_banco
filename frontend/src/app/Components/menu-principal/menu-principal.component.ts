@@ -64,7 +64,7 @@ export class MenuPrincipalComponent {
     const cedulaObj = history.state.cedula.cedula;
     const cuentasObj = this.listCuentas;
     const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
-    this.router.navigate(['/transferencia'],{state:{transferenciaObj}});
+    this.router.navigate(['/transferencia-interna'],{state:{transferenciaObj}});
   }
 
 }
