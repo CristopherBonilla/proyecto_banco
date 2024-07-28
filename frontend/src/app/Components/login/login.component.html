@@ -29,13 +29,15 @@
               </div>
             </div>
               
-            <div id="pass" class="input-contenedor">
+            <div id="pass" class="input-contenedor" style="position: relative;">
               <i class="fas fa-key icon"></i>
-              <input formControlName="password" [class.is-invalid]='f.password.errors && f.password.touched' type="password" placeholder="Contraseña"  required pattern = "^(?=.*[@]?)(?=.*\d?)(?=.*[a-z]?)(?=.*[A-Z]?)[a-zA-Z\d@]{4,25}$">
+              <input formControlName="password" [class.is-invalid]='f.password.errors && f.password.touched' [type]="passwordFieldType" placeholder="Contraseña" required pattern="^(?=.*[@]?)(?=.*\d?)(?=.*[a-z]?)(?=.*[A-Z]?)[a-zA-Z\d@]{4,25}$">
+              <i class="fas" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
               <div id="validationServerUsernameFeedback" class="invalid-feedback">
                 Por favor, ingrese la contraseña
               </div>
             </div>
+            
 
             <div id="otp" class="input-contenedor" style="display: none">
               <i class="fas fa-lock icon"></i>
