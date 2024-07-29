@@ -29,7 +29,7 @@ const routes: Routes = [
     { path: 'suspender-cliente', component: SuspencionClientesComponent},
     { path: 'transferencia', component: TransferenciasComponent},
     { path: 'transferencia-interna', component: TransferenciasInternasComponent},
-    { path: 'transferencia-interna-resumen', component: TransferenciasInternasResumenComponent},
+    { path: 'transferencias-internas-resumen', component: TransferenciasInternasResumenComponent},
     { path: '**', redirectTo: 'login', pathMatch: 'full'}
 ];
 
