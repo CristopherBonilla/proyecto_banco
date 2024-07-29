@@ -46,7 +46,7 @@
       <a>
         <div class="option">
           <i class="far fa-sticky-note" title="Solicitudes"></i>
-          <h4>Solicitudes</h4>
+          <h4>Mis Datos</h4>
         </div>
       </a>
 
@@ -155,12 +155,21 @@
                 <small class="text-muted" (click)="otp()">
                 <a >Reenviar c&oacute;digo</a></small>
               </div>
+
+              <div class="col-5" id="verificar-otp" style="display: none;">
+                <button type="button" class="col btn btn-primary" (click)="verificarOTP()">Verificar código</button>
+              </div>
+
               <div class="row">
                 <p class="text-danger" id="text"></p>
               </div>
                 <!--Boton enviar-->
                 <div class="mb-4">
                   <button class="btn btn-success" id="enviar" (click)="transferir()">Transferir</button>
+                </div>
+
+                <div id="mensaje-exito" style="display:none;" class="alert alert-success">
+                  Transferencia exitosa
                 </div>
               </form>
             </div>
