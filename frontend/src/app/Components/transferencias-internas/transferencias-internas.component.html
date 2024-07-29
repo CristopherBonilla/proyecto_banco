@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Inicio</title>
+  <title>Transferencia</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="icon" type="favicon/x-icon" href="../../../assets/media/Logo.png">
   <link rel="stylesheet" type="text/css" href="../transferencias-internas/transferencias-internas.component.css">
@@ -46,7 +46,7 @@
       <a>
         <div class="option">
           <i class="far fa-sticky-note" title="Solicitudes"></i>
-          <h4>Solicitudes</h4>
+          <h4>Mis Datos</h4>
         </div>
       </a>
 
@@ -145,7 +145,8 @@
                     </div>
                   </div>
                 </div>
-                <!--Correo-->
+                <!--
+                Correo
                 <div class="col-5" id="boton-correo">
                   <button type="button" (click)="otp()" id="validar"
                   class="col btn btn-primary">Enviar c&oacute;digo</button>
@@ -155,12 +156,22 @@
                 <small class="text-muted" (click)="otp()">
                 <a >Reenviar c&oacute;digo</a></small>
               </div>
+              
+              <div class="col-5" id="verificar-otp" style="display: none;">
+                <button type="button" class="col btn btn-primary" (click)="verificarOTP()">Verificar código</button>
+              </div>
+            -->
+
               <div class="row">
                 <p class="text-danger" id="text"></p>
               </div>
                 <!--Boton enviar-->
                 <div class="mb-4">
                   <button class="btn btn-success" id="enviar" (click)="transferir()">Transferir</button>
+                </div>
+
+                <div id="mensaje-exito" style="display:none;" class="alert alert-success">
+                  Transferencia exitosa
                 </div>
               </form>
             </div>
