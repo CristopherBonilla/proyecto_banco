@@ -124,12 +124,15 @@ var controller = {
             var hr = date.getHours();
             var min = date.getMinutes();
             var seg = date.getSeconds();
-            var dia = date.getDay();
-            var mes = date.getMonth() + 1;
+            var dia = date.getDate(); // Cambiado para obtener el día del mes
+            var mes = date.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
             var anio = date.getFullYear();
-
+        
             if (dia <= 9) {
                 dia = "0" + dia;
+            }
+            if (mes <= 9) {
+                mes = "0" + mes;
             }
             if (hr <= 9) {
                 hr = "0" + hr;
@@ -140,9 +143,11 @@ var controller = {
             if (seg <= 9) {
                 seg = "0" + seg;
             }
+        
             var hora = hr + ":" + min + ":" + seg + " del " + dia + "/" + mes + "/" + anio;
             return hora;
         }
+        
         getTime();
         //inicializar el correo
         console.log("Email enviado");
@@ -231,12 +236,15 @@ var controller = {
             var hr = date.getHours();
             var min = date.getMinutes();
             var seg = date.getSeconds();
-            var dia = date.getDay();
-            var mes = date.getMonth() + 1;
+            var dia = date.getDate(); // Cambiado para obtener el día del mes
+            var mes = date.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
             var anio = date.getFullYear();
-
+        
             if (dia <= 9) {
                 dia = "0" + dia;
+            }
+            if (mes <= 9) {
+                mes = "0" + mes;
             }
             if (hr <= 9) {
                 hr = "0" + hr;
@@ -247,9 +255,11 @@ var controller = {
             if (seg <= 9) {
                 seg = "0" + seg;
             }
+        
             var hora = hr + ":" + min + ":" + seg + " del " + dia + "/" + mes + "/" + anio;
             return hora;
         }
+        getTime();
         //inicializar el correo
         console.log("Email enviado");
         var transporter = nodemailer.createTransport({
@@ -293,12 +303,15 @@ var controller = {
             var hr = date.getHours();
             var min = date.getMinutes();
             var seg = date.getSeconds();
-            var dia = date.getDay();
-            var mes = date.getMonth() + 1;
+            var dia = date.getDate(); // Cambiado para obtener el día del mes
+            var mes = date.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
             var anio = date.getFullYear();
-
+        
             if (dia <= 9) {
                 dia = "0" + dia;
+            }
+            if (mes <= 9) {
+                mes = "0" + mes;
             }
             if (hr <= 9) {
                 hr = "0" + hr;
@@ -309,9 +322,11 @@ var controller = {
             if (seg <= 9) {
                 seg = "0" + seg;
             }
+        
             var hora = hr + ":" + min + ":" + seg + " del " + dia + "/" + mes + "/" + anio;
             return hora;
         }
+        
         getTime();
         //inicializar el correo
         console.log("Email enviado");
@@ -359,12 +374,15 @@ var controller = {
             var hr = date.getHours();
             var min = date.getMinutes();
             var seg = date.getSeconds();
-            var dia = date.getDay();
-            var mes = date.getMonth() + 1;
+            var dia = date.getDate(); // Cambiado para obtener el día del mes
+            var mes = date.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
             var anio = date.getFullYear();
-
+        
             if (dia <= 9) {
                 dia = "0" + dia;
+            }
+            if (mes <= 9) {
+                mes = "0" + mes;
             }
             if (hr <= 9) {
                 hr = "0" + hr;
@@ -375,9 +393,11 @@ var controller = {
             if (seg <= 9) {
                 seg = "0" + seg;
             }
+        
             var hora = hr + ":" + min + ":" + seg + " del " + dia + "/" + mes + "/" + anio;
             return hora;
         }
+        
         getTime();
         //inicializar el correo
         console.log("Email enviado");
@@ -419,12 +439,15 @@ var controller = {
             var hr = date.getHours();
             var min = date.getMinutes();
             var seg = date.getSeconds();
-            var dia = date.getDay();
-            var mes = date.getMonth() + 1;
+            var dia = date.getDate(); // Cambiado para obtener el día del mes
+            var mes = date.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
             var anio = date.getFullYear();
-
+        
             if (dia <= 9) {
                 dia = "0" + dia;
+            }
+            if (mes <= 9) {
+                mes = "0" + mes;
             }
             if (hr <= 9) {
                 hr = "0" + hr;
@@ -435,9 +458,11 @@ var controller = {
             if (seg <= 9) {
                 seg = "0" + seg;
             }
+        
             var hora = hr + ":" + min + ":" + seg + " del " + dia + "/" + mes + "/" + anio;
             return hora;
         }
+        
         getTime();
         //inicializar el correo
         console.log("Email enviado");
@@ -482,12 +507,15 @@ var controller = {
             var hr = date.getHours();
             var min = date.getMinutes();
             var seg = date.getSeconds();
-            var dia = date.getDay();
-            var mes = date.getMonth() + 1;
+            var dia = date.getDate(); // Cambiado para obtener el día del mes
+            var mes = date.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
             var anio = date.getFullYear();
-
+        
             if (dia <= 9) {
                 dia = "0" + dia;
+            }
+            if (mes <= 9) {
+                mes = "0" + mes;
             }
             if (hr <= 9) {
                 hr = "0" + hr;
@@ -498,9 +526,11 @@ var controller = {
             if (seg <= 9) {
                 seg = "0" + seg;
             }
+        
             var hora = hr + ":" + min + ":" + seg + " del " + dia + "/" + mes + "/" + anio;
             return hora;
         }
+        getTime();
         //generacion del número de validacion
         for (let i = 0; i < 6; i++) {
             if (i == 0) {
@@ -564,12 +594,15 @@ var controller = {
             var hr = date.getHours();
             var min = date.getMinutes();
             var seg = date.getSeconds();
-            var dia = date.getDay();
-            var mes = date.getMonth() + 1;
+            var dia = date.getDate(); // Cambiado para obtener el día del mes
+            var mes = date.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
             var anio = date.getFullYear();
-
+        
             if (dia <= 9) {
                 dia = "0" + dia;
+            }
+            if (mes <= 9) {
+                mes = "0" + mes;
             }
             if (hr <= 9) {
                 hr = "0" + hr;
@@ -580,9 +613,11 @@ var controller = {
             if (seg <= 9) {
                 seg = "0" + seg;
             }
+        
             var hora = hr + ":" + min + ":" + seg + " del " + dia + "/" + mes + "/" + anio;
             return hora;
         }
+        
         //inicializar el correo
         console.log("Email enviado");
         var transporter = nodemailer.createTransport({
@@ -622,12 +657,15 @@ var controller = {
             var hr = date.getHours();
             var min = date.getMinutes();
             var seg = date.getSeconds();
-            var dia = date.getDay();
-            var mes = date.getMonth() + 1;
+            var dia = date.getDate(); // Cambiado para obtener el día del mes
+            var mes = date.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
             var anio = date.getFullYear();
-
+        
             if (dia <= 9) {
                 dia = "0" + dia;
+            }
+            if (mes <= 9) {
+                mes = "0" + mes;
             }
             if (hr <= 9) {
                 hr = "0" + hr;
@@ -638,9 +676,11 @@ var controller = {
             if (seg <= 9) {
                 seg = "0" + seg;
             }
+        
             var hora = hr + ":" + min + ":" + seg + " del " + dia + "/" + mes + "/" + anio;
             return hora;
         }
+        
         getTime();
         //inicializar el correo
         console.log("Email enviado");
@@ -677,30 +717,35 @@ var controller = {
         var correo = params.correo;
         var mensaje1 = "Estimado cliente,"+'\n\n'+"Banco EPN Wallet le informa: a las "+getTime()+" se han intentado ingresar a su Banca Web. \n\n Si no realizó esta acción, por favor póngase en contacto con nuestro equipo de soporte al cliente";
         //Funcion para mostrar la fecha y hora actual para el correo
-        function getTime(){
+        function getTime() {
             var date = new Date();
-            var hr = date.getHours(); 
+            var hr = date.getHours();
             var min = date.getMinutes();
             var seg = date.getSeconds();
-            var dia = date.getDay();
-            var mes = date.getMonth()+1;
+            var dia = date.getDate(); // Cambiado para obtener el día del mes
+            var mes = date.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
             var anio = date.getFullYear();
-
-            if(dia<=9){
-                dia="0"+dia;
+        
+            if (dia <= 9) {
+                dia = "0" + dia;
             }
-            if(hr<=9){
-                hr="0"+hr;
+            if (mes <= 9) {
+                mes = "0" + mes;
             }
-            if(min<=9){
-                min="0"+min;
-            }    
-            if(seg<=9){
-                seg="0"+seg;
+            if (hr <= 9) {
+                hr = "0" + hr;
             }
-            var hora=hr+":"+min+":"+seg+" del "+dia+"/"+mes+"/"+anio;
+            if (min <= 9) {
+                min = "0" + min;
+            }
+            if (seg <= 9) {
+                seg = "0" + seg;
+            }
+        
+            var hora = hr + ":" + min + ":" + seg + " del " + dia + "/" + mes + "/" + anio;
             return hora;
         }
+        
         getTime();
         //inicializar el correo
         console.log("Email enviado");
