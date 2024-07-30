@@ -20,6 +20,4 @@ router.post('/nuevas-temp',correoController.nuevasCredencialesTemp);
 
 router.post('/actualizar-correo',correoController.actualizarCliente);
 
-router.post('/transferencia-exitosa',correoController.transferenciaExitosa);
-
 module.exports = router; 
