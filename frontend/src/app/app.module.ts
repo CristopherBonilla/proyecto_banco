@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuAdminComponent } from './Components/menu-admin/menu-admin.component';
 import { RegistroCuentaComponent } from './Components/registro-cuenta/registro-cuenta.component';
 import { SuspencionClientesComponent } from './Components/suspencion-clientes/suspencion-clientes.component';
+import { SuspencionClientesAdminComponent } from './Components/suspencion-clientes-admin/suspencion-clientes-admin.component';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
@@ -39,6 +40,7 @@ import {MatSelectModule} from '@angular/material/select';
     MenuAdminComponent,
     RegistroCuentaComponent,
     SuspencionClientesComponent,
+    SuspencionClientesAdminComponent,
   ],
   imports: [
     BrowserModule,

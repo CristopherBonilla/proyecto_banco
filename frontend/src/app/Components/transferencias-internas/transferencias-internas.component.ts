@@ -15,7 +15,6 @@ export class TransferenciasInternasComponent {
   cuentas: Cuenta[] = [];
   numeroCuentas: string[] = [];
   correo: String = "";
-  otpCode: String = "";// Variable para almacenar el OTP generado
 
   constructor(
     private fb: FormBuilder,
@@ -96,8 +95,8 @@ export class TransferenciasInternasComponent {
         break;
       }
     }
-    const transferir = { cuenta1: cuenta1, cuenta2: cuenta2.value, monto: monto.value };
-    this._CuentaService.transaccionInterna(transferir).subscribe(data => {
+  const transferir = {cuenta1: cuenta1, cuenta2: cuenta2.value, monto:monto.value };
+    this._CuentaService.transaccionInterna(transferir).subscribe(data =>{
       console.log(data);
       this.toastr.success('La transferencia se realizó con éxito.', 'Transferencia exitosa');
       setTimeout(() => {
@@ -138,17 +137,4 @@ export class TransferenciasInternasComponent {
       }
     )
   }
-
-  verificarOTP() {
-    var otp = document.getElementById("otp-campo") as HTMLInputElement;
-    var text = document.getElementById('text');
-    if (otp.value === this.otpCode) {
-      text!.innerHTML = "Código válido";
-      document.getElementById('enviar')!.removeAttribute('disabled');
-    } else {
-      text!.innerHTML = "Código inválido";
-    }
-  }
-
-
 }

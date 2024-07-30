@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -16,13 +16,11 @@ import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
 
 export class MenuPrincipalComponent {
   listCuentas:Cuenta[]=[];
-  transferenciaExitosa: boolean = false;
 
   constructor(
     private router: Router, 
     private _clienteService: ClienteService,
     private _cuentaService: CuentaService,
-    private toastr: ToastrService // Asegúrate de inyectar ToastrService
   ){}
 
   ngOnInit(): void {
@@ -30,13 +28,6 @@ export class MenuPrincipalComponent {
     this.extraerCliente();
     //Mostrar las cuentas asociadas al cliente
     this.extraerCuentas();
-
-    // Verificar si venimos de una transferencia exitosa
-    if (history.state.transferenciaExitosa) {
-      this.toastr.success('La transferencia se realizó con éxito.', 'Transferencia exitosa');
-    }
-
-
   }
   extraerCliente(){
     const cedula = history.state.cedula.cedula;

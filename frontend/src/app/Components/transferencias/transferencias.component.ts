@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
-import { Cuenta } from 'src/app/models/cuentas';
 
 @Component({
   selector: 'app-transferencias',
@@ -9,7 +8,7 @@ import { Cuenta } from 'src/app/models/cuentas';
   styleUrls: ['./transferencias.component.css']
 })
 export class TransferenciasComponent {
-  listCuentas:Cuenta[]=[];
+
   constructor(
     private router: Router, 
     private _clienteService: ClienteService,
@@ -45,13 +44,5 @@ export class TransferenciasComponent {
     console.log(transferenciaObj);
     this.router.navigate(['/transferencia-interna'],{state:{transferenciaObj}});
   }
-  misDatos(){
-    const cedulaObj = history.state.cedula.cedula;
-    const cuentasObj = this.listCuentas;
-    const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
-    this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
-  }
   
 }
-
-
