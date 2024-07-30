@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Cuenta } from 'src/app/models/cuentas';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
@@ -18,6 +19,7 @@ export class TransferenciasInternasComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private toastr: ToastrService,
     private _clienteService: ClienteService,
     private _CuentaService: CuentaService,
   ) { }
@@ -96,18 +98,16 @@ export class TransferenciasInternasComponent {
   const transferir = {cuenta1: cuenta1, cuenta2: cuenta2.value, monto:monto.value };
     this._CuentaService.transaccionInterna(transferir).subscribe(data =>{
       console.log(data);
-    })
-    //Enviar correo confirmando la transferencia bancaria
-    const resumen = {cuenta1: cuenta1, cuenta2: cuenta2.value, monto:monto.value, descripcion:descripcion.value, correo:this.correo};
-    this._clienteService.resumen(resumen).subscribe(data=>{
+      this.toastr.success('La transferencia se realizó con éxito.', 'Transferencia exitosa');
+      setTimeout(() => {
+        this.menu();
+      }, 1000); // Espera 2 segundos antes de redirigir
+    });
+    const resumen = { cuenta1: cuenta1, cuenta2: cuenta2.value, monto: monto.value, descripcion: descripcion.value, correo: this.correo };
+    this._clienteService.resumen(resumen).subscribe(data => {
       console.log(data);
-
     })
-    //this.menu();
-    const transferenciaObj = { cuenta1: cuenta1, cuenta2: cuenta2.value, monto: monto.value, descripcion: descripcion.value, correo: this.correo };
-    this.router.navigate(['/transferencias-internas-resumen'], { state: { transferenciaObj } });
-  }
-     
+  }     
 
   otp() {
     // Deshabilitar el botón de correo
