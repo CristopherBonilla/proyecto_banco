@@ -106,7 +106,9 @@ export class TransferenciasInternasComponent {
     });
     const resumen = { cuenta1: cuenta1, cuenta2: cuenta2.value, monto: monto.value, descripcion: descripcion.value, correo: this.correo };
     this._clienteService.resumen(resumen).subscribe(data => {
-      console.log(data);     
+      console.log(data);
+    })
+  }     
 
   otp() {
     // Deshabilitar el botón de correo
