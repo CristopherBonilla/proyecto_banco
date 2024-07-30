@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { Cuenta } from 'src/app/models/cuentas';
@@ -8,7 +8,7 @@ import { Cuenta } from 'src/app/models/cuentas';
   templateUrl: './transferencias-internas-resumen.component.html',
   styleUrls: ['./transferencias-internas-resumen.component.css']
 })
-export class TransferenciasInternasResumenComponent implements OnInit {
+export class TransferenciasInternasResumenComponent {
   transferenciaObj: any;
   resumenHTML: string = '';
   cuentas: Cuenta[] = [];
@@ -50,6 +50,17 @@ export class TransferenciasInternasResumenComponent implements OnInit {
       var text = document.getElementById('nombre-cliente');
       text!.innerHTML = nombres + ' ' + apellidos;
     });
+  }
+
+  extraerCliente(){
+    const cedula = history.state.cedula.cedula;
+    const nombre = {cedula: cedula};
+    this._clienteService.obtenerCliente(nombre).subscribe(data=>{
+      var nombres = data.nombres.toString();
+      var apellidos = data.apellidos.toString();
+      var text = document.getElementById('nombre-cliente');
+      text!.innerHTML= nombres+' '+apellidos;
+    })
   }
 
   menu() {
