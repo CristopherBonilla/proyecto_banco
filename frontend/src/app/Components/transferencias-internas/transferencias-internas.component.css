@@ -290,6 +290,29 @@ main {
     border: 1px solid white;
     font-style: oblique;
 }
+/* Estilo para el botón "Reenviar código" */
+#reenviar-codigo {
+    font-family: 'Inter', sans-serif; /* Fuente coherente con otros botones */
+    font-size: 16px;
+    padding: 10px 20px; /* Espaciado interno para hacerlo más accesible */
+    margin-top: 10px;
+    background: #4b4545; /* Color de fondo que se alinea con el tema */
+    border: 1px solid #130f0f; /* Borde sólido para mayor definición */
+    border-radius: 5px; /* Bordes redondeados para un diseño más moderno */
+    color: white; /* Texto blanco para buen contraste */
+    text-align: center; /* Centra el texto */
+    display: inline-block; /* Permite aplicar padding y margenes correctamente */
+    cursor: pointer; /* Indica que es un elemento clicable */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transiciones suaves para efectos hover */
+}
+
+#reenviar-codigo:hover {
+    background-color: #434242; /* Cambio de color en hover */
+    border-color: white; /* Cambia el color del borde al pasar el ratón */
+    color: white; /* Mantiene el texto blanco en hover */
+    font-style: oblique; /* Aplica estilo oblicuo para el texto en hover */
+}
+
 /* Estilos para el Footer */
 footer.footer {
     background-color: #042068;

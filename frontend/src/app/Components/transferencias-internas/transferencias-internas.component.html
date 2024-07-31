@@ -149,11 +149,14 @@
                 <div class="col-5" id="boton-correo">
                   <button type="button" [disabled]="!cuentaValida" (click)="otp()" id="validar" class="col btn btn-primary">Enviar código</button>
              </div>
-              <div class="col-5" id="otp" style="display: none;">
-                <input type="text"  class="form-control" placeholder="ej. abc123" id="otp-campo">
-                <small class="text-muted" (click)="otp()">
-                <a >Reenviar c&oacute;digo</a></small>
-              </div>
+             <div class="col-5" id="otp" style="display: none;">
+              <input type="text" class="form-control" placeholder="ej. abc123" id="otp-campo">
+              <!-- Botón para reenviar el código -->
+            <small class="text-muted">
+              <a id="reenviar-codigo" href="#" (click)="reenviarCodigo($event)">Reenviar código</a>
+            </small>
+
+            </div>
               <div class="row">
                 <p class="text-danger" id="text"></p>
               </div>
