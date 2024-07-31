@@ -8,7 +8,7 @@
     background-image: url(../../../assets/media/fondo1.avif);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: -3cm center;
+    background-position: -2cm center;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
