@@ -56,13 +56,13 @@
     padding: 10px;
     border: none;
   }
-  
   .input-contenedor {
     margin-bottom: 20px;
     border: 1px solid #aaa;
     display: flex;
     align-items: center;
   }
+
   
   .icon {
     min-width: 50px;
@@ -74,10 +74,12 @@
     border: none;
     color: white;
     font-size: 20px;
-    background: #1048c6;
-    padding: 15px 20px;
-    margin: 10px;
-    border-radius: 5px;
+    background: #0f8abb;
+    padding: 10px 20px;
+    margin: 5px;
+    margin-left: 130px;
+    width: 200px;
+    border-radius: 20px;
     cursor: pointer;
   }
   
@@ -94,3 +96,44 @@
     background: rgb(230, 48, 41);
   }
   
+  .forgot-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.forgot-link p {
+    margin: 0;
+}
+
+  .register-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.register-link p {
+    margin: 0;
+}
+
+ a.forgot{
+    display: block;
+    text-decoration: none;
+    position: relative;
+    color: black;
+ }
+
+ a.forgot::hover{
+  text-decoration: underline;
+  color: aqua;
+ }
+
+ a.sing-up{
+  text-decoration: none;
+  color: black;
+ }
+
+ a.sing-up::hover{
+  text-decoration: underline;
+  color: aqua;
+ }
+
+ 
