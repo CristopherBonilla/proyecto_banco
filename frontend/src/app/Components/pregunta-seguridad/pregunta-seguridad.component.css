@@ -4,7 +4,13 @@
 }
 body{
 	font-family: Arial, Helvetica, sans-serif;
-	background: url("../../../assets/media/fondo.jpg");
+    background-image: url(../../../assets/media/fondo1.avif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -2cm center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 header{
     display: flex;
@@ -93,3 +99,14 @@ header{
 .button:disabled{
     background: rgb(230, 48, 41);
 }
+/* Estilos para el Footer */
+footer.footer {
+    background-color: #042068;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+    
