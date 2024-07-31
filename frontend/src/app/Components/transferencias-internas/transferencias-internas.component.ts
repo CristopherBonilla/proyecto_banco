@@ -15,6 +15,8 @@ export class TransferenciasInternasComponent {
   cuentas: Cuenta[] = [];
   numeroCuentas: string[] = [];
   correo: String = "";
+  codigoValido: boolean = false;
+  cuentaValida: boolean = false; // Estado de validez de la cuenta de destino
 
   constructor(
     private fb: FormBuilder,
@@ -71,17 +73,33 @@ export class TransferenciasInternasComponent {
     var cuenta = document.getElementById("cuentaDestino-campo") as HTMLInputElement;
     const cuentaObj = { numero_cuenta: cuenta.value };
     var texto = document.getElementById("textCuenta");
+    
     this._CuentaService.obtenerCuenta(cuentaObj).subscribe(
       data => {
-        let cuenta = <Cuenta>data;
-        // Recuperar el número de cédula
-        const cedulaObj = { cedula: cuenta.cedula };
-        // Recuperar cliente con el número de cédula
-        this._clienteService.obtenerCliente(cedulaObj).subscribe(data => {
-          texto!.innerHTML = "Cuenta encontrada. Esta cuenta le pertenece a: " + data.nombres + " " + data.apellidos;
-        })
-      })
+        if (data && cuenta) { // Verifica si la cuenta tiene una cédula válida
+          let cuenta = <Cuenta>data;
+          const cedulaObj = { cedula: cuenta.cedula };
+          
+          this._clienteService.obtenerCliente(cedulaObj).subscribe(data => {
+            texto!.innerHTML = "Cuenta encontrada. Esta cuenta le pertenece a: " + data.nombres + " " + data.apellidos;
+            this.cuentaValida = true; // Habilitar el botón de "Enviar código" si la cuenta es válida
+          });
+        } else {
+          // Manejar el caso en que la cuenta no tenga una cédula válida
+          this.cuentaValida = false; // Deshabilitar el botón de "Enviar código"
+          texto!.innerHTML = "Cuenta no encontrada o error en la solicitud.";
+          this.toastr.error('Cuenta de destino no válida.', 'Error');
+        }
+      },
+      error => {
+        // Manejar el caso en que la cuenta no existe o hay un error en la solicitud
+        this.cuentaValida = false; // Deshabilitar el botón de "Enviar código"
+        texto!.innerHTML = "Cuenta no encontrada o error en la solicitud.";
+        this.toastr.error('Cuenta de destino no válida.', 'Error');
+      }
+    );
   }
+  
 
   transferir(){
     var cuenta1:String="";
@@ -129,9 +147,12 @@ export class TransferenciasInternasComponent {
           var text = document.getElementById('text');
           var otp = document.getElementById("otp-campo") as HTMLInputElement;
           if (otp.value.match(patron) == null) {
-            text!.innerHTML = "Codigo invalido"
+            text!.innerHTML = "Codigo invalido";
+            this.codigoValido = false;
+          
           } else {
-            text!.innerHTML = "Codigo valido"
+            text!.innerHTML = "Codigo valido";
+            this.codigoValido = true;
           }
         })
       }

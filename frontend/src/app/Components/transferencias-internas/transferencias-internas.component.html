@@ -45,8 +45,8 @@
 
       <a>
         <div class="option">
-          <i class="far fa-sticky-note" title="Solicitudes"></i>
-          <h4>Solicitudes</h4>
+          <i class="far fa-sticky-note" title="Mis Datos"></i>
+          <h4>Mis Datos</h4>
         </div>
       </a>
 
@@ -147,9 +147,8 @@
                 </div>
                 <!--Correo-->
                 <div class="col-5" id="boton-correo">
-                  <button type="button" (click)="otp()" id="validar"
-                  class="col btn btn-primary">Enviar c&oacute;digo</button>
-              </div>
+                  <button type="button" [disabled]="!cuentaValida" (click)="otp()" id="validar" class="col btn btn-primary">Enviar código</button>
+             </div>
               <div class="col-5" id="otp" style="display: none;">
                 <input type="text"  class="form-control" placeholder="ej. abc123" id="otp-campo">
                 <small class="text-muted" (click)="otp()">
@@ -159,9 +158,11 @@
                 <p class="text-danger" id="text"></p>
               </div>
                 <!--Boton enviar-->
-                <div class="mb-4">
-                  <button class="btn btn-success" id="enviar" (click)="transferir()">Transferir</button>
-                </div>
+               
+              <div class="mb-4">
+                <button class="btn btn-success" id="enviar" type="button" [disabled]="!codigoValido" (click)="transferir()">Transferir</button>
+              </div>
+
               </form>
             </div>
           </div>
