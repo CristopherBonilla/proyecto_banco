@@ -14,6 +14,7 @@ import { TransferenciasComponent } from './Components/transferencias/transferenc
 import { MenuAdminComponent } from './Components/menu-admin/menu-admin.component';
 import { RegistroCuentaComponent } from './Components/registro-cuenta/registro-cuenta.component';
 import { SuspencionClientesComponent } from './Components/suspencion-clientes/suspencion-clientes.component';
+import { SuspencionClientesAdminComponent } from './Components/suspencion-clientes-admin/suspencion-clientes-admin.component';
 
 
 
@@ -27,6 +28,7 @@ const routes: Routes = [
     { path: 'registro-cliente', component: RegistroClienteComponent},
     { path: 'registro-cuenta', component: RegistroCuentaComponent},
     { path: 'suspender-cliente', component: SuspencionClientesComponent},
+    { path: 'suspender-cliente-admin', component: SuspencionClientesAdminComponent},
     { path: 'transferencia', component: TransferenciasComponent},
     { path: 'transferencia-interna', component: TransferenciasInternasComponent},
     { path: 'transferencias-internas-resumen', component: TransferenciasInternasResumenComponent},
