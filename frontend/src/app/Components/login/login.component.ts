@@ -12,7 +12,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  title = 'BanQuito';
+  title = 'EPN Wallet';
   public myForm!: FormGroup;
   public LOGIN_USUARIO: any;
 
@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
   public id:string;
   public correo:string;
   public codigo:string;
+
+  // Campo de visibilidad de la contraseña
+  public passwordFieldType: string = 'password';
 
   constructor(
     private fb: FormBuilder,
@@ -48,6 +51,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.activarCuadros();
   }
+
+  // Método para alternar la visibilidad de la contraseña
+  togglePasswordVisibility(): void {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+  }
+
+
 
   //FUNCION PARA ENCRIPTAR LA CONTRASEÑA
   hashPassword(password: string): string {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -64,7 +64,14 @@ export class MenuPrincipalComponent {
     const cedulaObj = history.state.cedula.cedula;
     const cuentasObj = this.listCuentas;
     const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
-    this.router.navigate(['/transferencia'],{state:{transferenciaObj}});
+    this.router.navigate(['/transferencia-interna'],{state:{transferenciaObj}});
+  }
+
+  misDatos(){
+    const cedulaObj = history.state.cedula.cedula;
+    const cuentasObj = this.listCuentas;
+    const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
+    this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
 
 }

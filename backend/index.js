@@ -18,7 +18,7 @@ const user = 'jojy';
 const password = 'jojy';
 const dbname = 'Banco'
 const uri = `mongodb+srv://${user}:${password}@pruebas.vuuremx.mongodb.net/${dbname}?retryWrites=true&w=majority`;
-//const uri = "mongodb://localhost:27017/BanQuito";
+//const uri = "mongodb://localhost:27017/banco";
 
 mongoose.connect(uri)
 .then(()=>{

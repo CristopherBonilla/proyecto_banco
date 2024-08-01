@@ -1,5 +1,5 @@
-# BanQuito
-Proyecto - Banca Web - Ingeniería de Software 2
+# EPN Wallet
+Proyecto de banca web para la materia de Ingenieria De Software II 
 
 
 

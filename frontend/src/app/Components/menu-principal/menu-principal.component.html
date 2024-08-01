@@ -42,9 +42,9 @@
           </div>
         </a>
         <a >
-          <div class="option">
-            <i class="far fa-sticky-note" title="Solicitudes"></i>
-            <h4>Solicitudes</h4>
+          <div class="option" (click)="misDatos()">
+            <i class="far fa-sticky-note" title="Mis Datos"></i>
+            <h4>Mis Datos</h4>
           </div>
         </a>
   
@@ -72,7 +72,7 @@
         <div class="row">
           <div class="col-4" id="logo">
             <img src="../../../assets/media/Logo.png" alt="logo">
-            <h1 class="nombre-banco">BanQuito</h1>
+            <h1 class="nombre-banco">EPN Wallet</h1>
           </div>
           <div class="col-4" id="cliente">
             <img src="../../../assets/media/usuario.png" alt="cliente">
@@ -105,7 +105,8 @@
               <h3 class="ingreso">Saldo disponible: <b>{{cuenta.monto_inicial | currency:'USD'}}</b></h3>
             </div>
             <div class="col-6">
-              <h3 class="ingresoP">Ingresos Promedio: <b>{{cuenta.ingreso_promedio | currency:'USD'}}</b></h3>
+             <!-- <h3 class="ingresoP">Ingresos Promedio: <b>{{cuenta.ingreso_promedio | currency:'USD'}}</b></h3>
+            -->
             </div>
           </div>
         </div>
@@ -113,4 +114,7 @@
 
     </main>
   </body>
+  <footer class="footer">
+    <p>© 2024 EPN Wallet. Todos los derechos reservados.</p>
+  </footer>
 </html>

@@ -3,23 +3,23 @@
 <html lang="es">
     <head>
         <meta charset="utf-8">
-        <title>Inicio</title>
+        <title>EPN Wallet</title>
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <link rel="icon" type="favicon/x-icon" href="../../../assets/media/Logo.png">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
-
+        <link rel="stylesheet" href="../login/login.component.css">
     </head>
 
     <body>
       <header>
         <div class="logo">
           <img src="../../../assets/media/Logo.png" alt="logo">
-          <h1 class="nombre-banco">BanQuito</h1>
+          <h1 class="nombre-banco">EPN Wallet</h1>
         </div>
       </header>
 
       <form [formGroup]="myForm" (ngSubmit)="submitFormulario()" class="formulario">
-        <h1>Bienvenido a tu banca web</h1>
+        <h1>Bienvenido</h1>
           <div class="contenedor">
             <div id="user" class="input-contenedor">
               <i class="fas fa-user icon"></i>
@@ -29,13 +29,15 @@
               </div>
             </div>
               
-            <div id="pass" class="input-contenedor">
+            <div id="pass" class="input-contenedor" style="position: relative;">
               <i class="fas fa-key icon"></i>
-              <input formControlName="password" [class.is-invalid]='f.password.errors && f.password.touched' type="password" placeholder="Contraseña"  required pattern = "^(?=.*[@]?)(?=.*\d?)(?=.*[a-z]?)(?=.*[A-Z]?)[a-zA-Z\d@]{4,25}$">
+              <input formControlName="password" [class.is-invalid]='f.password.errors && f.password.touched' [type]="passwordFieldType" placeholder="Contraseña" required pattern="^(?=.*[@]?)(?=.*\d?)(?=.*[a-z]?)(?=.*[A-Z]?)[a-zA-Z\d@]{4,25}$">
+              <i class="fas" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
               <div id="validationServerUsernameFeedback" class="invalid-feedback">
                 Por favor, ingrese la contraseña
               </div>
             </div>
+            
 
             <div id="otp" class="input-contenedor" style="display: none">
               <i class="fas fa-lock icon"></i>
@@ -48,5 +50,10 @@
             <button id="btn" class="button btn-success">Entrar</button>
           </div>
       </form>
+      <!-- Footer -->
+  <footer class="footer">
+    <p>© 2024 EPN Wallet. Todos los derechos reservados.</p>
+  </footer>
     </body>
 </html>
+

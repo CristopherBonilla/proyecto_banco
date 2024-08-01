@@ -5,13 +5,19 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: url("../../../assets/media/patron.png");
+    background: url("../../../assets/media/patron1.avif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -10cm center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
     display: flex;
     height: 70px;
-    background-color: #161719;
+    background-color: #042068;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -29,8 +35,8 @@ header {
 }
 
 .nombre-banco {
-    color: #9e0004;
-    font-size: 50px;
+    color: white;
+    font-size: 25px;
 }
 
 #cliente {
@@ -80,7 +86,7 @@ header {
     padding-top: 30px;
     width: 180px;
     height: 100%;
-    background: #030201;
+    background: #042068;
     position: fixed;
     top: 0;
     left: 0;
@@ -89,7 +95,7 @@ header {
     z-index: 300;
     overflow: hidden;
     overflow-y: scroll;
-    border-right: 20px solid #030201b2;
+    border-right: 20px solid #042068;
     transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
@@ -121,6 +127,7 @@ header {
     padding: 20px 30px;
     position: absolute;
     top: 80px;
+    font-size: 25px;
 }
 
 .options__menu a {
@@ -133,7 +140,7 @@ header {
 }
 
 .options__menu a:hover {
-    color: rgb(221, 19, 19);
+    color: #1048c6;
 }
 
 .options__menu .option {
@@ -159,11 +166,11 @@ a.selected {
     color: #fff;
 }
 a.selected i{
-    color: rgb(221, 19, 19);
+    color: #538af6;
     text-decoration: none;
 }
 a.selected h4{
-    color: rgb(221, 19, 19);
+    color: #538af6;
 }
 .selected:before {
     content: '';
@@ -189,16 +196,16 @@ main {
     margin-left: 15%;
     padding: 10px;
     width: 70%;
-background: #85684b;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 50px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
 }
 .cuenta-contenido{
     margin: 1%;
     padding: 2%;
-    background: #fae1c0;
+    background: #8d8d8d;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
+    border-radius: 10px;
 }
 .numero{
     font-family: 'Times New Roman', Times, serif;
@@ -209,7 +216,7 @@ border-radius: 50px;
 }
 .tipo{
     font-family: 'Times New Roman', Times, serif;
-    color: #422929;
+    color: #161010;
     text-align: right;
     margin-right: 5%;
 }
@@ -227,3 +234,13 @@ border-radius: 50px;
     margin-right: 5%;
     margin-top: 2%;
 }
+/* Estilos para el Footer */
+footer.footer {
+    background-color: #042068;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
