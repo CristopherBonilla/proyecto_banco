@@ -16,6 +16,7 @@ import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
 
 export class MenuPrincipalComponent {
   listCuentas:Cuenta[]=[];
+  esEncriptado = false; // Propiedad para manejar el estado de encriptación
 
   constructor(
     private router: Router, 
@@ -60,6 +61,17 @@ export class MenuPrincipalComponent {
     })
   }
 
+  encriptarSaldo(monto: number | string): string {
+    // Asegúrate de que el monto es un número
+    const montoNum = typeof monto === 'string' ? parseFloat(monto) : monto;
+    // Convertir el monto a una cadena de puntos
+    return montoNum.toString().replace(/\d/g, '•');
+  }
+
+  toggleEncriptado() {
+    this.esEncriptado = !this.esEncriptado; // Alterna el estado de encriptado
+  }
+
   transferencias(){
     const cedulaObj = history.state.cedula.cedula;
     const cuentasObj = this.listCuentas;
@@ -73,6 +85,7 @@ export class MenuPrincipalComponent {
     const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
     this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
+  
 
 }
 

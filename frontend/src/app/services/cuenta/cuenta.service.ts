@@ -41,4 +41,7 @@ export class CuentaService {
     obtenerCuenta(numero:Object){
         return this.http.post(this.urlGetCuenta, numero);
     }
+
+    
+  
 }

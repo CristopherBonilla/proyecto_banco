@@ -244,3 +244,8 @@ footer.footer {
     width: 100%;
     bottom: 0;
   }
+
+  .icon {
+    margin-left: 10px; /* Ajusta el valor según sea necesario */
+  }
+  

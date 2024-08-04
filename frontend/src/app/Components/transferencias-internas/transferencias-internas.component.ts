@@ -14,6 +14,7 @@ import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
 export class TransferenciasInternasComponent {
   cuentas: Cuenta[] = [];
   numeroCuentas: string[] = [];
+  numeroCuentas2: string[] = [];
   correo: string = ""; // Cambiar a tipo primitivo string
   codigoValido: boolean = false;
   cuentaValida: boolean = false; // Estado de validez de la cuenta de destino
@@ -45,7 +46,8 @@ export class TransferenciasInternasComponent {
       text!.innerHTML = nombres + ' ' + apellidos;
     })
     for (let i = 0; i < this.cuentas.length; i++) {
-      this.numeroCuentas[i] = this.cuentas[i].tipo_cuenta + " " + this.cuentas[i].numero_cuenta + " $" + this.cuentas[i].monto_inicial;
+      this.numeroCuentas[i] = this.cuentas[i].tipo_cuenta + " " + this.cuentas[i].numero_cuenta +
+      " Saldo Actual: $" + this.cuentas[i].monto_inicial;
       // cargar cuentas en el combo box
     }
     const select = document.getElementById("cuentasOrigen") as HTMLSelectElement;
@@ -55,6 +57,7 @@ export class TransferenciasInternasComponent {
       select!.appendChild(option);
     }
   }
+
 
   menu() {
     const objeto = history.state.transferenciaObj;

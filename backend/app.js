@@ -22,6 +22,7 @@ var enviarCorreo=require('./routes/correo.routes');
 var transaccionesExternasRoutes=require('./routes/transaccionesExternas.routes');
 
 
+
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 

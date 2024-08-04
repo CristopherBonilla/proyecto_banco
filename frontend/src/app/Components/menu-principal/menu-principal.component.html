@@ -88,7 +88,7 @@
         </div>
       </header>
 
-      
+    
 
       <div class="cuenta" *ngFor="let cuenta of listCuentas">
         <div class="cuenta-contenido">
@@ -100,14 +100,14 @@
               <h2 class="tipo" >{{cuenta.tipo_cuenta}}</h2>
             </div>
           </div>
-          <div class="row">
-            <div class="col-6">
-              <h3 class="ingreso">Saldo disponible: <b>{{cuenta.monto_inicial | currency:'USD'}}</b></h3>
-            </div>
-            <div class="col-6">
-             <!-- <h3 class="ingresoP">Ingresos Promedio: <b>{{cuenta.ingreso_promedio | currency:'USD'}}</b></h3>
-            -->
-            </div>
+          <div class="col-6">
+            <!-- Cambiado: Mostrar saldo encriptado o desencriptado -->
+            <h3 class="ingreso">
+              Saldo disponible: 
+              <b>{{ esEncriptado ? encriptarSaldo(cuenta.monto_inicial) : (cuenta.monto_inicial | currency:'USD') }}</b>
+              &nbsp;
+              <i class="fas" [ngClass]="{'fa-eye': !esEncriptado, 'fa-eye-slash': esEncriptado}" (click)="toggleEncriptado()" title="Alternar visualización del saldo"></i>
+            </h3>
           </div>
         </div>
       </div>
