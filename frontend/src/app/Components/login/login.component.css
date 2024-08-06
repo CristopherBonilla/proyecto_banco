@@ -123,40 +123,39 @@
 
   .register-link p {
     margin: 0;
+    color: #fff;
   }
 
   a.forgot{
     display: block;
     text-decoration: none;
     position: relative;
-    color: black;
+    color: rgb(255, 255, 255);
   }
 
-  a.forgot::hover{
+  a.forgot:hover{
   text-decoration: underline;
   color: aqua;
   }
 
   a.sing-up{
   text-decoration: none;
-  color: black;
+  color: rgb(255, 255, 255);
   }
 
-  a.sing-up::hover{
+  a.sing-up:hover{
   text-decoration: underline;
   color: aqua;
   }
-/*FIN CAMBIO ANTHONY*/
 
-/*ADVERTENCIA REVISAR SI NO CAUSA PROBLEMA*/
 /* Estilos para el Footer */
-/*footer.footer {
-  background-color: #042068;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}*/
+  footer.footer {
+    background-color: #042068;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
   
