@@ -17,6 +17,9 @@ import { SuspencionClientesComponent } from './Components/suspencion-clientes/su
 import { SuspencionClientesAdminComponent } from './Components/suspencion-clientes-admin/suspencion-clientes-admin.component';
 import { HistorialComponent } from './Components/historial/historial.component'; // Importa el componente Historial
 
+import { RecuperarConComponent } from './Components/recuperar-con/recuperar-con.component';
+import { RegistroClienteLoginComponent } from './Components/registro-cliente-login/registro-cliente-login.component';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -34,8 +37,12 @@ const routes: Routes = [
     { path: 'transferencia-interna', component: TransferenciasInternasComponent},
     { path: 'transferencias-internas-resumen', component: TransferenciasInternasResumenComponent},
     { path: 'historial', component: HistorialComponent },
+    { path: 'transferencia-interna-resumen', component: TransferenciasInternasResumenComponent},
+    { path: 'recuperar-con', component: RecuperarConComponent },
+    { path: 'registro-cliente-login', component: RegistroClienteLoginComponent },
+    { path: 'reset-password', component: ResetPasswordComponent },
     { path: '**', redirectTo: 'login', pathMatch: 'full'}
-];
+    ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes),HttpClientModule],//para conexion

@@ -1,0 +1,10 @@
+/* CSS para mostrar mensajes de error en gris */
+.text-danger {
+    color: gray;
+    font-size: 0.9em; /* Ajusta el tamaño del texto si es necesario */
+}
+
+/* CSS para resaltar el borde del input en rojo cuando hay un error */
+input.ng-invalid.ng-touched {
+    border-color: red;
+}
