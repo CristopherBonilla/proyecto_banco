@@ -22,7 +22,7 @@
   
       <div class="options__menu">
   
-        <a href="/menu" class="selected">
+        <a href="/menu" class="option">
           <div class="option">
             <i class="fas fa-home" title="Inicio"></i>
             <h4>INICIO</h4>
@@ -41,17 +41,17 @@
             <h4>Transferencias</h4>
           </div>
         </a>
-        <a >
+        <a href="/suspencion-cliente">
           <div class="option" (click)="misDatos()">
             <i class="far fa-sticky-note" title="Mis Datos"></i>
             <h4>Mis Datos</h4>
           </div>
         </a>
   
-        <a >
+        <a href="/historial" class="selected">
           <div class="option">
-            <i class="far fa-id-badge" title="Contacto"></i>
-            <h4>Contacto</h4>
+            <i class="fas fa-history" title="Historial"></i>
+            <h4>Historial</h4>
           </div>
         </a>
   
@@ -88,8 +88,33 @@
         </div>
       </header>
 
-    
-
+       <!-- Historial de Transferencias -->
+    <div class="container mt-3">
+      <h2>Historial de Transferencias</h2>
+      <div *ngIf="transferencias.length > 0; else noTransferencias">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Cuenta Emisor</th>
+              <th>Cuenta Destino</th>
+              <th>Monto</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transferencia of transferencias">
+              <td>{{ transferencia.cuenta_Emisor }}</td>
+              <td>{{ transferencia.cuenta_Destino }}</td>
+              <td>{{ transferencia.monto | currency:'USD' }}</td>
+              <td>{{ transferencia.descripcion }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noTransferencias>
+        <p>No se encontraron transferencias.</p>
+      </ng-template>
+    </div>
 
     </main>
   </body>

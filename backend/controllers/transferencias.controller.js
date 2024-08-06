@@ -60,11 +60,12 @@ var controller = {
     },
 
     getTransferenciasByCedula: function (req, res) {
+        console.log("Recolectando datos de las trasferencias del usuario:")
         var params = req.body;
         var cedula = params.cedula;
         Transferencia.find({ "cedula": cedula }, (err, transferencias) => {
-            if (err) return res.status(500).send({ message: 'Error al buscar las transferencias' });
-            if (!transferencias || transferencias.length === 0) return res.status(404).send({ message: 'Transferencias no encontradas' });
+            if (err) return res.status(200).send({ message: 'Error al buscar las transferencias' });
+            if (!transferencias || transferencias.length === 0) return res.status(200).send({ message: 'Transferencias no encontradas' });
             return res.status(200).send(transferencias);
         });
     }

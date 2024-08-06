@@ -14,7 +14,7 @@ router.post('/guardar-transferencia', transferenciasController.saveTransferencia
 router.get('/transferencias', transferenciasController.getTransferencias);
 
 // Obtener transferencias por número de cédula
-router.get('/get-transferencias-by-cedula', transferenciasController.getTransferenciasByCedula);
+router.post('/get-transferencias-by-cedula', transferenciasController.getTransferenciasByCedula);
 
 
 module.exports=router;

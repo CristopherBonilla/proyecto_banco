@@ -39,12 +39,7 @@ export class CuentaService {
     guardarTransferencia(transferencia: Transferencia): Observable<any> {
         return this.http.post(this.urlTransferenciaInterna, transferencia);
     }
-
-    
     obtenerCuenta(numero:Object){
         return this.http.post(this.urlGetCuenta, numero);
     }
-
-    
-  
 }
