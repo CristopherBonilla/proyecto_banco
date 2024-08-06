@@ -3,6 +3,7 @@
 var Cuenta = require('../models/cuenta');
 var fs = require('path');
 const path = require('path');
+
 var controller = {
     inicio: function (req, res) {
         return res.status(201).send(
@@ -28,6 +29,7 @@ var controller = {
             return res.status(200).send( cuentas );
         })
     },
+
     saveCuenta: function (req, res) {
         var cuenta = new Cuenta();
         var params = req.body;

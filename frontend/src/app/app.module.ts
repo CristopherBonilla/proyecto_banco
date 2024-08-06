@@ -25,6 +25,7 @@ import { SuspencionClientesAdminComponent } from './Components/suspencion-client
 import { MatRadioModule } from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import { HistorialComponent } from './Components/historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {MatSelectModule} from '@angular/material/select';
     RegistroCuentaComponent,
     SuspencionClientesComponent,
     SuspencionClientesAdminComponent,
+    HistorialComponent,
   ],
   imports: [
     BrowserModule,

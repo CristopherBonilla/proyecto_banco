@@ -4,10 +4,9 @@ var Schema = mongoose.Schema;
 
 var TransferenciasSchema = Schema({
     cedula: Number,
-    numero_Transaccion:String,
-    cuenta_Remitente: String,
+    cuenta_Emisor: String,
     cuenta_Destino: String,
     monto:Number,
-    costo:Number,
+    descripcion: String
 });
 module.exports = mongoose.model('Transferencia', TransferenciasSchema);

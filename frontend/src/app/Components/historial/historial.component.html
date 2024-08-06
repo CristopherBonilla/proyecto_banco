@@ -7,7 +7,7 @@
   <title>Inicio</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="icon" type="favicon/x-icon" href="../../../assets/media/Logo.png">
-  <link rel="stylesheet" type="text/css" href="../menu-principal/menu-principal.component.css">
+  <link rel="stylesheet" type="text/css" href="../historial/historial.component.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="https://kit.fontawesome.com/39d269d22a.css" crossorigin="anonymous">
 
@@ -22,7 +22,7 @@
   
       <div class="options__menu">
   
-        <a href="/menu" class="selected">
+        <a href="/menu" class="option">
           <div class="option">
             <i class="fas fa-home" title="Inicio"></i>
             <h4>INICIO</h4>
@@ -36,20 +36,19 @@
           </div>
         </a>
         <a>
-          <div class="option" (click)="transferencias()">
+          <div class="option" (click)="transferenciasM()">
             <i class="fas fa-video" title="Transferencias" ></i>
             <h4>Transferencias</h4>
           </div>
         </a>
-        <a >
+        <a href="/suspencion-cliente">
           <div class="option" (click)="misDatos()">
             <i class="far fa-sticky-note" title="Mis Datos"></i>
             <h4>Mis Datos</h4>
           </div>
         </a>
   
-        <a (click)="verHistorial()">
-          
+        <a href="/historial" class="selected">
           <div class="option">
             <i class="fas fa-history" title="Historial"></i>
             <h4>Historial</h4>
@@ -89,27 +88,33 @@
         </div>
       </header>
 
-      <div class="cuenta" *ngFor="let cuenta of listCuentas">
-        <div class="cuenta-contenido">
-          <div class="row">
-            <div class="col-6">
-              <h1 class="numero">N<sup>o</sup>: {{cuenta.numero_cuenta}}</h1>
-            </div>
-            <div class="col-6">
-              <h2 class="tipo" >{{cuenta.tipo_cuenta}}</h2>
-            </div>
-          </div>
-          <div class="col-6">
-            <!-- Cambiado: Mostrar saldo encriptado o desencriptado -->
-            <h3 class="ingreso">
-              Saldo disponible: 
-              <b>{{ esEncriptado ? encriptarSaldo(cuenta.monto_inicial) : (cuenta.monto_inicial | currency:'USD') }}</b>
-              &nbsp;
-              <i class="fas" [ngClass]="{'fa-eye': !esEncriptado, 'fa-eye-slash': esEncriptado}" (click)="toggleEncriptado()" title="Alternar visualización del saldo"></i>
-            </h3>
-          </div>
-        </div>
+       <!-- Historial de Transferencias -->
+    <div class="container mt-3">
+      <h2>Historial de Transferencias</h2>
+      <div *ngIf="transferencias.length > 0; else noTransferencias">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Cuenta Emisor</th>
+              <th>Cuenta Destino</th>
+              <th>Monto</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transferencia of transferencias">
+              <td>{{ transferencia.cuenta_Emisor }}</td>
+              <td>{{ transferencia.cuenta_Destino }}</td>
+              <td>{{ transferencia.monto | currency:'USD' }}</td>
+              <td>{{ transferencia.descripcion }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      <ng-template #noTransferencias>
+        <p>No se encontraron transferencias.</p>
+      </ng-template>
+    </div>
 
     </main>
   </body>
