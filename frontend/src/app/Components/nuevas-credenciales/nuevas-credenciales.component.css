@@ -5,6 +5,13 @@
   
   body {
     font-family: Arial, Helvetica, sans-serif;
+    background-image: url(../../../assets/media/fondo1.avif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -2cm center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
   
   header {
@@ -32,11 +39,13 @@
   }
   
   .formulario {
-    background: #aaaaaa80;
+    
+    background: #042068; 
     padding: 20px;
     margin: 50px auto 150px;
     width: 500px;
     border-radius: 2%;
+    color: #fff;
   }
   
   .formulario h1 {
@@ -63,7 +72,7 @@
   .icon {
     min-width: 50px;
     text-align: center;
-    color: #060606;
+    color: white;
   }
   
   .button {
@@ -75,6 +84,8 @@
     margin: 10px;
     border-radius: 5px;
     cursor: pointer;
+    display: inline-block; /* Cambia a inline-block para que el text-align: center; funcione */
+    margin: 10px 0; 
   }
   
   .button:hover {

@@ -14,6 +14,9 @@ import { TransferenciasComponent } from './Components/transferencias/transferenc
 import { MenuAdminComponent } from './Components/menu-admin/menu-admin.component';
 import { RegistroCuentaComponent } from './Components/registro-cuenta/registro-cuenta.component';
 import { SuspencionClientesComponent } from './Components/suspencion-clientes/suspencion-clientes.component';
+import { SuspencionClientesAdminComponent } from './Components/suspencion-clientes-admin/suspencion-clientes-admin.component';
+import { HistorialComponent } from './Components/historial/historial.component'; // Importa el componente Historial
+
 import { RecuperarConComponent } from './Components/recuperar-con/recuperar-con.component';
 import { RegistroClienteLoginComponent } from './Components/registro-cliente-login/registro-cliente-login.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
@@ -29,8 +32,11 @@ const routes: Routes = [
     { path: 'registro-cliente', component: RegistroClienteComponent},
     { path: 'registro-cuenta', component: RegistroCuentaComponent},
     { path: 'suspender-cliente', component: SuspencionClientesComponent},
+    { path: 'suspender-cliente-admin', component: SuspencionClientesAdminComponent},
     { path: 'transferencia', component: TransferenciasComponent},
     { path: 'transferencia-interna', component: TransferenciasInternasComponent},
+    { path: 'transferencias-internas-resumen', component: TransferenciasInternasResumenComponent},
+    { path: 'historial', component: HistorialComponent },
     { path: 'transferencia-interna-resumen', component: TransferenciasInternasResumenComponent},
     { path: 'recuperar-con', component: RecuperarConComponent },
     { path: 'registro-cliente-login', component: RegistroClienteLoginComponent },

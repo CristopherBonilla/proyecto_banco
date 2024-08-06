@@ -1,35 +1,38 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { Cuenta } from 'src/app/models/cuentas';
 import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
+import { TransferenciaService } from 'src/app/services/trasferencia/trasferencia.service';
+import { Transferencia } from 'src/app/models/transferencias';
 
 
 @Component({
-  selector: 'app-menu-principal',
-  templateUrl: './menu-principal.component.html',
-  styleUrls: ['./menu-principal.component.css']
+  selector: 'app-historial',
+  templateUrl: './historial.component.html',
+  styleUrls: ['./historial.component.css']
 })
-
-
-export class MenuPrincipalComponent {
+export class HistorialComponent{
   listCuentas:Cuenta[]=[];
-  esEncriptado = false; // Propiedad para manejar el estado de encriptación
-
+  transferencias: Transferencia[] = [];
+  
   constructor(
     private router: Router, 
     private _clienteService: ClienteService,
     private _cuentaService: CuentaService,
-  ){}
+    private _transferenciaService: TransferenciaService,
+  ) { }
 
   ngOnInit(): void {
     //Mostrar el nombre del cliente que se logea
     this.extraerCliente();
-    //Mostrar las cuentas asociadas al cliente
-    this.extraerCuentas();
+      //Mostrar las cuentas asociadas al cliente
+      this.extraerCuentas();
+    // Llamar a la función para cargar las transferencias al inicializar el componente
+    this.obtenerHistorial();
   }
+
   extraerCliente(){
     const cedula = history.state.cedula.cedula;
     const nombre = {cedula: cedula};
@@ -61,18 +64,24 @@ export class MenuPrincipalComponent {
     })
   }
 
-  encriptarSaldo(monto: number | string): string {
-    // Asegúrate de que el monto es un número
-    const montoNum = typeof monto === 'string' ? parseFloat(monto) : monto;
-    // Convertir el monto a una cadena de puntos
-    return montoNum.toString().replace(/\d/g, '•');
+  obtenerHistorial() {
+    const cedula = history.state.cedula;
+    this._transferenciaService.getTransferenciasByCedula({ cedula }).subscribe(
+      (data: Transferencia[]) => {
+        this.transferencias = data;
+      },
+      error => {
+        console.log('Error al obtener las transferencias', error);
+      }
+    );
   }
 
-  toggleEncriptado() {
-    this.esEncriptado = !this.esEncriptado; // Alterna el estado de encriptado
+  // Puedes agregar una función para buscar por cédula si no deseas que se cargue al inicio
+  buscarTransferencias() {
+    this.obtenerHistorial();
   }
 
-  transferencias(){
+  transferenciasM(){
     const cedulaObj = history.state.cedula.cedula;
     const cuentasObj = this.listCuentas;
     const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
@@ -85,17 +94,4 @@ export class MenuPrincipalComponent {
     const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
     this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
-
-  historial() {
-    const cedulaObj = history.state.cedula.cedula;
-    this.router.navigate(['/historial'], { state: { cedula: cedulaObj } });
-  }
-
-  verHistorial() {
-    this.historial();
-  }
-  
-
 }
-
-

@@ -1,5 +1,20 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: url("../../../assets/media/fondo1.avif");
+    background-size: cover;
+    background-position: center;
+    margin: 0; /* Asegura que no haya margen por defecto */
+    padding: 0; /* Asegura que no haya relleno por defecto */
+    min-height: 100vh; /* Asegura que el body cubra toda la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+}
 
-header{
+main {
+    flex: 1; /* Permite que el contenido principal ocupe el espacio disponible */
+}
+
+header {
     display: flex;
     height: 70px;
     background-color: #0a36a6;
@@ -7,17 +22,36 @@ header{
     align-items: center;
     padding: 10px;
 }
-.logo{
+
+.logo {
     display: flex;
     align-items: center;
 }
 
-.logo img{
+.logo img {
     height: 50px;
     margin-right: 25px;
     margin-left: 10px;
 }
-.nombre-banco{
+
+.nombre-banco {
     color: white;
     font-size: 50px;
+}
+
+.container {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente para el contenedor */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para el contenedor */
+}
+
+.footer {
+    background-color: #042068;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }

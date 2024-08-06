@@ -9,8 +9,6 @@ const path = require('path');
 var controller = {
 
     transaccionExterna:  async function (req, res) {
-
-
         try {
             
             //var clientesController=require('../controllers/cliente.controller');
