@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Cuenta } from 'src/app/models/cuentas';
+import { Transferencia } from 'src/app/models/transferencias';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
 
@@ -12,6 +13,7 @@ import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
   styleUrls: ['./transferencias-internas.component.css']
 })
 export class TransferenciasInternasComponent {
+  listCuentas:Cuenta[]=[];
   cuentas: Cuenta[] = [];
   numeroCuentas: string[] = [];
   numeroCuentas2: string[] = [];
@@ -19,6 +21,7 @@ export class TransferenciasInternasComponent {
   codigoValido: boolean = false;
   cuentaValida: boolean = false; // Estado de validez de la cuenta de destino
   codigoOTP: string = ""; 
+  
 
   constructor(
     private fb: FormBuilder,
@@ -104,31 +107,60 @@ export class TransferenciasInternasComponent {
     );
   }
   
-  transferir(){
-    var cuenta1:String="";
-    var monto = document.getElementById("monto-campo") as HTMLInputElement;
-    var c1 =  document.getElementById("cuentasOrigen")as HTMLInputElement;
-    var cuenta2 = document.getElementById("cuentaDestino-campo") as HTMLInputElement;
-    var descripcion=document.getElementById("descripcion-campo") as HTMLInputElement;
-    for(var i=0; i<this.cuentas.length; i++){
-      if(this.numeroCuentas[i]==c1.value){
-        cuenta1 = this.cuentas[i].numero_cuenta;
-        break;
-      }
+  transferir() {
+    const monto = parseFloat((document.getElementById("monto-campo") as HTMLInputElement).value);
+    const c1 = (document.getElementById("cuentasOrigen") as HTMLSelectElement).value;
+    const cuenta2 = (document.getElementById("cuentaDestino-campo") as HTMLInputElement).value;
+    const descripcion = (document.getElementById("descripcion-campo") as HTMLInputElement).value;
+    
+    // Encuentra la cuenta origen correspondiente
+    const cuentaOrigenData = this.cuentas.find(cuenta => 
+        `${cuenta.tipo_cuenta} ${cuenta.numero_cuenta} Saldo Actual: $${cuenta.monto_inicial}` === c1
+    );
+
+    if (cuentaOrigenData) {
+        if (monto > cuentaOrigenData.monto_inicial) {
+            // Mostrar mensaje de saldo insuficiente usando Toastr
+            this.toastr.error('Saldo insuficiente para realizar esta transferencia.', 'Error');
+            return; // Detener la ejecución si el saldo es insuficiente
+        }
+        if (monto < 0.00) {
+            // Mostrar mensaje de monto incorrecto
+            this.toastr.error('Ingrese un monto correcto', 'Error');
+            return; 
+        }
+
+        // Preparar los datos para la transferencia
+        const transferencia: Transferencia = { 
+            cedula: cuentaOrigenData.cedula,
+            cuenta_Emisor: cuentaOrigenData.numero_cuenta,
+            cuenta_Destino: cuenta2,
+            monto: monto,
+            descripcion: descripcion 
+        };
+
+        // Realizar la transferencia
+        this._CuentaService.guardarTransferencia(transferencia).subscribe(data => {
+            console.log(data);
+            this.toastr.success('La transferencia se realizó con éxito.', 'Transferencia exitosa');
+            setTimeout(() => {
+                this.menu();
+            }, 100);
+        });
+
+        // Enviar resumen
+        const resumen = { cuenta1: cuentaOrigenData.numero_cuenta, cuenta2: cuenta2, monto: monto, descripcion: descripcion, correo: this.correo };
+        this._clienteService.resumen(resumen).subscribe(data => {
+            console.log(data);
+        });
+    } else {
+        // Si no se encuentra la cuenta origen
+        this.toastr.error('Cuenta de origen no válida.', 'Error');
     }
-  const transferir = {cuenta1: cuenta1, cuenta2: cuenta2.value, monto:monto.value };
-    this._CuentaService.transaccionInterna(transferir).subscribe(data =>{
-      console.log(data);
-      this.toastr.success('La transferencia se realizó con éxito.', 'Transferencia exitosa');
-      setTimeout(() => {
-        this.menu();
-      }, 1000); 
-    });
-    const resumen = { cuenta1: cuenta1, cuenta2: cuenta2.value, monto: monto.value, descripcion: descripcion.value, correo: this.correo };
-    this._clienteService.resumen(resumen).subscribe(data => {
-      console.log(data);
-    })
-  } 
+}
+
+
+  
              
 
   otp() {
@@ -171,5 +203,12 @@ export class TransferenciasInternasComponent {
         });
       }
     );
+  }
+
+  misDatos(){
+    const cedulaObj = history.state.cedula.cedula;
+    const cuentasObj = this.listCuentas;
+    const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
+    this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
 }

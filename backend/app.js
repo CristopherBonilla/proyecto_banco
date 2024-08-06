@@ -21,6 +21,8 @@ var enviarCorreo=require('./routes/correo.routes');
 //para transacciones externas
 var transaccionesExternasRoutes=require('./routes/transaccionesExternas.routes');
 
+//para transacciones internas
+var transferenciasRoutes = require('./routes/transferencias.routes');
 
 
 app.use(bodyParser.urlencoded({extended:false}));
@@ -62,4 +64,6 @@ app.use('/',clientesRoutes);
 app.use('/',enviarCorreo);
 app.use('/',cuentasRoutes);
 app.use('/',transaccionesExternasRoutes);
+app.use('/', transferenciasRoutes);
+
 module.exports=app;

@@ -85,6 +85,15 @@ export class MenuPrincipalComponent {
     const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
     this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
+
+  historial() {
+    const cedulaObj = history.state.cedula.cedula;
+    this.router.navigate(['/historial'], { state: { cedula: cedulaObj } });
+  }
+
+  verHistorial() {
+    this.historial();
+  }
   
 
 }

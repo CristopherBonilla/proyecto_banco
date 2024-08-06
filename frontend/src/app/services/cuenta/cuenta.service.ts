@@ -2,11 +2,10 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Cuenta } from "src/app/models/cuentas";
+import { Transferencia } from "src/app/models/transferencias";
 
 @Injectable({
-
     providedIn: 'root'
-
 
 })
 export class CuentaService {
@@ -15,7 +14,8 @@ export class CuentaService {
     urlGetCuentaByCI = "http://127.0.0.1:3600/get-Cuenta-byCI/";
     urlGenerarnumCuenta = "http://127.0.0.1:3600/generarNumero/";
     urlActualizarCuenta = "http://127.0.0.1:3600/actualizar-cuenta/"; 
-    urlTransferenciaInterna ="http://127.0.0.1:3600/transaccion-interna";
+    //urlTransferenciaInterna ="http://127.0.0.1:3600/transaccion-interna";
+    urlTransferenciaInterna ="http://127.0.0.1:3600/guardar-transferencia";
     urlGetCuenta = "http://127.0.0.1:3600/getCuenta/"
     constructor(
         private http: HttpClient
@@ -35,9 +35,12 @@ export class CuentaService {
     actualizarCuenta(cuenta: object): Observable<any> {
         return this.http.post(this.urlActualizarCuenta, cuenta);
     }
-    transaccionInterna(cuenta: Object){
-        return this.http.put(this.urlTransferenciaInterna, cuenta);
+
+    guardarTransferencia(transferencia: Transferencia): Observable<any> {
+        return this.http.post(this.urlTransferenciaInterna, transferencia);
     }
+
+    
     obtenerCuenta(numero:Object){
         return this.http.post(this.urlGetCuenta, numero);
     }

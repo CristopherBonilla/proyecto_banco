@@ -1,25 +1,22 @@
-export class Cuenta {
+export class Transferencia {
     _id?: number;
     cedula: number;
-    numero_Transaccion:String;
-    cuenta_Remitente: String;
-    cuenta_Destino: String;
-    monto:Number;
-    costo:Number;
+    cuenta_Emisor: string;
+    cuenta_Destino: string;
+    monto: number;
+    descripcion: string;
 
     constructor(
         cedula: number,
-        numero_Transaccion:String,
-        cuenta_Remitente: String,
-        cuenta_Destino: String,
-        monto:Number,
-        costo:Number
-    ){
+        cuenta_Emisor: string,
+        cuenta_Destino: string,
+        monto: number,
+        descripcion: string
+    ) {
         this.cedula = cedula;
-        this.numero_Transaccion = numero_Transaccion;
+        this.cuenta_Emisor = cuenta_Emisor;
         this.cuenta_Destino = cuenta_Destino;
-        this.cuenta_Remitente = cuenta_Remitente;
         this.monto = monto;
-        this.costo = costo;
+        this.descripcion = descripcion;
     }
 }

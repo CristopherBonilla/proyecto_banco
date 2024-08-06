@@ -15,6 +15,7 @@ import { MenuAdminComponent } from './Components/menu-admin/menu-admin.component
 import { RegistroCuentaComponent } from './Components/registro-cuenta/registro-cuenta.component';
 import { SuspencionClientesComponent } from './Components/suspencion-clientes/suspencion-clientes.component';
 import { SuspencionClientesAdminComponent } from './Components/suspencion-clientes-admin/suspencion-clientes-admin.component';
+import { HistorialComponent } from './Components/historial/historial.component'; // Importa el componente Historial
 
 
 
@@ -32,6 +33,7 @@ const routes: Routes = [
     { path: 'transferencia', component: TransferenciasComponent},
     { path: 'transferencia-interna', component: TransferenciasInternasComponent},
     { path: 'transferencias-internas-resumen', component: TransferenciasInternasResumenComponent},
+    { path: 'historial', component: HistorialComponent },
     { path: '**', redirectTo: 'login', pathMatch: 'full'}
 ];
 
