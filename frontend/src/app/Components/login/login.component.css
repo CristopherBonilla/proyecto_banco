@@ -104,6 +104,10 @@
     background: rgb(230, 48, 41);
   }
 
+  .small-button {
+    padding: 10px 15px; /* Reduce el tamaño del padding para hacer el botón más pequeño */
+    font-size: 16px; /* Reduce el tamaño de la fuente */
+  }
 
 /* Estilos para el Footer */
 footer.footer {
