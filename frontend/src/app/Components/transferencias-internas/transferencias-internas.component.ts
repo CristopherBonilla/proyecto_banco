@@ -158,11 +158,7 @@ export class TransferenciasInternasComponent {
         this.toastr.error('Cuenta de origen no válida.', 'Error');
     }
 }
-
-
-  
              
-
   otp() {
     // Deshabilitar el botón de correo
     document.getElementById('boton-correo')!.style.display = 'none';
@@ -211,4 +207,14 @@ export class TransferenciasInternasComponent {
     const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
     this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
+
+  verHistorial(){
+    const cedulaObj = history.state.cedula.cedula;
+    const cuentasObj = this.listCuentas;
+    const nombreCliente = document.getElementById('nombre-cliente')?.innerText || ''; // Obtener el nombre del cliente desde el DOM
+    const transferenciaObj  = {cedula:cedulaObj, cuentas:cuentasObj, nombre: nombreCliente}; // Agregar el nombre del cliente
+    this.router.navigate(['/historial'], { state: { cedula: cedulaObj, transferenciaObj } });
+  }
+
+  
 }
