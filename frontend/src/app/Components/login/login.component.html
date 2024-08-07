@@ -32,7 +32,7 @@
             <div id="pass" class="input-contenedor" style="position: relative;">
               <i class="fas fa-key icon"></i>
               <input formControlName="password" [class.is-invalid]='f.password.errors && f.password.touched' [type]="passwordFieldType" placeholder="Contraseña" required pattern="^(?=.*[@]?)(?=.*\d?)(?=.*[a-z]?)(?=.*[A-Z]?)[a-zA-Z\d@]{4,25}$">
-              <i class="fas" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
+              <i class="fas" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()" style="cursor: pointer; position: absolute; right: 50px; top: 50%; transform: translateY(-50%);"></i>
               <div id="validationServerUsernameFeedback" class="invalid-feedback">
                 Por favor, ingrese la contraseña
               </div>
@@ -50,8 +50,22 @@
               <button type="button" class="button btn-secondary small-button" (click)="reenviarCodigo()">Reenviar Código</button>
             </small>
             </div>
+            <div class="forgot-link">
+              <a routerLink="/recuperar-con" class="forgot">
+                <p>¿Has olvidado tu contraseña?</p>
+              </a>
+            </div>        
 
-            <button id="btn" class="button btn-success">Entrar</button>
+            <button id="btn" class="button btn-success">Login</button>
+            <div class="register-link">
+              <p>No tienes una cuenta?
+                <a routerLink="/registro-cliente-login" class="sign up">
+                  Crear cuenta
+                </a>
+              </p>
+            </div>
+            
+
           </div>
       </form>
       <!-- Footer -->
