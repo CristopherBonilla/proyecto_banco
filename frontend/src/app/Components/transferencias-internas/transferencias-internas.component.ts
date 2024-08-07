@@ -34,7 +34,23 @@ export class TransferenciasInternasComponent {
   ngOnInit(): void {
     // Mostrar el nombre del cliente que se logea
     this.extraerDatos();
+     //Mostrar el nombre del cliente que se logea
+     this.extraerCliente();
   }
+
+  extraerCliente(){
+    const cedula = history.state.cedula.cedula;
+    const nombre = {cedula: cedula};
+    this._clienteService.obtenerCliente(nombre).subscribe(data=>{
+      var nombres = data.nombres.toString();
+      var apellidos = data.apellidos.toString();
+      var text = document.getElementById('nombre-cliente');
+      text!.innerHTML= nombres+' '+apellidos;
+      console.log('No se pudo obtener el nombre del cliente');
+    })
+  }
+
+  
 
   extraerDatos() {
     const objeto = history.state.transferenciaObj;
@@ -59,21 +75,6 @@ export class TransferenciasInternasComponent {
       option.innerHTML = this.numeroCuentas[i];
       select!.appendChild(option);
     }
-  }
-
-
-  menu() {
-    const objeto = history.state.transferenciaObj;
-    const cedulaObj = objeto.cedula;
-    const cedula = { cedula: cedulaObj }
-    this.router.navigate(['/menu'], { state: { cedula } });
-  }
-
-  transferencias() {
-    const cedulaObj = history.state.transferenciaObj.cedula;
-    const cuentasObj = history.state.transferenciaObj.cuentas;
-    const transferenciaObj = { cedula: cedulaObj, cuentas: cuentasObj }
-    this.router.navigate(['/transferencia'], { state: { transferenciaObj } });
   }
 
   validarCuenta() {
@@ -204,6 +205,13 @@ export class TransferenciasInternasComponent {
         });
       }
     );
+  }
+
+  menu() {
+    const objeto = history.state.transferenciaObj;
+    const cedulaObj = objeto.cedula;
+    const cedula = { cedula: cedulaObj }
+    this.router.navigate(['/menu'], { state: { cedula } });
   }
 
   misDatos(){
