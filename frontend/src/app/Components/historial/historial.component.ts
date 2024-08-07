@@ -15,8 +15,7 @@ import { Transferencia } from 'src/app/models/transferencias';
 export class HistorialComponent{
   listCuentas:Cuenta[]=[];
   transferencias: Transferencia[] = [];
-  
-  constructor(
+   constructor(
     private router: Router, 
     private _cuentaService: CuentaService,
     private _transferenciaService: TransferenciaService,
@@ -48,6 +47,7 @@ export class HistorialComponent{
   
   obtenerHistorial() {
     const cedula = history.state.cedula;
+    
     if (cedula) {
       this._transferenciaService.getTransferenciasByCedula({ cedula }).subscribe(
         (data: Transferencia[]) => {
@@ -63,6 +63,13 @@ export class HistorialComponent{
     } else {
       console.log('No se recibió una cédula en el estado de la historia');
     }
+  }
+  isTransferenciaHecha(transferencia: Transferencia): boolean {
+    return transferencia.cedula_Emisor === history.state.cedula;
+  }
+
+  isTransferenciaRecibida(transferencia: Transferencia): boolean {
+    return transferencia.cedula_Destinatario === history.state.cedula;
   }
   
   

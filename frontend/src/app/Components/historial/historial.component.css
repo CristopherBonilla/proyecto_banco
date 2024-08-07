@@ -202,7 +202,7 @@ main {
 .scroll-container {
     max-height: 500px; /* Ajusta la altura según tus necesidades */
     overflow-y: auto; /* Habilita el scroll vertical */
-    border: 1px solid #ddd; /* Opcional: agrega un borde para distinguir el área de scroll */
+    border: 1px solid #605757; /* Opcional: agrega un borde para distinguir el área de scroll */
     padding: 10px; /* Opcional: agrega un poco de padding */
   }
   
@@ -210,6 +210,30 @@ main {
   .table {
     margin-bottom: 0; /* Asegúrate de que la tabla no tenga margen extra en la parte inferior */
   }
+
+
+
+/* Estilo para el contenedor de historial */
+.container.mt-3 {
+    background-color: white;  /*Fondo blanco para el historial */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para los signos de los montos */
+  .signo-transferencia {
+    font-weight: bold;
+  }
+  
+  .signo-positivo {
+    color: green; /* Color verde para el signo "+" */
+  }
+  
+  .signo-negativo {
+    color: red; /* Color rojo para el signo "-" */
+  }
+  
   
 
 footer.footer {
