@@ -22,8 +22,8 @@
   
       <div class="options__menu">
   
-        <a href="/menu" class="option">
-          <div class="option">
+        <a >
+          <div class="option" (click)="menu()">
             <i class="fas fa-home" title="Inicio"></i>
             <h4>INICIO</h4>
           </div>
@@ -41,7 +41,7 @@
             <h4>Transferencias</h4>
           </div>
         </a>
-        <a href="/suspencion-cliente">
+        <a>
           <div class="option" (click)="misDatos()">
             <i class="far fa-sticky-note" title="Mis Datos"></i>
             <h4>Mis Datos</h4>
@@ -79,7 +79,7 @@
             <h1 class="nombre-cliente" id="nombre-cliente"></h1>
           </div>
         </div>
-        <div class="container mt-3">
+        <div class="container">
           <div class="row mb-3 mx-auto">
             <div class="col-12 ">
               <button routerLink="/login" type="submit" class="btn btn-danger col-2 float-end">Cerrar Sesión</button>
@@ -87,34 +87,47 @@
           </div>
         </div>
       </header>
+<!-- Historial de Transferencias -->
+<div class="container mt-3">
+  <h2>Historial de Transferencias</h2>
+  <div *ngIf="transferencias.length > 0; else noTransferencias" class="scroll-container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Cuenta Emisor</th>
+          <th>Cuenta Destino</th>
+          <th>Monto</th>
+          <th>Saldo Anterior</th>
+          <th>Saldo Actual</th>
+          <th>Descripción</th>
+          <th>Fecha de Realización</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transferencia of transferencias">
+          <td>{{ transferencia.cuenta_Emisor }}</td>
+          <td>{{ transferencia.cuenta_Destino }}</td>
+          <td>
+            <span class="signo-negativo" *ngIf="isTransferenciaHecha(transferencia)">
+              -{{ transferencia.monto | currency:'USD' }}
+            </span>
+            <span class="signo-positivo" *ngIf="isTransferenciaRecibida(transferencia)">
+              +{{ transferencia.monto | currency:'USD' }}
+            </span>
+          </td>
+          <td>{{ transferencia.SaldoAnterios | currency:'USD' }}</td>
+          <td>{{ transferencia.saldoActual | currency:'USD' }}</td>
+          <td>{{ transferencia.descripcion }}</td>
+          <td>{{ transferencia.FechaTrasferencia | date:'dd/MM/yyyy HH:mm' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noTransferencias>
+    <p>No se encontraron transferencias.</p>
+  </ng-template>
+</div>
 
-       <!-- Historial de Transferencias -->
-    <div class="container mt-3">
-      <h2>Historial de Transferencias</h2>
-      <div *ngIf="transferencias.length > 0; else noTransferencias">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Cuenta Emisor</th>
-              <th>Cuenta Destino</th>
-              <th>Monto</th>
-              <th>Descripción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let transferencia of transferencias">
-              <td>{{ transferencia.cuenta_Emisor }}</td>
-              <td>{{ transferencia.cuenta_Destino }}</td>
-              <td>{{ transferencia.monto | currency:'USD' }}</td>
-              <td>{{ transferencia.descripcion }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <ng-template #noTransferencias>
-        <p>No se encontraron transferencias.</p>
-      </ng-template>
-    </div>
 
     </main>
   </body>

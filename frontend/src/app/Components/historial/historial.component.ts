@@ -1,7 +1,6 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { Cuenta } from 'src/app/models/cuentas';
 import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
 import { TransferenciaService } from 'src/app/services/trasferencia/trasferencia.service';
@@ -16,65 +15,64 @@ import { Transferencia } from 'src/app/models/transferencias';
 export class HistorialComponent{
   listCuentas:Cuenta[]=[];
   transferencias: Transferencia[] = [];
-  
-  constructor(
+   constructor(
     private router: Router, 
-    private _clienteService: ClienteService,
     private _cuentaService: CuentaService,
     private _transferenciaService: TransferenciaService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
-    //Mostrar el nombre del cliente que se logea
     this.extraerCliente();
-      //Mostrar las cuentas asociadas al cliente
-      this.extraerCuentas();
-    // Llamar a la función para cargar las transferencias al inicializar el componente
     this.obtenerHistorial();
   }
+  extraerCliente() {
+    const transferenciaObj = history.state.transferenciaObj;
+    if (transferenciaObj && transferenciaObj.nombre) {
+        const nombre = transferenciaObj.nombre;
+        var text = document.getElementById('nombre-cliente');
+        text!.innerHTML = nombre;
+    } else {
+        console.log('No se pudo obtener el nombre del cliente');
+    }
+}
 
-  extraerCliente(){
-    const cedula = history.state.cedula.cedula;
-    const nombre = {cedula: cedula};
-    this._clienteService.obtenerCliente(nombre).subscribe(data=>{
-      var nombres = data.nombres.toString();
-      var apellidos = data.apellidos.toString();
-      var text = document.getElementById('nombre-cliente');
-      text!.innerHTML= nombres+' '+apellidos;
-    })
+  
+  extraerCliente1(){
+    const transferenciaObj = history.state.transferenciaObj;
+    const nombre = transferenciaObj.nombre;
+    var text = document.getElementById('nombre-cliente');
+    text!.innerHTML = nombre;
   }
-
-  extraerCuentas(){
-    const cedula = history.state.cedula.cedula;
-    const cuenta = {cedula: cedula};
-    this._cuentaService.getCuentaByCI(cuenta).subscribe(data=>{
-      //Convertir el valor de tipo de cuenta numerico a string
-      var aux=data;
-      for(var i=0;i<aux.length;i++){
-        if(aux[i].tipo_cuenta=='10'){
-          aux[i].tipo_cuenta='Cuenta de Ahorros';
-          console
-        }else{
-          aux[i].tipo_cuenta='Cuenta Corriente';
-        }
-      }
-      this.listCuentas=aux;
-    }, error => {
-      console.log(error);
-    })
-  }
-
+  
   obtenerHistorial() {
     const cedula = history.state.cedula;
-    this._transferenciaService.getTransferenciasByCedula({ cedula }).subscribe(
-      (data: Transferencia[]) => {
-        this.transferencias = data;
-      },
-      error => {
-        console.log('Error al obtener las transferencias', error);
-      }
-    );
+    
+    if (cedula) {
+      this._transferenciaService.getTransferenciasByCedula({ cedula }).subscribe(
+        (data: Transferencia[]) => {
+          // Log para verificar datos
+          console.log('Transferencias obtenidas:', data);
+          this.transferencias = data;
+        },
+        error => {
+          console.log('Error al obtener las transferencias', error);
+          this.toastr.error('No se obtuvo el Historial ');
+        }
+      );
+    } else {
+      console.log('No se recibió una cédula en el estado de la historia');
+    }
   }
+  isTransferenciaHecha(transferencia: Transferencia): boolean {
+    return transferencia.cedula_Emisor === history.state.cedula;
+  }
+
+  isTransferenciaRecibida(transferencia: Transferencia): boolean {
+    return transferencia.cedula_Destinatario === history.state.cedula;
+  }
+  
+  
 
   // Puedes agregar una función para buscar por cédula si no deseas que se cargue al inicio
   buscarTransferencias() {
@@ -94,4 +92,13 @@ export class HistorialComponent{
     const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
     this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
+
+  menu() {
+    const objeto = history.state.transferenciaObj;
+    const cedulaObj = objeto.cedula;
+    const cedula = { cedula: cedulaObj }
+    this.router.navigate(['/menu'], { state: { cedula } });
+  }
+  
+  
 }

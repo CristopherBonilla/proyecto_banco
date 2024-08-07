@@ -105,6 +105,9 @@
     color: white;
     background: rgb(230, 48, 41);
   }
+  .small-button {
+    padding: 10px 15px; /* Reduce el tamaño del padding para hacer el botón más pequeño */
+    font-size: 16px;} /* Reduce el tamaño de la fuente */
 
   /*CAMBIO ANTHONY*/
   .forgot-link {
@@ -119,6 +122,7 @@
   .register-link {
     margin-top: 15px;
     text-align: center;
+
   }
 
   .register-link p {
