@@ -136,7 +136,12 @@ export class TransferenciasInternasComponent {
             cuenta_Emisor: cuentaOrigenData.numero_cuenta,
             cuenta_Destino: cuenta2,
             monto: monto,
-            descripcion: descripcion 
+            descripcion: descripcion,
+            cedula_Emisor: cuentaOrigenData.cedula, // Agregado
+            cedula_Destinatario: parseInt(cuenta2), // Necesitarías obtener cédula del destinatario
+            SaldoAnterios: cuentaOrigenData.monto_inicial,
+            saldoActual: cuentaOrigenData.monto_inicial - monto,
+            FechaTrasferencia: new Date() 
         };
 
         // Realizar la transferencia

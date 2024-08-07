@@ -48,16 +48,23 @@ export class HistorialComponent{
   
   obtenerHistorial() {
     const cedula = history.state.cedula;
-    this._transferenciaService.getTransferenciasByCedula({ cedula }).subscribe(
-      (data: Transferencia[]) => {
-        this.transferencias = data;
-      },
-      error => {
-        console.log('Error al obtener las transferencias', error);
-      }
-    );
-    this.toastr.success('Historial obtenido', 'Historial obtenido');
+    if (cedula) {
+      this._transferenciaService.getTransferenciasByCedula({ cedula }).subscribe(
+        (data: Transferencia[]) => {
+          // Log para verificar datos
+          console.log('Transferencias obtenidas:', data);
+          this.transferencias = data;
+        },
+        error => {
+          console.log('Error al obtener las transferencias', error);
+          this.toastr.error('No se obtuvo el Historial ');
+        }
+      );
+    } else {
+      console.log('No se recibió una cédula en el estado de la historia');
+    }
   }
+  
   
 
   // Puedes agregar una función para buscar por cédula si no deseas que se cargue al inicio

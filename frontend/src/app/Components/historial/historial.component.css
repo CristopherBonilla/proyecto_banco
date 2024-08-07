@@ -199,6 +199,19 @@ main {
     color: #161010;
 }
 
+.scroll-container {
+    max-height: 500px; /* Ajusta la altura según tus necesidades */
+    overflow-y: auto; /* Habilita el scroll vertical */
+    border: 1px solid #ddd; /* Opcional: agrega un borde para distinguir el área de scroll */
+    padding: 10px; /* Opcional: agrega un poco de padding */
+  }
+  
+  /* Opcional: Puedes agregar estilos adicionales para el contenedor si lo necesitas */
+  .table {
+    margin-bottom: 0; /* Asegúrate de que la tabla no tenga margen extra en la parte inferior */
+  }
+  
+
 footer.footer {
     background-color: #042068;
     color: white;

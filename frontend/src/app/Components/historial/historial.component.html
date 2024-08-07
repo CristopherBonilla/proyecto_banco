@@ -88,17 +88,20 @@
         </div>
       </header>
 
-       <!-- Historial de Transferencias -->
+      <!-- Historial de Transferencias -->
     <div class="container mt-3">
       <h2>Historial de Transferencias</h2>
-      <div *ngIf="transferencias.length > 0; else noTransferencias">
+      <div *ngIf="transferencias.length > 0; else noTransferencias" class="scroll-container">
         <table class="table table-striped">
           <thead>
             <tr>
               <th>Cuenta Emisor</th>
               <th>Cuenta Destino</th>
               <th>Monto</th>
+              <th>Saldo Anterior</th>
+              <th>Saldo Actual</th>
               <th>Descripción</th>
+              <th>Fecha de Realización</th>
             </tr>
           </thead>
           <tbody>
@@ -106,7 +109,10 @@
               <td>{{ transferencia.cuenta_Emisor }}</td>
               <td>{{ transferencia.cuenta_Destino }}</td>
               <td>{{ transferencia.monto | currency:'USD' }}</td>
+              <td>{{ transferencia.SaldoAnterios| currency:'USD' }}</td>
+              <td>{{ transferencia.saldoActual| currency:'USD' }}</td>
               <td>{{ transferencia.descripcion }}</td>
+              <td>{{ transferencia.FechaTrasferencia| date:'dd/MM/yyyy HH:mm' }}</td>
             </tr>
           </tbody>
         </table>
@@ -115,6 +121,7 @@
         <p>No se encontraron transferencias.</p>
       </ng-template>
     </div>
+
 
     </main>
   </body>
