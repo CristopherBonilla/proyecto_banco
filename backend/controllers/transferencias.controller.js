@@ -84,15 +84,38 @@ var controller = {
         console.log("Recolectando datos de las transferencias del usuario:");
         var params = req.body;
         var cedula = params.cedula;
-        
+
+        // Buscar transferencias en las que el usuario sea el emisor o el destinatario
         Transferencia.find({
             $or: [
                 { "cedula_Emisor": cedula },
                 { "cedula_Destinatario": cedula }
             ]
-        }, (err, transferencias) => {
+        }).sort({ FechaTrasferencia: -1 }) // Ordenar por fecha de transferencia en orden descendente
+        .exec(async (err, transferencias) => {
             if (err) return res.status(500).send({ message: 'Error al buscar las transferencias' });
             if (!transferencias || transferencias.length === 0) return res.status(404).send({ message: 'Transferencias no encontradas' });
+
+            // Calcular saldo actual basado en si es emisor o destinatario
+            const cuenta = await Cuenta.findOne({ "cedula": cedula }).exec();
+            if (!cuenta) return res.status(404).send({ message: 'Cuenta no encontrada para la cédula proporcionada' });
+
+            transferencias = transferencias.map(trans => {
+                if (trans.cedula_Emisor === cedula) {
+                    return {
+                        ...trans._doc,
+                        SaldoAnterios: trans.SaldoAnterios,
+                        saldoActual: trans.SaldoAnterios - trans.monto
+                    };
+                } else {
+                    return {
+                        ...trans._doc,
+                        SaldoAnterios: trans.SaldoAnterios,
+                        saldoActual: trans.SaldoAnterios + trans.monto
+                    };
+                }
+            });
+
             return res.status(200).send(transferencias);
         });
     }

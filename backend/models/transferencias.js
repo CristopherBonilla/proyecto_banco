@@ -11,6 +11,6 @@ var TransferenciasSchema = Schema({
     descripcion: String,
     saldoActual: Number,
     SaldoAnterios: Number,
-    FechaTrasferencia: Date
+    FechaTrasferencia: Date,
 });
 module.exports = mongoose.model('Transferencia', TransferenciasSchema);
