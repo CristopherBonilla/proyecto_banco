@@ -4,7 +4,7 @@ export class Cuenta {
     tipo_cuenta: string;
     monto_inicial: number;
     ingreso_promedio: number;
-    numero_cuenta: String;
+    numero_cuenta: string;
     state: boolean;
 
     constructor(

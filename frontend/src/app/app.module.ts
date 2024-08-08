@@ -17,7 +17,7 @@ import { TransferenciasInternasResumenComponent } from './Components/transferenc
 import { NuevasCredencialesComponent } from './Components/nuevas-credenciales/nuevas-credenciales.component';
 import { PreguntaSeguridadComponent } from './Components/pregunta-seguridad/pregunta-seguridad.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { RegistroClienteLoginComponent } from './Components/registro-cliente-login/registro-cliente-login.component';
 import { MenuAdminComponent } from './Components/menu-admin/menu-admin.component';
 import { RegistroCuentaComponent } from './Components/registro-cuenta/registro-cuenta.component';
 import { SuspencionClientesComponent } from './Components/suspencion-clientes/suspencion-clientes.component';
@@ -25,6 +25,9 @@ import { SuspencionClientesAdminComponent } from './Components/suspencion-client
 import { MatRadioModule } from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import { RecuperarConComponent } from './Components/recuperar-con/recuperar-con.component';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { HistorialComponent } from './Components/historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,11 @@ import {MatSelectModule} from '@angular/material/select';
     MenuAdminComponent,
     RegistroCuentaComponent,
     SuspencionClientesComponent,
+    RecuperarConComponent,
+    RegistroClienteLoginComponent,
+    ResetPasswordComponent,
     SuspencionClientesAdminComponent,
+    HistorialComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { Cuenta } from 'src/app/models/cuentas';
 import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
@@ -16,6 +15,7 @@ import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
 
 export class MenuPrincipalComponent {
   listCuentas:Cuenta[]=[];
+  esEncriptado = false; // Propiedad para manejar el estado de encriptación
 
   constructor(
     private router: Router, 
@@ -28,8 +28,10 @@ export class MenuPrincipalComponent {
     this.extraerCliente();
     //Mostrar las cuentas asociadas al cliente
     this.extraerCuentas();
+   
   }
-  extraerCliente(){
+
+    extraerCliente(){
     const cedula = history.state.cedula.cedula;
     const nombre = {cedula: cedula};
     this._clienteService.obtenerCliente(nombre).subscribe(data=>{
@@ -37,6 +39,7 @@ export class MenuPrincipalComponent {
       var apellidos = data.apellidos.toString();
       var text = document.getElementById('nombre-cliente');
       text!.innerHTML= nombres+' '+apellidos;
+      console.log('No se pudo obtener el nombre del cliente');
     })
   }
 
@@ -60,6 +63,17 @@ export class MenuPrincipalComponent {
     })
   }
 
+  encriptarSaldo(monto: number | string): string {
+    // Asegúrate de que el monto es un número
+    const montoNum = typeof monto === 'string' ? parseFloat(monto) : monto;
+    // Convertir el monto a una cadena de puntos
+    return montoNum.toString().replace(/\d/g, '•');
+  }
+
+  toggleEncriptado() {
+    this.esEncriptado = !this.esEncriptado; // Alterna el estado de encriptado
+  }
+
   transferencias(){
     const cedulaObj = history.state.cedula.cedula;
     const cuentasObj = this.listCuentas;
@@ -74,6 +88,14 @@ export class MenuPrincipalComponent {
     this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
 
-}
+  verHistorial(){
+    const cedulaObj = history.state.cedula.cedula;
+    const cuentasObj = this.listCuentas;
+    const nombreCliente = document.getElementById('nombre-cliente')?.innerText || ''; // Obtener el nombre del cliente desde el DOM
+    const transferenciaObj  = {cedula:cedulaObj, cuentas:cuentasObj, nombre: nombreCliente}; // Agregar el nombre del cliente
+    this.router.navigate(['/historial'], { state: { cedula: cedulaObj, transferenciaObj } });
+  }
+  
+  }
 
 

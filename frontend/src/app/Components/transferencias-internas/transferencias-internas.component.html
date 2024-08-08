@@ -36,27 +36,24 @@
         </div>
       </a>
 
-      <a class="selected">
-        <div class="option" (click)="transferencias()">
+      <a href="/transferencia-interna" class="selected">
+        <div class="option">
           <i class="fas fa-video" title="Transferencias"></i>
           <h4>Transferencias</h4>
         </div>
       </a>
-
-      <a>
-        <div class="option">
-          <i class="far fa-sticky-note" title="Solicitudes"></i>
-          <h4>Solicitudes</h4>
+      <a >
+        <div class="option" (click)="misDatos()">
+          <i class="far fa-sticky-note" title="Mis Datos"></i>
+          <h4>Mis Datos</h4>
         </div>
       </a>
-
-      <a>
-        <div class="option">
-          <i class="far fa-id-badge" title="Contacto"></i>
-          <h4>Contacto</h4>
-        </div>
-      </a>
-
+      <a >
+        <div class="option" (click)="verHistorial()">
+         <i class="fas fa-history" title="Historial"></i>
+         <h4>Historial</h4>
+       </div>
+     </a>
       <a>
         <div class="option">
           <i class="far fa-address-card" title="Nosotros"></i>
@@ -118,6 +115,22 @@
                     </div>
                   </div>
                 </div>
+                <!-- Mensaje de saldo insuficiente -->
+                <div class="row">
+                  <p class="text-danger" id="mensajeSaldoInsuficiente" style="display: none;">Saldo insuficiente para realizar esta transferencia.</p>
+                </div>
+                
+                <!--Cedula Destino-->
+                <div class="row">
+                  <label class="col-sm-3">Número de cédula del destinatario:</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" placeholder="Cédula del destinatario" id="cedulaDestino-campo">
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Por favor, ingrese una cédula del destinatario
+                    </div>
+                  </div>
+                </div>
+                
                 <!--Cuenta Destino-->
                 <div class=" row">
                   <label class="col-sm-3">Cuenta Destino:</label>
@@ -147,21 +160,25 @@
                 </div>
                 <!--Correo-->
                 <div class="col-5" id="boton-correo">
-                  <button type="button" (click)="otp()" id="validar"
-                  class="col btn btn-primary">Enviar c&oacute;digo</button>
-              </div>
-              <div class="col-5" id="otp" style="display: none;">
-                <input type="text"  class="form-control" placeholder="ej. abc123" id="otp-campo">
-                <small class="text-muted" (click)="otp()">
-                <a >Reenviar c&oacute;digo</a></small>
-              </div>
+                  <button type="button" [disabled]="!cuentaValida" (click)="otp()" id="validar" class="col btn btn-primary">Enviar código</button>
+             </div>
+             <div class="col-5" id="otp" style="display: none;">
+              <input type="text" class="form-control" placeholder="ej. abc123" id="otp-campo">
+              <!-- Botón para reenviar el código -->
+            <small class="text-muted">
+              <a id="reenviar-codigo" href="#" (click)="reenviarCodigo($event)">Reenviar código</a>
+            </small>
+
+            </div>
               <div class="row">
                 <p class="text-danger" id="text"></p>
               </div>
                 <!--Boton enviar-->
-                <div class="mb-4">
-                  <button class="btn btn-success" id="enviar" (click)="transferir()">Transferir</button>
-                </div>
+               
+              <div class="mb-4">
+                <button class="btn btn-success" id="enviar" type="button" [disabled]="!codigoValido" (click)="transferir()">Transferir</button>
+              </div>
+
               </form>
             </div>
           </div>
