@@ -15,6 +15,8 @@ import { Transferencia } from 'src/app/models/transferencias';
 export class HistorialComponent{
   listCuentas:Cuenta[]=[];
   transferencias: Transferencia[] = [];
+  transferenciasOriginales: Transferencia[] = [];
+
    constructor(
     private router: Router, 
     private _cuentaService: CuentaService,
@@ -36,14 +38,6 @@ export class HistorialComponent{
         console.log('No se pudo obtener el nombre del cliente');
     }
 }
-
-  
-  extraerCliente1(){
-    const transferenciaObj = history.state.transferenciaObj;
-    const nombre = transferenciaObj.nombre;
-    var text = document.getElementById('nombre-cliente');
-    text!.innerHTML = nombre;
-  }
   
   obtenerHistorial() {
     const cedula = history.state.cedula;
@@ -53,25 +47,20 @@ export class HistorialComponent{
         (data: Transferencia[]) => {
           // Log para verificar datos
           console.log('Transferencias obtenidas:', data);
-          this.transferencias = data;
+          //this.transferencias = data;
+          this.transferenciasOriginales = [...data]; // Guarda una copia de las transacciones originales
+          this.transferencias = [...data]; // Inicialmente muestra todas las transacciones
+    
         },
         error => {
           console.log('Error al obtener las transferencias', error);
-          this.toastr.error('No se obtuvo el Historial ');
+          
         }
       );
     } else {
       console.log('No se recibió una cédula en el estado de la historia');
     }
   }
-  isTransferenciaHecha(transferencia: Transferencia): boolean {
-    return transferencia.cedula_Emisor === history.state.cedula;
-  }
-
-  isTransferenciaRecibida(transferencia: Transferencia): boolean {
-    return transferencia.cedula_Destinatario === history.state.cedula;
-  }
-  
   
 
   // Puedes agregar una función para buscar por cédula si no deseas que se cargue al inicio
@@ -99,6 +88,43 @@ export class HistorialComponent{
     const cedula = { cedula: cedulaObj }
     this.router.navigate(['/menu'], { state: { cedula } });
   }
-  
-  
+
+    ordenarTransferencias(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+
+    if (selectElement) {
+      const selectedValue = selectElement.value;
+
+      // Resetea la lista de transferencias a las originales antes de aplicar cualquier filtro u ordenamiento
+      this.transferencias = [...this.transferenciasOriginales];
+
+      // Aplica los filtros u ordenamientos según la selección
+      switch (selectedValue) {
+        case 'hechas':
+          this.transferencias = this.transferencias.filter(t => this.isTransferenciaHecha(t));
+          break;
+        case 'recibidas':
+          this.transferencias = this.transferencias.filter(t => this.isTransferenciaRecibida(t));
+          break;
+        case 'fechaAsc':
+          this.transferencias.sort((a, b) => new Date(a.FechaTrasferencia).getTime() - new Date(b.FechaTrasferencia).getTime());
+          break;
+        case 'fechaDesc':
+          this.transferencias.sort((a, b) => new Date(b.FechaTrasferencia).getTime() - new Date(a.FechaTrasferencia).getTime());
+          break;
+        default:
+          break;
+      }
+    }
+  }
+   
+    isTransferenciaHecha(transferencia: Transferencia): boolean {
+    return transferencia.cedula_Emisor === history.state.cedula;
+  }
+
+  isTransferenciaRecibida(transferencia: Transferencia): boolean {
+    return transferencia.cedula_Destinatario === history.state.cedula;
+  }
+
+      
 }

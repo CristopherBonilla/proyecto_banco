@@ -28,13 +28,6 @@
             <h4>INICIO</h4>
           </div>
         </a>
-  
-        <a >
-          <div class="option">
-            <i class="far fa-file" title="Pagos"></i>
-            <h4>Pagos</h4>
-          </div>
-        </a>
         <a>
           <div class="option" (click)="transferenciasM()">
             <i class="fas fa-video" title="Transferencias" ></i>
@@ -68,28 +61,36 @@
     <!--FIN    Menu lateral-->
     <main>
       <header>
-        
-        <div class="row">
-          <div class="col-4" id="logo">
-            <img src="../../../assets/media/Logo.png" alt="logo">
-            <h1 class="nombre-banco">EPN Wallet</h1>
-          </div>
-          <div class="col-4" id="cliente">
-            <img src="../../../assets/media/usuario.png" alt="cliente">
-            <h1 class="nombre-cliente" id="nombre-cliente"></h1>
-          </div>
-        </div>
         <div class="container">
-          <div class="row mb-3 mx-auto">
-            <div class="col-12 ">
-              <button routerLink="/login" type="submit" class="btn btn-danger col-2 float-end">Cerrar Sesión</button>
+          <div class="row align-items-center">
+            <div class="col-md-4 col-sm-6 d-flex align-items-center" id="logo">
+              <img src="../../../assets/media/Logo.png" alt="logo" class="img-fluid">
+              <h1 class="nombre-banco ms-3">EPN Wallet</h1>
+            </div>
+            <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center" id="cliente">
+              <img src="../../../assets/media/usuario.png" alt="cliente" class="img-fluid">
+              <h1 class="nombre-cliente ms-3 d-none d-md-block" id="nombre-cliente"></h1>
+            </div>
+            <div class="col-md-4 col-12 mt-3 mt-md-0 text-end">
+              <button routerLink="/login" type="submit" class="btn btn-danger">Cerrar Sesión</button>
             </div>
           </div>
         </div>
       </header>
+
+     
 <!-- Historial de Transferencias -->
 <div class="container mt-3">
   <h2>Historial de Transferencias</h2>
+  <div class="select-container">
+  <select id="filtro" class="form-select" (change)="ordenarTransferencias($event)">
+    <option >Transferencias </option>
+    <option value="hechas"> Transferencias Realizadas      </option>
+    <option value="recibidas"> Transferencias Recibidas    </option>
+    <option value="fechaAsc">  Fecha Ascendente            </option>
+    <option value="fechaDesc"> Fecha Descendente           </option>
+  </select>
+  </div>
   <div *ngIf="transferencias.length > 0; else noTransferencias" class="scroll-container">
     <table class="table table-striped">
       <thead>
@@ -127,8 +128,6 @@
     <p>No se encontraron transferencias.</p>
   </ng-template>
 </div>
-
-
     </main>
   </body>
   <footer class="footer">

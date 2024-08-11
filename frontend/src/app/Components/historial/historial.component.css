@@ -15,51 +15,40 @@ body {
 }
 
 header {
-    display: flex;
-    height: 70px;
     background-color: #042068;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-#logo {
-    display: flex;
-    align-items: center;
+    padding: 10px 0;
 }
 
 #logo img {
     height: 50px;
-    margin-right: 25px;
-    margin-left: 10px;
 }
 
 .nombre-banco {
     color: white;
     font-size: 25px;
-}
-
-#cliente {
-    position: absolute;
-    width: 461px;
-    height: 89px;
-    left: 867px;
-    top: 13px;
-}
-
-#cliente img {
-    position: absolute;
-    height: 50px;
-    margin-right: 25px;
     margin-left: 10px;
 }
 
+#cliente img {
+    height: 50px;
+}
+
 .nombre-cliente {
-    position: absolute;
     color: white;
     font-size: 20px;
-    margin-left: 100px;
-    margin-top: 10px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    #cliente img {
+        margin-left: 0;
+    }
+    /* Ocultar el nombre del cliente en pantallas pequeñas */
+    .nombre-cliente {
+        display: none;
+    }
 }
 
 /* Menu Lateral */
@@ -159,8 +148,10 @@ body {
 
 main {
     padding-left: 180px;
-    padding-top: 20px;
+    
 }
+
+
 
 /* Estilos específicos para la vista de Historial */
 .historial-container {
@@ -234,7 +225,55 @@ main {
     color: red; /* Color rojo para el signo "-" */
   }
   
-  
+
+.historial-container {
+    margin: 5% 15% 10%; /* Ajusta el margen inferior para que no choque con el footer */
+    padding: 10px;
+    width: 70%;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.select-container {
+    position: relative;
+}
+
+/* Estilos para el botón de filtro de transacciones */
+#filtro {
+    appearance: none;
+    -webkit-appearance: none; /* Oculta el estilo predeterminado del navegador */
+    background-color: white; /* Fondo blanco por defecto */
+    color: #042068; /* Texto negro por defecto */
+    border: 3px solid #538af6; /* Borde gris claro para que contraste con el fondo blanco */
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  }
+
+ 
+#filtro:hover {
+    background-color: white; /* Color de fondo al pasar el ratón */
+    border-color: 3px solid #538af6;
+    color: black;
+}
+
+#filtro:focus {
+    background-color: white; /* Fondo blanco al estar enfocado */
+    border-color: #538af6; /* Color del borde al estar enfocado */
+    color: black; /* Color del texto al estar enfocado */
+    box-shadow: 0 0 0 5px rgba(83, 138, 246, 0.3); /* Sombra de enfoque */
+}
+
+#filtro option {
+    background-color: white; /* Fondo blanco para las opciones */
+    color: black; /* Texto negro para las opciones */
+}
+
+
 
 footer.footer {
     background-color: #042068;
