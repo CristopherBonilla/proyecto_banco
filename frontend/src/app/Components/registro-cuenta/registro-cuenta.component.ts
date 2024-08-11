@@ -218,7 +218,7 @@ export class RegistroCuentaComponent implements OnInit {
         switch (data.message) {
           case (200): {
             this.toastr.info('La cuenta se registro con exito!', 'Cuenta registrada');
-            console.log("Todo bien mi 🔑, el dato si se ingreso, re piola rey!");
+            console.log("Todo bien mi 🔑, el dato si se ingreso!");
             this.showForm = false
             break;
           }

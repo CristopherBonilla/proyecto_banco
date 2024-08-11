@@ -6,10 +6,7 @@ import { Observable } from "rxjs";
 import { Cliente } from "src/app/models/clientes";
 
 @Injectable({
-
     providedIn: 'root'
-
-
 })
 export class ClienteService {
     url = "http://127.0.0.1:3600/guardar-cliente/";
@@ -23,61 +20,75 @@ export class ClienteService {
     urlNuevasTempo = "http://127.0.0.1:3600/nuevas-temp";
     urlActualizarUsuario = "http://127.0.0.1:3600/actualizar-usuario";
     urlActualizarCorreoCliente = "http://127.0.0.1:3600/actualizar-correo";
-    urlActualizar="http://127.0.0.1:3600/actualizar";
-    urlConfirmarCorreo ="http://127.0.0.1:3600/confirmar-transferencia";
+    urlActualizar = "http://127.0.0.1:3600/actualizar";
+    urlConfirmarCorreo = "http://127.0.0.1:3600/confirmar-transferencia";
     urlResumen = "http://127.0.0.1:3600/resumen";
     urlLoginExitoso = "http://127.0.0.1:3600/login-exitoso";
     urlLoginFallido = "http://127.0.0.1:3600/login-fallido";
     //urlActualizarContrasena = "http://127.0.0.1:3600/actualizar-contrasena";
 
-    constructor(
-        private http: HttpClient
-    ) { }
+    constructor(private http: HttpClient) { }
+
     guardarCliente(cliente: Cliente): Observable<any> {
         return this.http.post(this.url, cliente);
     }
+
     validarCliente(cliente: Cliente): Observable<any> {
         return this.http.post(this.urlVerificar, cliente);
     }
+
     obtenerCliente(cedula:object):Observable<any>{
         return this.http.post(this.urlObtenerCliente, cedula);
     }
+
     actualizarCliente(cliente: object): Observable<any> {
         return this.http.post(this.urlActualizarCliente, cliente);
     }
+
     validarCorreo(correo:Object){
         return this.http.post(this.urlCorreo, correo);
     }
+
     validarCorreoLogin(correo:Object){
         return this.http.post(this.urlCorreoLogin, correo);
     }
+
     enviarCredenciales(credenciales:Object){
         return this.http.post(this.urlRegistroExitoso, credenciales);
     }
+
     reenviarCredenciales(credenciales:Object){
         return this.http.post(this.urlReenviar, credenciales);
     }
+
     nuevasCredencialesTempo(credenciales:Object){
         return this.http.post(this.urlNuevasTempo, credenciales);
     }
+
     actualizarUsuario(credenciales:Object){
         return this.http.post(this.urlActualizarUsuario, credenciales);
     }
+
     actualizarCorreoCliente(correo:Object){
         return this.http.post(this.urlActualizarCorreoCliente, correo);
     }
-    actualizar(correo:Object){
-        return this.http.post(this.urlActualizar, correo);
+
+    actualizar(datos: { correo: string, cedula: Number, estado: boolean }){
+        return this.http.post(this.urlActualizar, datos);
     }
+
     confirmarTransferencia(correo:Object){
         return this.http.post(this.urlConfirmarCorreo, correo);
     }
+
     resumen(correo:Object){
         return this.http.post(this.urlResumen, correo);
     }
+
     loginExitoso(correo:Object){
         return this.http.post(this.urlLoginExitoso, correo);
     }
+
     loginFallido(correo:Object){
         return this.http.post(this.urlLoginFallido, correo);
     }
