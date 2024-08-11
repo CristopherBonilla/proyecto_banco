@@ -107,4 +107,8 @@ export class RecuperarConComponent implements OnInit {
       this.toastr.error('Faltan datos para enviar las credenciales.');
     }
   }
+
+  cancelar(): void {
+    this.router.navigate(['/login']);
+  }
 }
