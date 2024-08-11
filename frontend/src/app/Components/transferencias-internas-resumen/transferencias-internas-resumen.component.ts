@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { Cuenta } from 'src/app/models/cuentas';
 
+
 @Component({
   selector: 'app-transferencias-internas-resumen',
   templateUrl: './transferencias-internas-resumen.component.html',
@@ -24,11 +25,23 @@ export class TransferenciasInternasResumenComponent {
     this.extraerDatos();
     this.transferenciaObj = history.state.transferenciaObj;
     this.generarResumenHTML();
+   
   }
 
   generarResumenHTML(): void {
     if (this.transferenciaObj) {
       const { cuenta1, cuenta2, monto, descripcion } = this.transferenciaObj;
+      
+      const fechaTransferencia = new Date().toLocaleString('es-EC', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: false
+      });
+      
       this.resumenHTML = `
         <p><strong>Cuenta Origen:</strong> ${cuenta1}</p>
         <p><strong>Cuenta Destino:</strong> ${cuenta2}</p>
@@ -62,6 +75,8 @@ export class TransferenciasInternasResumenComponent {
       text!.innerHTML= nombres+' '+apellidos;
     })
   }
+
+  
 
   menu() {
     const objeto = history.state.transferenciaObj;
