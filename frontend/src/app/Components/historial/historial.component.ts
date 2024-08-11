@@ -159,7 +159,7 @@ export class HistorialComponent{
       `Atentamente,\n\n` +
       `EPN Wallet - Servicio al Cliente\n` +
       `${ubicacionBanco}\n` +
-      `Fecha de Descarga:\n ${fechaDescarga}`; // Mensaje final
+      `Fecha de Descarga:\n${fechaDescarga}`; // Mensaje final
 
     const data = document.querySelector('.scroll-container') as HTMLElement;
 
