@@ -26,7 +26,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { RecuperarConComponent } from './Components/recuperar-con/recuperar-con.component';
-import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+//import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 import { HistorialComponent } from './Components/historial/historial.component';
 
 @NgModule({
@@ -45,7 +45,7 @@ import { HistorialComponent } from './Components/historial/historial.component';
     SuspencionClientesComponent,
     RecuperarConComponent,
     RegistroClienteLoginComponent,
-    ResetPasswordComponent,
+    //ResetPasswordComponent,
     SuspencionClientesAdminComponent,
     HistorialComponent,
   ],

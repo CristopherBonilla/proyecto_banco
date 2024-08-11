@@ -57,7 +57,7 @@ export class RecuperarConComponent implements OnInit {
     if (code === this.verificationCode) {
       this.toastr.success('Código verificado correctamente. Ahora puedes restablecer tu contraseña.');
       localStorage.setItem('resetEmail', this.recuperarConForm.get('email')?.value); // Guarda el email en localStorage
-      this.router.navigate(['/reset-password']); // Redirige al formulario de restablecimiento de contraseña
+      this.router.navigate(['/menu']); // Redirige al formulario de restablecimiento de contraseña
     } else {
       this.toastr.error('El código de verificación es incorrecto. Inténtalo de nuevo.');
     }
