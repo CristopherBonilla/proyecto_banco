@@ -6,6 +6,8 @@ import { Cuenta } from 'src/app/models/cuentas';
 import { Transferencia } from 'src/app/models/transferencias';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
+import { jsPDF } from 'jspdf'; // Importa jsPDF
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-transferencias-internas',
@@ -189,6 +191,7 @@ export class TransferenciasInternasComponent {
         this._CuentaService.guardarTransferencia(transferencia).subscribe(data => {
             console.log(data);
             this.toastr.success('La transferencia se realizó con éxito.', 'Transferencia exitosa');
+            this.generarPDF(transferencia);
             setTimeout(() => {
                 this.menu();
             }, 100);
@@ -203,8 +206,81 @@ export class TransferenciasInternasComponent {
         // Si no se encuentra la cuenta origen
         this.toastr.error('Cuenta de origen no válida.', 'Error');
     }
-}
-             
+  }
+
+  
+  generarPDF(transferencia: Transferencia) {
+    // Crear nuevo documento PDF
+    const doc = new jsPDF();
+  
+    // Datos del banco
+    const nombreBanco = 'EPN Wallet';
+    const logoUrl = 'assets/media/Logo.png'; // Ajustar la ruta del logo
+    const ubicacionBanco = 'Av. Ladrón de Guevara E11-253, Quito 170143, Ecuador';
+  
+    // Datos del cliente y la transferencia
+    
+    //const nombreCliente = 'Cliente'; // Puedes obtener esto dinámicamente si es necesario
+    const nombreCliente = document.getElementById('nombre-cliente')?.textContent 
+
+    const fechaDescarga = new Date().toLocaleString('es-EC', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: false
+    });
+  
+    // Mensaje de introducción
+    let mensaje = `Estimado(a) ${nombreCliente},\n\n`;
+    mensaje += `Nos complace proporcionarle los detalles completos de su transferencia realizada a través de EPN Wallet. `;
+    mensaje += `Este documento incluye un resumen detallado de la transferencia.\n` +
+      `Por favor, conserve este archivo para sus registros y futuras consultas. Si necesita asistencia adicional, no dude en contactarnos.\n\n`;
+  
+    // Mensaje final
+    const mensajeFinal = 
+      `Atentamente,\n\n` +
+      `EPN Wallet - Servicio al Cliente\n` +
+      `${ubicacionBanco}\n` +
+      `Fecha de la Transferencia: ${fechaDescarga}`;
+  
+    // Añadir logo y nombre del banco al PDF, centrado
+    const logoWidth = 30;
+    const logoHeight = 30;
+    const centerX = doc.internal.pageSize.width / 2;
+  
+    doc.addImage(logoUrl, 'PNG', centerX - logoWidth / 2, 10, logoWidth, logoHeight);
+    doc.setFontSize(16);
+    doc.text(nombreBanco, centerX, 45, { align: 'center' });
+  
+    // Añadir mensaje introductorio
+    doc.setFontSize(12);
+    doc.text(mensaje, 10, 60, { maxWidth: 190 });
+  
+    // Detalles de la transferencia, ajustando la posición para que no se superponga
+    let detallesInicioY = 100; // Ajusta la posición inicial después del mensaje introductorio
+    doc.text('Detalles de la Transferencia', 10, detallesInicioY);
+    doc.text(`Cuenta Emisor: ${transferencia.cuenta_Emisor}`, 10, detallesInicioY + 10);
+    doc.text(`Cuenta Destino: ${transferencia.cuenta_Destino}`, 10, detallesInicioY + 20);
+    doc.text(`Monto: $${transferencia.monto}`, 10, detallesInicioY + 30);
+    doc.text(`Descripción: ${transferencia.descripcion}`, 10, detallesInicioY + 40);
+    doc.text(`Saldo Anterior: $${transferencia.SaldoAnterios}`, 10, detallesInicioY + 50);
+    doc.text(`Saldo Actual: $${transferencia.saldoActual}`, 10, detallesInicioY + 60);
+    doc.text(`Fecha de Transferencia: ${transferencia.FechaTrasferencia.toLocaleString('es-EC')}`, 10, detallesInicioY + 70);
+
+
+    // Añadir mensaje final
+    doc.text(mensajeFinal, 10, detallesInicioY + 90, { maxWidth: 190 });
+  
+    // Guardar el archivo PDF con un nombre basado en la fecha de la transferencia y el nombre del cliente
+    doc.save(`${nombreCliente}_transferencia_${transferencia.FechaTrasferencia.toISOString()}.pdf`);
+  }
+
+
+
+    
   otp() {
     // Deshabilitar el botón de correo
     document.getElementById('boton-correo')!.style.display = 'none';
