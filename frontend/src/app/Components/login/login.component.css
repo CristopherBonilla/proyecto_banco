@@ -106,8 +106,8 @@
     background: rgb(230, 48, 41);
   }
   .small-button {
-    padding: 10px 15px; /* Reduce el tamaño del padding para hacer el botón más pequeño */
-    font-size: 16px;} /* Reduce el tamaño de la fuente */
+    padding: 10px 15px; 
+    font-size: 16px;} 
 
   /*CAMBIO ANTHONY*/
   .forgot-link {
@@ -133,7 +133,8 @@
     display: block;
     text-decoration: none;
     position: relative;
-    color: black;
+    text-decoration: underline;
+    
   }
 
   a.forgot::hover{
