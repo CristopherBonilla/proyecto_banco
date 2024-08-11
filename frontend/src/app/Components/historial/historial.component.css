@@ -15,51 +15,40 @@ body {
 }
 
 header {
-    display: flex;
-    height: 70px;
     background-color: #042068;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-#logo {
-    display: flex;
-    align-items: center;
+    padding: 10px 0;
 }
 
 #logo img {
     height: 50px;
-    margin-right: 25px;
-    margin-left: 10px;
 }
 
 .nombre-banco {
     color: white;
     font-size: 25px;
-}
-
-#cliente {
-    position: absolute;
-    width: 461px;
-    height: 89px;
-    left: 867px;
-    top: 13px;
-}
-
-#cliente img {
-    position: absolute;
-    height: 50px;
-    margin-right: 25px;
     margin-left: 10px;
 }
 
+#cliente img {
+    height: 50px;
+}
+
 .nombre-cliente {
-    position: absolute;
     color: white;
     font-size: 20px;
-    margin-left: 100px;
-    margin-top: 10px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    #cliente img {
+        margin-left: 0;
+    }
+    /* Ocultar el nombre del cliente en pantallas pequeñas */
+    .nombre-cliente {
+        display: none;
+    }
 }
 
 /* Menu Lateral */
@@ -159,8 +148,10 @@ body {
 
 main {
     padding-left: 180px;
-    padding-top: 20px;
+    
 }
+
+
 
 /* Estilos específicos para la vista de Historial */
 .historial-container {
@@ -200,48 +191,103 @@ main {
 }
 
 .scroll-container {
-    max-height: 500px; /* Ajusta la altura según tus necesidades */
-    overflow-y: auto; /* Habilita el scroll vertical */
-    border: 1px solid #605757; /* Opcional: agrega un borde para distinguir el área de scroll */
-    padding: 10px; /* Opcional: agrega un poco de padding */
+    max-height: 500px; 
+    overflow-y: auto; 
+    border: 1px solid #605757; 
+    padding: 10px; 
   }
   
-  /* Opcional: Puedes agregar estilos adicionales para el contenedor si lo necesitas */
+ 
   .table {
-    margin-bottom: 0; /* Asegúrate de que la tabla no tenga margen extra en la parte inferior */
+    margin-bottom: 0; 
   }
 
 
 
 /* Estilo para el contenedor de historial */
 .container.mt-3 {
-    background-color: white;  /*Fondo blanco para el historial */
+    background-color: white;  
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
   }
-  
-  /* Estilo para los signos de los montos */
   .signo-transferencia {
     font-weight: bold;
   }
   
   .signo-positivo {
-    color: green; /* Color verde para el signo "+" */
+    color: green; 
   }
   
   .signo-negativo {
-    color: red; /* Color rojo para el signo "-" */
+    color: red; 
   }
   
-  
 
-footer.footer {
+.historial-container {
+    margin: 5% 15% 10%; 
+    padding: 10px;
+    width: 70%;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.select-container {
+    position: relative;
+}
+
+/* Estilos para el botón de filtro de transacciones */
+#filtro {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: white; 
+    color: #042068;
+    border: 3px solid #538af6; 
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  }
+
+ 
+#filtro:hover {
+    background-color: white; 
+    border-color: 3px solid #538af6;
+    color: black;
+}
+
+#filtro:focus {
+    background-color: white; 
+    border-color: #538af6; 
+    color: black; 
+    box-shadow: 0 0 0 5px rgba(83, 138, 246, 0.3);
+}
+
+#filtro option {
+    background-color: white; 
+    color: black;
+}
+
+
+
+.footer {
     background-color: #042068;
     color: white;
     text-align: center;
     padding: 20px 0;
     position: fixed;
     width: 100%;
-    bottom: 0;
-}
+    bottom: 0; 
+    left: 0;  
+  }
+  
+  .scroll-container {
+    max-height: calc(100vh - 80px); 
+    overflow-y: auto; 
+    padding: 20px; 
+  }
+  

@@ -77,8 +77,9 @@ export class TransferenciasInternasComponent {
     }
   }
 
-  validarCuenta() {
+  validarCuenta1() {
     const cuenta = document.getElementById("cuentaDestino-campo") as HTMLInputElement;
+    const cedulaDestino = (document.getElementById("cedulaDestino-campo") as HTMLInputElement).value;
     const cuentaObj = { numero_cuenta: cuenta.value };
     const texto = document.getElementById("textCuenta");
     
@@ -107,6 +108,45 @@ export class TransferenciasInternasComponent {
       }
     );
   }
+
+  validarCuenta() {
+    const cuenta = document.getElementById("cuentaDestino-campo") as HTMLInputElement;
+    const cedulaDestino = (document.getElementById("cedulaDestino-campo") as HTMLInputElement).value;
+    const cuentaObj = { numero_cuenta: cuenta.value };
+    const texto = document.getElementById("textCuenta");
+    
+    this._CuentaService.obtenerCuenta(cuentaObj).subscribe(
+      data => {
+        if (data) { // Verifica si la cuenta es válida
+          const cuentaData = data as Cuenta; // Asegúrate de que el tipo sea Cuenta
+
+          // Verificar si la cédula ingresada pertenece al cliente de la cuenta destino
+          const cedulaObj = { cedula: cedulaDestino };
+          this._clienteService.obtenerCliente(cedulaObj).subscribe(clienteData => {
+            if (clienteData && cuentaData.cedula === clienteData.cedula) {
+              texto!.innerHTML = "Cuenta y cédula válidas. Esta cuenta le pertenece a: " + clienteData.nombres + " " + clienteData.apellidos;
+              this.cuentaValida = true; // Habilitar el botón de "Enviar código" si la cuenta es válida
+            } else {
+              texto!.innerHTML = "La cédula no coincide con el propietario de la cuenta.";
+              this.cuentaValida = false; // Deshabilitar el botón de "Enviar código"
+              this.toastr.error('Cédula del destinatario no válida.', 'Error');
+            }
+          });
+
+        } else {
+          this.cuentaValida = false; // Deshabilitar el botón de "Enviar código"
+          texto!.innerHTML = "Cuenta no encontrada";
+          this.toastr.error('Cuenta de destino no válida.', 'Error');
+        }
+      },
+      error => {
+        this.cuentaValida = false; // Deshabilitar el botón de "Enviar código"
+        texto!.innerHTML = "Cuenta no encontrada";
+        this.toastr.error('Cuenta de destino no válida.', 'Error');
+      }
+    );
+  }
+
   
   transferir() {
     const monto = parseFloat((document.getElementById("monto-campo") as HTMLInputElement).value);
