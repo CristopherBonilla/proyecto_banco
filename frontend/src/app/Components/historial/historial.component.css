@@ -191,43 +191,42 @@ main {
 }
 
 .scroll-container {
-    max-height: 500px; /* Ajusta la altura según tus necesidades */
-    overflow-y: auto; /* Habilita el scroll vertical */
-    border: 1px solid #605757; /* Opcional: agrega un borde para distinguir el área de scroll */
-    padding: 10px; /* Opcional: agrega un poco de padding */
+    max-height: 500px; 
+    overflow-y: auto; 
+    border: 1px solid #605757; 
+    padding: 10px; 
   }
   
-  /* Opcional: Puedes agregar estilos adicionales para el contenedor si lo necesitas */
+ 
   .table {
-    margin-bottom: 0; /* Asegúrate de que la tabla no tenga margen extra en la parte inferior */
+    margin-bottom: 0; 
   }
 
 
 
 /* Estilo para el contenedor de historial */
 .container.mt-3 {
-    background-color: white;  /*Fondo blanco para el historial */
+    background-color: white;  
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
   }
-  
-  /* Estilo para los signos de los montos */
   .signo-transferencia {
     font-weight: bold;
   }
   
   .signo-positivo {
-    color: green; /* Color verde para el signo "+" */
+    color: green; 
   }
   
   .signo-negativo {
-    color: red; /* Color rojo para el signo "-" */
+    color: red; 
   }
   
 
 .historial-container {
-    margin: 5% 15% 10%; /* Ajusta el margen inferior para que no choque con el footer */
+    margin: 5% 15% 10%; 
     padding: 10px;
     width: 70%;
     background: rgba(0, 0, 0, 0.25);
@@ -242,10 +241,10 @@ main {
 /* Estilos para el botón de filtro de transacciones */
 #filtro {
     appearance: none;
-    -webkit-appearance: none; /* Oculta el estilo predeterminado del navegador */
-    background-color: white; /* Fondo blanco por defecto */
-    color: #042068; /* Texto negro por defecto */
-    border: 3px solid #538af6; /* Borde gris claro para que contraste con el fondo blanco */
+    -webkit-appearance: none;
+    background-color: white; 
+    color: #042068;
+    border: 3px solid #538af6; 
     border-radius: 5px;
     padding: 10px 20px;
     font-size: 16px;
@@ -256,31 +255,39 @@ main {
 
  
 #filtro:hover {
-    background-color: white; /* Color de fondo al pasar el ratón */
+    background-color: white; 
     border-color: 3px solid #538af6;
     color: black;
 }
 
 #filtro:focus {
-    background-color: white; /* Fondo blanco al estar enfocado */
-    border-color: #538af6; /* Color del borde al estar enfocado */
-    color: black; /* Color del texto al estar enfocado */
-    box-shadow: 0 0 0 5px rgba(83, 138, 246, 0.3); /* Sombra de enfoque */
+    background-color: white; 
+    border-color: #538af6; 
+    color: black; 
+    box-shadow: 0 0 0 5px rgba(83, 138, 246, 0.3);
 }
 
 #filtro option {
-    background-color: white; /* Fondo blanco para las opciones */
-    color: black; /* Texto negro para las opciones */
+    background-color: white; 
+    color: black;
 }
 
 
 
-footer.footer {
+.footer {
     background-color: #042068;
     color: white;
     text-align: center;
     padding: 20px 0;
     position: fixed;
     width: 100%;
-    bottom: 0;
-}
+    bottom: 0; 
+    left: 0;  
+  }
+  
+  .scroll-container {
+    max-height: calc(100vh - 80px); 
+    overflow-y: auto; 
+    padding: 20px; 
+  }
+  

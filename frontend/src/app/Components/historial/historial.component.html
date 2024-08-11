@@ -91,6 +91,7 @@
     <option value="fechaDesc"> Fecha Descendente           </option>
   </select>
   </div>
+  <button (click)="downloadPDF()" class="btn btn-primary mt-3"> Descargar Historial de Transferencias </button> <!-- Botón para descargar PDF -->
   <div *ngIf="transferencias.length > 0; else noTransferencias" class="scroll-container">
     <table class="table table-striped">
       <thead>
