@@ -28,6 +28,7 @@ export class ClienteService {
     urlResumen = "http://127.0.0.1:3600/resumen";
     urlLoginExitoso = "http://127.0.0.1:3600/login-exitoso";
     urlLoginFallido = "http://127.0.0.1:3600/login-fallido";
+    //urlActualizarContrasena = "http://127.0.0.1:3600/actualizar-contrasena";
 
     constructor(
         private http: HttpClient
@@ -80,4 +81,7 @@ export class ClienteService {
     loginFallido(correo:Object){
         return this.http.post(this.urlLoginFallido, correo);
     }
+    /*actualizarContrasena(datos: { cedula: string, nuevaPassword: string }): Observable<any> {
+        return this.http.post(this.urlActualizarContrasena, datos);
+    }*/
 }

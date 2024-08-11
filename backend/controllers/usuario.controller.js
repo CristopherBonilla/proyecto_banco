@@ -109,6 +109,23 @@ var controller = {
 
     },
 
+    /*actualizarContrasena: function (req, res) {
+        var params = req.body;
+        var cedula = params.cedula;
+        var nuevaPassword = params.nuevaPassword;
+
+        // Asegúrate de encriptar la nueva contraseña
+        Usuario.findOneAndUpdate(
+            { cedula: cedula },
+            { password: nuevaPassword },
+            { new: true },
+            (err, usuarioActualizado) => {
+                if (err) return res.status(500).send({ message: 'Error al actualizar la contraseña' });
+                if (!usuarioActualizado) return res.status(404).send({ message: 'Usuario no encontrado' });
+                return res.status(200).send({ message: 'Contraseña actualizada con éxito' });
+            }
+        );
+    },*/
 
     generarCodigoOTP: function (req, res){
 
