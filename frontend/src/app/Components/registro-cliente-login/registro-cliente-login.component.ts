@@ -9,6 +9,8 @@ import { Usuario } from 'src/app/models/usuarios';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
 import { UsuarioService } from 'src/app/services/usuario/usuarios.service';
+//ver fecha correcta
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-registro-cliente-login',
@@ -26,6 +28,9 @@ export class RegistroClienteLoginComponent {
 
   public username = "";
   public password = "";
+
+  public correo: string = ''; // Variable para almacenar el correo ingresado
+
   @ViewChild('spanNumCuenta') cuenta!: ElementRef;
   @ViewChild('botonPregunta') pregunta!: ElementRef;
   @ViewChild('infoCuenta') infoCuenta!: ElementRef;
@@ -47,7 +52,9 @@ export class RegistroClienteLoginComponent {
       apellidos: ['', [Validators.required, Validators.pattern("^([A-Za-zñáéíóúÁÉÍÓÚ']+( [A-Za-zñáéíóúÁÉÍÓÚ'])*)*$")]],
       cedula: ['', [Validators.required, Validators.pattern("^[0-9]{10}$")]],
       codDactilar: ['', [Validators.required, Validators.pattern("^([A-Za-z]{1}[0-9]{4}){2}$")]],
-      fechaNacimiento: ['', Validators.required],
+      //ver fecha de nacimiento
+      //fechaNacimiento: ['', Validators.required,this.mayorDeEdadValidator],
+      fechaNacimiento: ['', [Validators.required, this.mayorDeEdadValidator]],
       email: ['', [Validators.required, Validators.email]],
       domicilio: ['', [Validators.required, Validators.pattern("^[A-Za-zñáéíóúÁÉÍÓÚ' ]{1,50}$")]],
       ocupacion: ['', [Validators.required, Validators.pattern("^[A-Za-zñáéíóúÁÉÍÓÚ' ]{1,50}$")]],
@@ -376,4 +383,35 @@ export class RegistroClienteLoginComponent {
     this._clienteService.enviarCredenciales(objeto).subscribe(
       data => { })
   }
+
+
+  //funcion de fecha 
+  mayorDeEdadValidator(control: AbstractControl): ValidationErrors | null {
+    const fechaNacimiento = control.value;
+    if (!fechaNacimiento) return null; // Si no hay fecha, no se aplica la validación.
+  
+    const today = new Date();
+    const birthDate = new Date(fechaNacimiento);
+    const edad = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+    const dayDifference = today.getDate() - birthDate.getDate();
+  
+    if (edad > 18 || (edad === 18 && (monthDifference > 0 || (monthDifference === 0 && dayDifference >= 0)))) {
+      return null; // Válido si la edad es mayor o igual a 18.
+    }
+  
+    return { menorDeEdad: true }; // Inválido si la persona es menor de 18 años.
+  }
+
+  // Método para reenvío de código
+  reenviarCodigo(): void {
+    const email = this.formularioCliente.get('email')?.value;
+    if (email) {
+      this.verificarCorreo(email);
+      this.toastr.success('Código de verificación reenviado', 'Reenvío Exitoso!');
+    } else {
+      this.toastr.error('No se pudo reenviar el código', 'Error en reenvío');
+    }
+  }
+
 }
