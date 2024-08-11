@@ -11,8 +11,7 @@ export class TransferenciaService {
   urlGuardarTransferencia = 'http://127.0.0.1:3600/guardar-transferencia';
   urltransferencias = 'http://127.0.0.1:3600/transferencias';
   urlGetTransferenciasByCedula = 'http://127.0.0.1:3600/get-transferencias-by-cedula';
-  urlObtenerCliente = "http://127.0.0.1:3600/cliente/";
-  url = "http://127.0.0.1:3600/guardar-cliente/";
+  
   constructor(
     private http: HttpClient
   ) {}
@@ -23,11 +22,6 @@ export class TransferenciaService {
   getTransferenciasByCedula(cedula: { cedula: number }): Observable<any> {
     return this.http.post(this.urlGetTransferenciasByCedula, cedula);
   }
-  obtenerCliente(cedula:object):Observable<any>{
-    return this.http.post(this.urlObtenerCliente, cedula);
-  }
-  guardarCliente(cliente: Cliente): Observable<any> {
-    return this.http.post(this.url, cliente);
-  }
+  
 }
 

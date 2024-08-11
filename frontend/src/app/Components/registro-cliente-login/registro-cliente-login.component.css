@@ -1,5 +1,65 @@
-/* CSS para mostrar mensajes de error en gris */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: url("../../../assets/media/fondo1.avif") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding: 20px; /* Ajusta según sea necesario */
+}
+
+header {
+    display: flex;
+    height: 70px;
+    background-color: #0a36a6;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 25px;
+    margin-left: 10px;
+}
+
+.nombre-banco {
+    color: white;
+    font-size: 50px;
+}
+
+.container {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente para el contenedor */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para el contenedor */
+}
+
+/* Footer */
+footer {
+    background-color: #042068;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    width: 100%;
+}
+
+/* Ajusta los estilos de los errores de formulario */
 .text-danger {
+    text-align: start;
+    margin-left: 6px;
     color: gray;
     font-size: 0.9em; /* Ajusta el tamaño del texto si es necesario */
 }

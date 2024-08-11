@@ -34,7 +34,23 @@ export class TransferenciasInternasComponent {
   ngOnInit(): void {
     // Mostrar el nombre del cliente que se logea
     this.extraerDatos();
+     //Mostrar el nombre del cliente que se logea
+     this.extraerCliente();
   }
+
+  extraerCliente(){
+    const cedula = history.state.cedula.cedula;
+    const nombre = {cedula: cedula};
+    this._clienteService.obtenerCliente(nombre).subscribe(data=>{
+      var nombres = data.nombres.toString();
+      var apellidos = data.apellidos.toString();
+      var text = document.getElementById('nombre-cliente');
+      text!.innerHTML= nombres+' '+apellidos;
+      console.log('No se pudo obtener el nombre del cliente');
+    })
+  }
+
+  
 
   extraerDatos() {
     const objeto = history.state.transferenciaObj;
@@ -61,23 +77,9 @@ export class TransferenciasInternasComponent {
     }
   }
 
-
-  menu() {
-    const objeto = history.state.transferenciaObj;
-    const cedulaObj = objeto.cedula;
-    const cedula = { cedula: cedulaObj }
-    this.router.navigate(['/menu'], { state: { cedula } });
-  }
-
-  transferencias() {
-    const cedulaObj = history.state.transferenciaObj.cedula;
-    const cuentasObj = history.state.transferenciaObj.cuentas;
-    const transferenciaObj = { cedula: cedulaObj, cuentas: cuentasObj }
-    this.router.navigate(['/transferencia'], { state: { transferenciaObj } });
-  }
-
-  validarCuenta() {
+  validarCuenta1() {
     const cuenta = document.getElementById("cuentaDestino-campo") as HTMLInputElement;
+    const cedulaDestino = (document.getElementById("cedulaDestino-campo") as HTMLInputElement).value;
     const cuentaObj = { numero_cuenta: cuenta.value };
     const texto = document.getElementById("textCuenta");
     
@@ -106,6 +108,45 @@ export class TransferenciasInternasComponent {
       }
     );
   }
+
+  validarCuenta() {
+    const cuenta = document.getElementById("cuentaDestino-campo") as HTMLInputElement;
+    const cedulaDestino = (document.getElementById("cedulaDestino-campo") as HTMLInputElement).value;
+    const cuentaObj = { numero_cuenta: cuenta.value };
+    const texto = document.getElementById("textCuenta");
+    
+    this._CuentaService.obtenerCuenta(cuentaObj).subscribe(
+      data => {
+        if (data) { // Verifica si la cuenta es válida
+          const cuentaData = data as Cuenta; // Asegúrate de que el tipo sea Cuenta
+
+          // Verificar si la cédula ingresada pertenece al cliente de la cuenta destino
+          const cedulaObj = { cedula: cedulaDestino };
+          this._clienteService.obtenerCliente(cedulaObj).subscribe(clienteData => {
+            if (clienteData && cuentaData.cedula === clienteData.cedula) {
+              texto!.innerHTML = "Cuenta y cédula válidas. Esta cuenta le pertenece a: " + clienteData.nombres + " " + clienteData.apellidos;
+              this.cuentaValida = true; // Habilitar el botón de "Enviar código" si la cuenta es válida
+            } else {
+              texto!.innerHTML = "La cédula no coincide con el propietario de la cuenta.";
+              this.cuentaValida = false; // Deshabilitar el botón de "Enviar código"
+              this.toastr.error('Cédula del destinatario no válida.', 'Error');
+            }
+          });
+
+        } else {
+          this.cuentaValida = false; // Deshabilitar el botón de "Enviar código"
+          texto!.innerHTML = "Cuenta no encontrada";
+          this.toastr.error('Cuenta de destino no válida.', 'Error');
+        }
+      },
+      error => {
+        this.cuentaValida = false; // Deshabilitar el botón de "Enviar código"
+        texto!.innerHTML = "Cuenta no encontrada";
+        this.toastr.error('Cuenta de destino no válida.', 'Error');
+      }
+    );
+  }
+
   
   transferir() {
     const monto = parseFloat((document.getElementById("monto-campo") as HTMLInputElement).value);
@@ -136,7 +177,12 @@ export class TransferenciasInternasComponent {
             cuenta_Emisor: cuentaOrigenData.numero_cuenta,
             cuenta_Destino: cuenta2,
             monto: monto,
-            descripcion: descripcion 
+            descripcion: descripcion,
+            cedula_Emisor: cuentaOrigenData.cedula, // Agregado
+            cedula_Destinatario: parseInt(cuenta2), // Necesitarías obtener cédula del destinatario
+            SaldoAnterios: cuentaOrigenData.monto_inicial,
+            saldoActual: cuentaOrigenData.monto_inicial - monto,
+            FechaTrasferencia: new Date() 
         };
 
         // Realizar la transferencia
@@ -158,11 +204,7 @@ export class TransferenciasInternasComponent {
         this.toastr.error('Cuenta de origen no válida.', 'Error');
     }
 }
-
-
-  
              
-
   otp() {
     // Deshabilitar el botón de correo
     document.getElementById('boton-correo')!.style.display = 'none';
@@ -205,10 +247,27 @@ export class TransferenciasInternasComponent {
     );
   }
 
+  menu() {
+    const objeto = history.state.transferenciaObj;
+    const cedulaObj = objeto.cedula;
+    const cedula = { cedula: cedulaObj }
+    this.router.navigate(['/menu'], { state: { cedula } });
+  }
+
   misDatos(){
     const cedulaObj = history.state.cedula.cedula;
     const cuentasObj = this.listCuentas;
     const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
     this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
+
+  verHistorial(){
+    const cedulaObj = history.state.cedula.cedula;
+    const cuentasObj = this.listCuentas;
+    const nombreCliente = document.getElementById('nombre-cliente')?.innerText || ''; // Obtener el nombre del cliente desde el DOM
+    const transferenciaObj  = {cedula:cedulaObj, cuentas:cuentasObj, nombre: nombreCliente}; // Agregar el nombre del cliente
+    this.router.navigate(['/historial'], { state: { cedula: cedulaObj, transferenciaObj } });
+  }
+
+  
 }
