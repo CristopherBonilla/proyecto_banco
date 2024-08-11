@@ -24,6 +24,7 @@ export class MenuPrincipalComponent {
   ){}
 
   ngOnInit(): void {
+    this.esEncriptado = JSON.parse(localStorage.getItem('esEncriptado') || 'false');
     //Mostrar el nombre del cliente que se logea
     this.extraerCliente();
     //Mostrar las cuentas asociadas al cliente
@@ -71,8 +72,9 @@ export class MenuPrincipalComponent {
   }
 
   toggleEncriptado() {
-    this.esEncriptado = !this.esEncriptado; // Alterna el estado de encriptado
-  }
+      this.esEncriptado = !this.esEncriptado; // Alterna el estado de encriptado
+      localStorage.setItem('esEncriptado', JSON.stringify(this.esEncriptado));
+    }
 
   transferencias(){
     const cedulaObj = history.state.cedula.cedula;
