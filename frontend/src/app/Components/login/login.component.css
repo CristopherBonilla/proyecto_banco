@@ -150,17 +150,13 @@
   text-decoration: underline;
   color: aqua;
   }
-/*FIN CAMBIO ANTHONY*/
-
-/*ADVERTENCIA REVISAR SI NO CAUSA PROBLEMA*/
-/* Estilos para el Footer */
-/*footer.footer {
-  background-color: #042068;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}*/
+  footer.footer {
+    background-color: #042068;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
   
