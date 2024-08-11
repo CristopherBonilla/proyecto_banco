@@ -67,3 +67,4 @@ footer {
 /* CSS para resaltar el borde del input en rojo cuando hay un error */
 input.ng-invalid.ng-touched {
     border-color: red;
+}
