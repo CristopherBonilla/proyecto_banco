@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Inicio</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="icon" type="favicon/x-icon" href="../../../assets/media/Logo.png">
+  <link rel="stylesheet" type="text/css" href="../historial/historial.component.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <link rel="stylesheet" href="https://kit.fontawesome.com/39d269d22a.css" crossorigin="anonymous">
+
+  <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/39d269d22a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!--Menu lateral-->
+  
+    <div class="menu__side" id="menu_side">
+  
+      <div class="options__menu">
+  
+        <a >
+          <div class="option" (click)="menu()">
+            <i class="fas fa-home" title="Inicio"></i>
+            <h4>INICIO</h4>
+          </div>
+        </a>
+        <a>
+          <div class="option" (click)="transferenciasM()">
+            <i class="fas fa-exchange-alt" title="Transferencias" ></i>
+            <h4>Transferencias</h4>
+          </div>
+        </a>
+        <a>
+          <div class="option" (click)="misDatos()">
+            <i class="far fa-sticky-note" title="Mis Datos"></i>
+            <h4>Mis Datos</h4>
+          </div>
+        </a>
+  
+        <a href="/historial" class="selected">
+          <div class="option">
+            <i class="fas fa-history" title="Historial"></i>
+            <h4>Historial</h4>
+          </div>
+        </a>
+  
+        <a >
+          <div class="option">
+            <i class="far fa-address-card" title="Nosotros"></i>
+            <h4>Nosotros</h4>
+          </div>
+        </a>
+  
+      </div>
+  
+    </div>
+    <!--FIN    Menu lateral-->
+    <main>
+      <header>
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-4 col-sm-6 d-flex align-items-center" id="logo">
+              <img src="../../../assets/media/Logo.png" alt="logo" class="img-fluid">
+              <h1 class="nombre-banco ms-3">EPN Wallet</h1>
+            </div>
+            <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center" id="cliente">
+              <img src="../../../assets/media/usuario.png" alt="cliente" class="img-fluid">
+              <h1 class="nombre-cliente ms-3 d-none d-md-block" id="nombre-cliente"></h1>
+            </div>
+            <div class="col-md-4 col-12 mt-3 mt-md-0 text-end">
+              <button routerLink="/login" type="submit" class="btn btn-danger">Cerrar Sesión</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+     
+<!-- Historial de Transferencias -->
+<div class="container mt-3">
+  <h2>Historial de Transferencias</h2>
+  <div class="select-container">
+  <select id="filtro" class="form-select" (change)="ordenarTransferencias($event)">
+    <option >Transferencias </option>
+    <option value="hechas"> Transferencias Realizadas      </option>
+    <option value="recibidas"> Transferencias Recibidas    </option>
+    <option value="fechaAsc">  Fecha Ascendente            </option>
+    <option value="fechaDesc"> Fecha Descendente           </option>
+  </select>
+  </div>
+  <button (click)="downloadPDF()" class="btn btn-primary mt-3"> Descargar Historial de Transferencias </button> <!-- Botón para descargar PDF -->
+  <div *ngIf="transferencias.length > 0; else noTransferencias" class="scroll-container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Cuenta Emisor</th>
+          <th>Cuenta Destino</th>
+          <th>Monto</th>
+          <th>Saldo Anterior</th>
+          <th>Saldo Actual</th>
+          <th>Descripción</th>
+          <th>Fecha de Realización</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transferencia of transferencias">
+          <td>{{ transferencia.cuenta_Emisor }}</td>
+          <td>{{ transferencia.cuenta_Destino }}</td>
+          <td>
+            <span class="signo-negativo" *ngIf="isTransferenciaHecha(transferencia)">
+              -{{ transferencia.monto | currency:'USD' }}
+            </span>
+            <span class="signo-positivo" *ngIf="isTransferenciaRecibida(transferencia)">
+              +{{ transferencia.monto | currency:'USD' }}
+            </span>
+          </td>
+          <td>{{ transferencia.SaldoAnterios | currency:'USD' }}</td>
+          <td>{{ transferencia.saldoActual | currency:'USD' }}</td>
+          <td>{{ transferencia.descripcion }}</td>
+          <td>{{ transferencia.FechaTrasferencia | date:'dd/MM/yyyy HH:mm' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noTransferencias>
+    <p>No se encontraron transferencias.</p>
+  </ng-template>
+</div>
+    </main>
+  </body>
+  <footer class="footer">
+    <p>© 2024 EPN Wallet. Todos los derechos reservados.</p>
+  </footer>
+</html>

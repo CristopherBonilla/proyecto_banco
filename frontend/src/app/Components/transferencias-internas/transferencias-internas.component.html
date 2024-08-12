@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Transferencia</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="icon" type="favicon/x-icon" href="../../../assets/media/Logo.png">
+  <link rel="stylesheet" type="text/css" href="../transferencias-internas/transferencias-internas.component.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <link rel="stylesheet" href="https://kit.fontawesome.com/39d269d22a.css" crossorigin="anonymous">
+
+  <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/39d269d22a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!--Menu lateral-->
+
+  <div class="menu__side" id="menu_side">
+
+    <div class="options__menu">
+
+      <a>
+        <div class="option" (click)="menu()">
+          <i class="fas fa-home" title="Inicio"></i>
+          <h4>INICIO</h4>
+        </div>
+      </a>
+
+      
+
+      <a class="selected">
+        <div class="option" (click)="transferencias()">
+          <i class="fas fa-exchange-alt" title="Transferencias"></i>
+          <h4>Transferencias</h4>
+        </div>
+      </a>
+      <a >
+        <div class="option" (click)="misDatos()">
+          <i class="far fa-sticky-note" title="Mis Datos"></i>
+          <h4>Mis Datos</h4>
+        </div>
+      </a>
+      <a >
+        <div class="option" (click)="verHistorial()">
+         <i class="fas fa-history" title="Historial"></i>
+         <h4>Historial</h4>
+       </div>
+     </a>
+      <a>
+        <div class="option">
+          <i class="far fa-address-card" title="Nosotros"></i>
+          <h4>Nosotros</h4>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+  <!--FIN    Menu lateral-->
+  <main>
+    <header>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-4 col-sm-6 d-flex align-items-center" id="logo">
+            <img src="../../../assets/media/Logo.png" alt="logo" class="img-fluid">
+            <h1 class="nombre-banco ms-3">EPN Wallet</h1>
+          </div>
+          <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center" id="cliente">
+            <img src="../../../assets/media/usuario.png" alt="cliente" class="img-fluid">
+            <h1 class="nombre-cliente ms-3 d-none d-md-block" id="nombre-cliente"></h1>
+          </div>
+          <div class="col-md-4 col-12 mt-3 mt-md-0 text-end">
+            <button routerLink="/login" type="submit" class="btn btn-danger">Cerrar Sesión</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <form >
+      <div class="row">
+        <div class="colum-6">
+          <div class="transferencia">
+            <div class="transferencia_contenido">
+              <h1>Transferencias locales</h1>
+              <form>
+                <!--Cuenta origen-->
+                <div class=" row">
+                  <label class="col-sm-3 ">Cuenta origen:</label>
+                  <div class="col-sm-6">
+                    <select id="cuentasOrigen" class="form-control" >
+                      <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                        Por favor, ingrese una cuenta origen
+                      </div>
+                    </select>
+                  </div>
+                </div>
+                <!--Monto-->
+                <div class="row">
+                  <label class="col-sm-3">Monto:</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" placeholder="Monto"  id="monto-campo">
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Por favor, ingrese un monto
+                    </div>
+                  </div>
+                </div>
+                <!-- Mensaje de saldo insuficiente -->
+                <div class="row">
+                  <p class="text-danger" id="mensajeSaldoInsuficiente" style="display: none;">Saldo insuficiente para realizar esta transferencia.</p>
+                </div>
+                
+                <!--Cedula Destino-->
+                <div class="row">
+                  <label class="col-sm-3">Número de cédula del destinatario:</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" placeholder="Cédula del destinatario" id="cedulaDestino-campo">
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Por favor, ingrese una cédula del destinatario
+                    </div>
+                  </div>
+                </div>
+                
+                <!--Cuenta Destino-->
+                <div class=" row">
+                  <label class="col-sm-3">Cuenta Destino:</label>
+                  <div class="col-sm-5">
+                    <input type="number" class="form-control" placeholder="Cuenta destino" id="cuentaDestino-campo">
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Por favor, ingrese una cuenta destino
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <button class="btn btn-primary" id="validar" type="submit"
+                      (click)="validarCuenta()">Validar</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <p class="cuenta_destino" id="textCuenta"></p>
+                </div>
+                <!--Descripcion-->
+                <div class=" row">
+                  <label class="col-sm-3">Descripción:</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Descripcion" id="descripcion-campo">
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Por favor, ingrese una descripción
+                    </div>
+                  </div>
+                </div>
+                <!--Correo-->
+                <div class="col-5" id="boton-correo">
+                  <button type="button" [disabled]="!cuentaValida" (click)="otp()" id="validar" class="col btn btn-primary">Enviar código</button>
+             </div>
+             <div class="col-5" id="otp" style="display: none;">
+              <input type="text" class="form-control" placeholder="ej. abc123" id="otp-campo">
+              <!-- Botón para reenviar el código -->
+            <small class="text-muted">
+              <a id="reenviar-codigo" href="#" (click)="reenviarCodigo($event)">Reenviar código</a>
+            </small>
+
+            </div>
+              <div class="row">
+                <p class="text-danger" id="text"></p>
+              </div>
+                <!--Boton enviar-->
+               
+              <div class="mb-4">
+                <button class="btn btn-success" id="enviar" type="button" [disabled]="!codigoValido" (click)="transferir()">Transferir</button>
+              </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+   <!-- Footer -->
+   <footer class="footer">
+    <p>© 2024 EPN Wallet. Todos los derechos reservados.</p>
+  </footer>
+</body>
+
+</html>
