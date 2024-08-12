@@ -1,3 +1,44 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: url("../../../assets/media/fondo1.avif") no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 20px; /* Ajusta según sea necesario */
+}
+
+header {
+  display: flex;
+  height: 70px;
+  background-color: #0a36a6;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 25px;
+  margin-left: 10px;
+}
+
+.nombre-banco {
+  color: white;
+  font-size: 50px;
+}
+
 .recuperar-con-container {
   max-width: 400px;
   margin: 0 auto;
@@ -33,6 +74,7 @@
   border: none;
   border-radius: 5px;
   font-size: 16px;
+  margin-top: 10px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -85,4 +127,27 @@
 .button-group .btn {
   width: auto;
   margin: 0 5px;
+}
+
+/* Footer */
+footer {
+  background-color: #042068;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
+  width: 100%;
+}
+
+/* Ajusta los estilos de los errores de formulario */
+.text-danger {
+  text-align: start;
+  margin-left: 6px;
+  color: gray;
+  font-size: 0.9em; /* Ajusta el tamaño del texto si es necesario */
+}
+
+/* CSS para resaltar el borde del input en rojo cuando hay un error */
+input.ng-invalid.ng-touched {
+  border-color: red;
 }
