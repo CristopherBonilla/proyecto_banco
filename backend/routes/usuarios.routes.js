@@ -26,4 +26,8 @@ router.post('/validarUsername',usuariosController.validarUsername);
 router.post('/verificarPregunta',usuariosController.verificarPregunta);
 //actualizar Usuario
 router.post('/configurar-usuario',usuariosController.configurarCuenta);
+//actualizar Contraseña
+router.post('/cambiar-password', usuariosController.cambiarPassword);
+
+
 module.exports=router;

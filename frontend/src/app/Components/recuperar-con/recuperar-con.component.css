@@ -1,3 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url(../../../assets/media/fondo1.avif);
+  background-repeat: no-repeat;
+  background-position: center; /* Mantiene la imagen centrada */
+  background-attachment: fixed; /* Mantiene la imagen fija mientras se desplaza */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  height: 70px;
+  background-color: #042068;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin: 0 25px 0 10px;
+}
+
+.nombre-banco {
+  color: white;
+  font-size: 50px;
+}
+
+.formulario {
+  background: rgb(128, 7, 7); /* Color de fondo rojo */
+  border: 5px solid black; /* Borde negro */
+  padding: 20px;
+  margin: 150px auto;
+  width: 500px;
+  border-radius: 2%;
+}
+
+.formulario h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 35px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  font-size: 20px;
+  width: 82%;
+  padding: 10px;
+  border: none;
+}
+.input-contenedor {
+  margin-bottom: 20px;
+  border: 1px solid #aaa;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+
+.icon {
+  min-width: 50px;
+  text-align: center;
+  color: #f5eded;
+}
+
+
+
+.button {
+  border: none;
+  color: white;
+  font-size: 20px;
+  background: #0f8abb;
+  padding: 10px 20px;
+  margin: 5px;
+  margin-left: 130px;
+  width: 200px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: block; /* Hace que el botón se comporte como un bloque */
+  text-align: center; /* Centra el texto del botón */
+}
+
+.button:hover {
+  background: #042067;
+}
+
+.button:disabled {
+  background: rgb(230, 48, 41);
+}
+
+.invalid-feedback {
+  color: white;
+  background: rgb(230, 48, 41);
+}
+.small-button {
+  padding: 10px 15px; 
+  font-size: 16px;} 
+
+/*CAMBIO ANTHONY*/
+.forgot-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.forgot-link p {
+  margin: 0;
+}
+
+.register-link {
+  margin-top: 15px;
+  text-align: center;
+
+}
+
+.register-link p {
+  margin: 0;
+}
+
+a.forgot{
+  display: block;
+  text-decoration: none;
+  position: relative;
+  text-decoration: underline;
+  
+}
+
+a.forgot::hover{
+text-decoration: underline;
+color: aqua;
+}
+
+a.sing-up{
+text-decoration: none;
+color: black;
+}
+
+a.sing-up::hover{
+text-decoration: underline;
+color: aqua;
+}
+footer.footer {
+  background-color: #042068;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+
+
 .recuperar-con-container {
     max-width: 400px;
     margin: 0 auto;

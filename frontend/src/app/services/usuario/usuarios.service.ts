@@ -19,6 +19,9 @@ export class UsuarioService{
     urlPregunta= "http://127.0.0.1:3600/verificarPregunta/";
     //urlconfigurarusuario ="http://localhost:3000/configurar-usuario/";
     urlconfigurarusuario ="http://127.0.0.1:3600/configurar-usuario/"; 
+    //
+    private urlCambioPassword = "http://127.0.0.1:3600/cambiar-password/";
+
     constructor(
         private http: HttpClient
     ){}
@@ -34,4 +37,9 @@ export class UsuarioService{
     configurarUsuario(usuario: object): Observable<any> {
         return this.http.post(this.urlconfigurarusuario, usuario);
     }
+    cambiarPassword(cedula: Object, nuevaPassword: Object): Observable<any> {
+        const body = { cedula, nuevaPassword };
+        return this.http.post(this.urlCambioPassword, body);
+    }
+    
 }

@@ -22,6 +22,7 @@ export class RecuperarConComponent implements OnInit {
   ) {
     this.recuperarConForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
+      cedula: ['', [Validators.required]] // Agregado para cédula
     });
 
     this.verificationForm = this.fb.group({
@@ -38,6 +39,7 @@ export class RecuperarConComponent implements OnInit {
     }
 
     const email = this.recuperarConForm.get('email')?.value;
+    const cedula = this.recuperarConForm.get('cedula')?.value;
 
     this.clienteService.validarCorreoLogin({ correo: email }).subscribe(
       (data) => {
@@ -62,4 +64,28 @@ export class RecuperarConComponent implements OnInit {
       this.toastr.error('El código de verificación es incorrecto. Inténtalo de nuevo.');
     }
   }
+
+  resendCode(): void {
+    const email = this.recuperarConForm.get('email')?.value;
+    const cedula = this.recuperarConForm.get('cedula')?.value;
+  
+    if (this.recuperarConForm.invalid) {
+      this.toastr.error('Por favor, ingrese un correo electrónico y una cédula válidos.');
+      return;
+    }
+  
+    this.clienteService.validarCorreoLogin({ correo: email }).subscribe(
+      (data) => {
+        this.verificationCode = data.toString();
+        this.toastr.success('Código de verificación reenviado al correo electrónico.');
+      },
+      (error) => {
+        console.log(error);
+        this.toastr.error('Error al reenviar el código de verificación.');
+      }
+    );
+  }
+  
+
+
 }
