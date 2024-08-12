@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
+
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css']
 })
-export class ResetPasswordComponent {
+export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
 
   constructor(
@@ -18,6 +19,7 @@ export class ResetPasswordComponent {
     private clienteService: ClienteService
   ) {
     this.resetPasswordForm = this.fb.group({
+      cedula: ['', [Validators.required]],
       newPassword: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required]
     }, { validator: this.passwordsMatch });
@@ -37,18 +39,19 @@ export class ResetPasswordComponent {
       return;
     }
 
+    const cedula = this.resetPasswordForm.get('cedula')?.value;
     const newPassword = this.resetPasswordForm.get('newPassword')?.value;
-    const email = localStorage.getItem('resetEmail'); // Suponiendo que guardaste el email en localStorage
 
-    /*this.clienteService.restablecerContrasena({ correo: email, nuevaPassword: newPassword }).subscribe(
+    // Llamar al servicio para actualizar la contraseña en la base de datos
+    this.clienteService.actualizarContrasena({ cedula, nuevaPassword: newPassword }).subscribe(
       (data) => {
         this.toastr.success('Contraseña restablecida con éxito.');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login']); // Redirigir al usuario al login
       },
       (error) => {
         console.log(error);
         this.toastr.error('Error al restablecer la contraseña.');
       }
-    );*/
+    );
   }
-}
+}*/

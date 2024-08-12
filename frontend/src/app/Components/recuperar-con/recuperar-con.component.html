@@ -1,64 +1,101 @@
 <div class="recuperar-con-container">
-    <h2>¿Has olvidado tu contraseña?</h2>
-  
-    <!-- Formulario para ingresar el correo -->
-    <form [formGroup]="recuperarConForm" (ngSubmit)="sendVerificationCode()">
-      <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input
-          type="email"
-          id="email"
-          formControlName="email"
-          class="form-control"
-          placeholder="Introduce tu correo electrónico"
-          required
-        />
-        <div
-          *ngIf="recuperarConForm.get('email')?.invalid && recuperarConForm.get('email')?.touched"
-          class="error"
-        >
-          Introduce un correo electrónico válido.
-        </div>
+  <h2>Recuperar Credenciales</h2>
+
+  <!-- Formulario para ingresar el correo y cédula -->
+  <form [formGroup]="recuperarConForm" (ngSubmit)="sendVerificationCode()">
+    <div class="form-group">
+      <label for="email">Correo electrónico</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+        placeholder="Introduce tu correo electrónico"
+        required
+      />
+      <div
+        *ngIf="recuperarConForm.get('email')?.invalid && recuperarConForm.get('email')?.touched"
+        class="error"
+      >
+        Introduce un correo electrónico válido.
       </div>
-  
+    </div>
+
+    <div class="form-group">
+      <label for="cedula">Cédula</label>
+      <input
+        type="text"
+        id="cedula"
+        formControlName="cedula"
+        class="form-control"
+        placeholder="Introduce tu cédula"
+        required
+      />
+      <div
+        *ngIf="recuperarConForm.get('cedula')?.invalid && recuperarConForm.get('cedula')?.touched"
+        class="error"
+      >
+        Introduce una cédula válida.
+      </div>
+    </div>
+
+    <div class="button-group">
       <button
         type="submit"
         class="btn btn-primary"
-        [disabled]="!recuperarConForm.get('email')?.valid || isCodeSent"
+        [disabled]="!recuperarConForm.valid || isCodeSent"
       >
         Enviar código
       </button>
-    </form>
-  
-    <!-- Sección para verificar el código -->
-    <div *ngIf="isCodeSent" class="code-verification-section">
-      <form [formGroup]="verificationForm" (ngSubmit)="verifyCode()">
-        <div class="form-group">
-          <label for="code">Código de verificación</label>
-          <input
-            type="text"
-            id="code"
-            formControlName="code"
-            class="form-control"
-            placeholder="Introduce el código de verificación"
-            required
-          />
-          <div
-            *ngIf="verificationForm.get('code')?.invalid && verificationForm.get('code')?.touched"
-            class="error"
-          >
-            El código debe tener al menos 6 caracteres.
-          </div>
-        </div>
-  
-        <button
-          type="submit"
-          class="btn btn-success"
-          [disabled]="!verificationForm.get('code')?.valid"
-        >
-          Verificar código
-        </button>
-      </form>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="cancelar()"
+      >
+        Cancelar
+      </button>
     </div>
+  </form>
+
+  <!-- Sección para verificar el código -->
+  <div *ngIf="isCodeSent" class="code-verification-section">
+    <form [formGroup]="verificationForm" (ngSubmit)="verifyCode()">
+      <div class="form-group">
+        <label for="code">Código de verificación</label>
+        <input
+          type="text"
+          id="code"
+          formControlName="code"
+          class="form-control"
+          placeholder="Introduce el código de verificación"
+          required
+        />
+        <div
+          *ngIf="verificationForm.get('code')?.invalid && verificationForm.get('code')?.touched"
+          class="error"
+        >
+          El código debe tener al menos 6 caracteres.
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!verificationForm.get('code')?.valid"
+      >
+        Verificar código
+      </button>
+    </form>
   </div>
-  
+
+  <!-- Sección para enviar las credenciales -->
+  <div *ngIf="isCodeVerified" class="send-credentials-section">
+    <button
+      type="button"
+      class="btn btn-warning"
+      (click)="enviarCredenciales()"
+    >
+      Enviar credenciales al correo
+    </button>
+  </div>
+</div>

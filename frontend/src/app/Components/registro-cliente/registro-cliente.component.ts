@@ -236,7 +236,7 @@ export class RegistroClienteComponent implements OnInit {
         switch (data.message) {
           case (200): {
             this.toastr.info('El Cliente se registro con exito!', 'Cliente registrado');
-            console.log("Todo bien mi 🔑, el dato si se ingreso, re piola rey!");
+            console.log("Todo bien mi 🔑, el dato si se ingreso!");
             this.showform1 = false;
             this.showform2 = true;
             this.showform3 = false;
@@ -265,7 +265,7 @@ export class RegistroClienteComponent implements OnInit {
         switch (data.message) {
           case (200): {
             this.toastr.info('La cuenta se registro con exito!', 'Cuenta registrada');
-            console.log("Todo bien mi 🔑, el dato si se ingreso, re piola rey!");
+            console.log("Todo bien mi 🔑, el dato si se ingreso!");
             this.showform2 = false;
             this.showform1 = false;
             this.showform3 = true;
@@ -293,7 +293,7 @@ export class RegistroClienteComponent implements OnInit {
         switch (data.message) {
           case (200): {
             this.toastr.info('El usuario se registro con exito!', 'Usuario registrada');
-            console.log("Todo bien mi 🔑, el dato si se ingreso, re piola rey!");
+            console.log("Todo bien mi 🔑, el dato si se ingreso");
             this.router.navigate(['/login']);
             this.showform1 = true;
             this.showform2 = false;
