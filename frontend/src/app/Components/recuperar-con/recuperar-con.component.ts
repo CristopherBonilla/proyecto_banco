@@ -30,7 +30,7 @@ export class RecuperarConComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   sendVerificationCode(): void {
     if (this.recuperarConForm.invalid) {
@@ -68,12 +68,12 @@ export class RecuperarConComponent implements OnInit {
   resendCode(): void {
     const email = this.recuperarConForm.get('email')?.value;
     const cedula = this.recuperarConForm.get('cedula')?.value;
-  
+
     if (this.recuperarConForm.invalid) {
       this.toastr.error('Por favor, ingrese un correo electrónico y una cédula válidos.');
       return;
     }
-  
+
     this.clienteService.validarCorreoLogin({ correo: email }).subscribe(
       (data) => {
         this.verificationCode = data.toString();
@@ -85,7 +85,7 @@ export class RecuperarConComponent implements OnInit {
       }
     );
   }
-  
-
-
+  cancelar(): void {
+    this.router.navigate(['/login']);
+  }
 }

@@ -1,3 +1,4 @@
+/* Reseteo de márgenes y rellenos */
 * {
   margin: 0;
   padding: 0;
@@ -7,15 +8,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-image: url(../../../assets/media/fondo1.avif);
   background-repeat: no-repeat;
-  background-position: center; /* Mantiene la imagen centrada */
-  background-attachment: fixed; /* Mantiene la imagen fija mientras se desplaza */
-  background-size: cover;
   background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* Estilos del encabezado */
 header {
   display: flex;
   height: 70px;
@@ -40,9 +41,10 @@ header {
   font-size: 50px;
 }
 
+/* Estilos del formulario */
 .formulario {
-  background: rgb(128, 7, 7); /* Color de fondo rojo */
-  border: 5px solid black; /* Borde negro */
+  background: rgb(128, 7, 7); 
+  border: 5px solid black; 
   padding: 20px;
   margin: 150px auto;
   width: 500px;
@@ -63,6 +65,10 @@ input[type="number"] {
   padding: 10px;
   border: none;
 }
+#email, #cedula{
+  padding: 10px;
+}
+
 .input-contenedor {
   margin-bottom: 20px;
   border: 1px solid #aaa;
@@ -71,28 +77,27 @@ input[type="number"] {
   position: relative;
 }
 
-
 .icon {
   min-width: 50px;
   text-align: center;
   color: #f5eded;
 }
 
-
-
+/* Estilos de botones */
 .button {
   border: none;
   color: white;
   font-size: 20px;
   background: #0f8abb;
   padding: 10px 20px;
-  margin: 5px;
-  margin-left: 130px;
+  margin: 5px 0;
   width: 200px;
   border-radius: 20px;
   cursor: pointer;
-  display: block; /* Hace que el botón se comporte como un bloque */
-  text-align: center; /* Centra el texto del botón */
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .button:hover {
@@ -107,52 +112,38 @@ input[type="number"] {
   color: white;
   background: rgb(230, 48, 41);
 }
+
 .small-button {
   padding: 10px 15px; 
-  font-size: 16px;} 
+  font-size: 16px;
+} 
 
-/*CAMBIO ANTHONY*/
-.forgot-link {
-  margin-top: 15px;
-  text-align: center;
-}
-
-.forgot-link p {
-  margin: 0;
-}
-
+/* Enlaces */
+.forgot-link,
 .register-link {
   margin-top: 15px;
   text-align: center;
-
 }
 
+.forgot-link p,
 .register-link p {
   margin: 0;
 }
 
-a.forgot{
+a.forgot,
+a.sing-up {
   display: block;
   text-decoration: none;
   position: relative;
   text-decoration: underline;
-  
 }
 
-a.forgot::hover{
-text-decoration: underline;
-color: aqua;
+a.forgot:hover,
+a.sing-up:hover {
+  color: aqua;
 }
 
-a.sing-up{
-text-decoration: none;
-color: black;
-}
-
-a.sing-up::hover{
-text-decoration: underline;
-color: aqua;
-}
+/* Estilos del pie de página */
 footer.footer {
   background-color: #042068;
   color: white;
@@ -163,8 +154,7 @@ footer.footer {
   bottom: 0;
 }
 
-
-
+/* Estilos de la sección de recuperación de contraseña */
 .recuperar-con-container {
   max-width: 400px;
   margin: 0 auto;
@@ -178,7 +168,8 @@ footer.footer {
   margin-bottom: 15px;
 }
 
-.error {
+.error,
+.error-message {
   color: red;
   font-size: 12px;
   margin-top: 5px;
@@ -189,11 +180,7 @@ footer.footer {
   margin-top: 10px;
 }
 
-.error-message {
-  color: red;
-  margin-top: 10px;
-}
-
+/* Botones de la sección de recuperación */
 .btn {
   width: 100%;
   padding: 10px;
@@ -240,10 +227,12 @@ footer.footer {
   background-color: #e0a800;
 }
 
+/* Sección de verificación de código */
 .code-verification-section {
   margin-top: 20px;
 }
 
+/* Grupo de botones */
 .button-group {
   display: flex;
   justify-content: space-between;
