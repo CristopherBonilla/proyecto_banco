@@ -32,7 +32,7 @@
             <div id="pass" class="input-contenedor" style="position: relative;">
               <i class="fas fa-key icon"></i>
               <input formControlName="password" [class.is-invalid]='f.password.errors && f.password.touched' [type]="passwordFieldType" placeholder="Contraseña" required pattern="^(?=.*[@]?)(?=.*\d?)(?=.*[a-z]?)(?=.*[A-Z]?)[a-zA-Z\d@]{4,25}$">
-              <i class="fas" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()" style="cursor: pointer; position: absolute; right: 50px; top: 50%; transform: translateY(-50%);"></i>
+              <i class="fas" [ngClass]="passwordFieldType === 'password' ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
               <div id="validationServerUsernameFeedback" class="invalid-feedback">
                 Por favor, ingrese la contraseña
               </div>
