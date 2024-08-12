@@ -29,6 +29,9 @@ export class HistorialComponent{
 
   ngOnInit(): void {
     this.extraerCliente();
+      //Mostrar las cuentas asociadas al cliente
+    //this.extraerCuentas();
+    // Llamar a la función para cargar las transferencias al inicializar el componente
     this.obtenerHistorial();
   }
   extraerCliente() {
@@ -159,7 +162,7 @@ export class HistorialComponent{
       `Atentamente,\n\n` +
       `EPN Wallet - Servicio al Cliente\n` +
       `${ubicacionBanco}\n` +
-      `Fecha de Descarga:\n ${fechaDescarga}`; // Mensaje final
+      `Fecha de Descarga:\n${fechaDescarga}`; // Mensaje final
 
     const data = document.querySelector('.scroll-container') as HTMLElement;
 

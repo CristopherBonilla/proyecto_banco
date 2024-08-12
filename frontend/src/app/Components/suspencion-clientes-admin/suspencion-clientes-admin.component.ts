@@ -619,18 +619,36 @@ export class SuspencionClientesAdminComponent implements OnInit {
       this.ocupacionOriginal == this.formularioCliente.get('ocupacion')?.value &&
       this.numeroOriginal == this.formularioCliente.get('numeroTelefono')?.value &&
       this.estadoOriginalCliente == this.formularioCliente.get('estado')?.value) {
-      //No envia nada
+      // No envía nada si no hay cambios
     } else {
-      var cedula = { cedula: this.CI }
-      this._clienteService.obtenerCliente(cedula).subscribe(
-        data => {
-          const cliente = <Cliente>data;
-          //Recuperar correo
-          const email = cliente.correo_electronico;
-          const correo = { correo: email }
-          this._clienteService.actualizar(correo).subscribe(data=>{});
-        })
-    }
+      const cedula = { cedula: this.CI };
+      this._clienteService.obtenerCliente(cedula).subscribe(data => {
+        const cliente = <Cliente>data;
 
+        // Recuperar correo y estado
+        const email = cliente.correo_electronico;
+        const cedula = cliente.cedula; // Asegúrate de que esto esté disponible en el objeto cliente
+        const estado = true; // Define el estado según sea necesario
+
+        // Construir el objeto correcto
+        const clienteActualizar = {
+          correo: email,
+          cedula: cedula,
+          estado: estado
+        };
+
+        // Llamar al servicio actualizar con el objeto completo
+        this._clienteService.actualizar(clienteActualizar).subscribe(
+          response => {
+            // Maneja la respuesta aquí
+            console.log('Cliente actualizado', response);
+          },
+          error => {
+            // Maneja el error aquí
+            console.error('Error al actualizar el cliente', error);
+          }
+        );
+      });
+    }
   }
 }

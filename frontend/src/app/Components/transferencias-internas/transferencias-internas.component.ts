@@ -335,6 +335,13 @@ export class TransferenciasInternasComponent {
     this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
 
+  transferencias(){
+    const cedulaObj = history.state.cedula.cedula;
+    const cuentasObj = this.listCuentas;
+    const transferenciaObj = {cedula:cedulaObj, cuentas:cuentasObj}
+    this.router.navigate(['/transferencia-interna'],{state:{transferenciaObj}});
+  }
+
   verHistorial(){
     const cedulaObj = history.state.cedula.cedula;
     const cuentasObj = this.listCuentas;
