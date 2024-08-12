@@ -30,7 +30,7 @@ export class HistorialComponent{
   ngOnInit(): void {
     this.extraerCliente();
       //Mostrar las cuentas asociadas al cliente
-    this.extraerCuentas();
+    //this.extraerCuentas();
     // Llamar a la función para cargar las transferencias al inicializar el componente
     this.obtenerHistorial();
   }
