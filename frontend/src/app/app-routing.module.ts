@@ -19,7 +19,7 @@ import { HistorialComponent } from './Components/historial/historial.component';
 
 import { RecuperarConComponent } from './Components/recuperar-con/recuperar-con.component';
 import { RegistroClienteLoginComponent } from './Components/registro-cliente-login/registro-cliente-login.component';
-//import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -40,7 +40,7 @@ const routes: Routes = [
     { path: 'transferencia-interna-resumen', component: TransferenciasInternasResumenComponent},
     { path: 'recuperar-con', component: RecuperarConComponent },
     { path: 'registro-cliente-login', component: RegistroClienteLoginComponent },
-    //{ path: 'reset-password', component: ResetPasswordComponent },
+    { path: 'reset-password', component: ResetPasswordComponent },
     { path: '**', redirectTo: 'login', pathMatch: 'full'}
     ];
 
