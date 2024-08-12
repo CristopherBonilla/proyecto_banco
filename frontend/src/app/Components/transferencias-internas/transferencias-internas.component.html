@@ -29,12 +29,7 @@
         </div>
       </a>
 
-      <a>
-        <div class="option">
-          <i class="far fa-file" title="Pagos"></i>
-          <h4>Pagos</h4>
-        </div>
-      </a>
+      
 
       <a class="selected">
         <div class="option" (click)="transferencias()">
@@ -42,21 +37,18 @@
           <h4>Transferencias</h4>
         </div>
       </a>
-
       <a >
         <div class="option" (click)="misDatos()">
           <i class="far fa-sticky-note" title="Mis Datos"></i>
           <h4>Mis Datos</h4>
         </div>
       </a>
-
-      <a>
-        <div class="option">
-          <i class="far fa-id-badge" title="Contacto"></i>
-          <h4>Contacto</h4>
-        </div>
-      </a>
-
+      <a >
+        <div class="option" (click)="verHistorial()">
+         <i class="fas fa-history" title="Historial"></i>
+         <h4>Historial</h4>
+       </div>
+     </a>
       <a>
         <div class="option">
           <i class="far fa-address-card" title="Nosotros"></i>
@@ -70,21 +62,18 @@
   <!--FIN    Menu lateral-->
   <main>
     <header>
-      <div class="row">
-        <div class="col-4" id="logo">
-          <img src="../../../assets/media/Logo.png" alt="logo">
-          <h1 class="nombre-banco">EPN Wallet</h1>
-        </div>
-        <div class="col-4" id="cliente">
-          <img src="../../../assets/media/usuario.png" alt="cliente">
-          <h1 class="nombre-cliente" id="nombre-cliente"></h1>
-        </div>
-      </div>
-
-      <div class="container mt-3">
-        <div class="row mb-3 mx-auto">
-          <div class="col-12">
-            <button routerLink="/login" type="submit" class="btn btn-danger col-2 float-end">Cerrar Sesión</button>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-4 col-sm-6 d-flex align-items-center" id="logo">
+            <img src="../../../assets/media/Logo.png" alt="logo" class="img-fluid">
+            <h1 class="nombre-banco ms-3">EPN Wallet</h1>
+          </div>
+          <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center" id="cliente">
+            <img src="../../../assets/media/usuario.png" alt="cliente" class="img-fluid">
+            <h1 class="nombre-cliente ms-3 d-none d-md-block" id="nombre-cliente"></h1>
+          </div>
+          <div class="col-md-4 col-12 mt-3 mt-md-0 text-end">
+            <button routerLink="/login" type="submit" class="btn btn-danger">Cerrar Sesión</button>
           </div>
         </div>
       </div>
@@ -122,6 +111,18 @@
                 <div class="row">
                   <p class="text-danger" id="mensajeSaldoInsuficiente" style="display: none;">Saldo insuficiente para realizar esta transferencia.</p>
                 </div>
+                
+                <!--Cedula Destino-->
+                <div class="row">
+                  <label class="col-sm-3">Número de cédula del destinatario:</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" placeholder="Cédula del destinatario" id="cedulaDestino-campo">
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Por favor, ingrese una cédula del destinatario
+                    </div>
+                  </div>
+                </div>
+                
                 <!--Cuenta Destino-->
                 <div class=" row">
                   <label class="col-sm-3">Cuenta Destino:</label>

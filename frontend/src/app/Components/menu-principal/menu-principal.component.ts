@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { Cuenta } from 'src/app/models/cuentas';
 import { CuentaService } from 'src/app/services/cuenta/cuenta.service';
@@ -25,12 +24,15 @@ export class MenuPrincipalComponent {
   ){}
 
   ngOnInit(): void {
+    this.esEncriptado = JSON.parse(localStorage.getItem('esEncriptado') || 'false');
     //Mostrar el nombre del cliente que se logea
     this.extraerCliente();
     //Mostrar las cuentas asociadas al cliente
     this.extraerCuentas();
+   
   }
-  extraerCliente(){
+
+    extraerCliente(){
     const cedula = history.state.cedula.cedula;
     const nombre = {cedula: cedula};
     this._clienteService.obtenerCliente(nombre).subscribe(data=>{
@@ -38,6 +40,7 @@ export class MenuPrincipalComponent {
       var apellidos = data.apellidos.toString();
       var text = document.getElementById('nombre-cliente');
       text!.innerHTML= nombres+' '+apellidos;
+      console.log('No se pudo obtener el nombre del cliente');
     })
   }
 
@@ -69,8 +72,9 @@ export class MenuPrincipalComponent {
   }
 
   toggleEncriptado() {
-    this.esEncriptado = !this.esEncriptado; // Alterna el estado de encriptado
-  }
+      this.esEncriptado = !this.esEncriptado; // Alterna el estado de encriptado
+      localStorage.setItem('esEncriptado', JSON.stringify(this.esEncriptado));
+    }
 
   transferencias(){
     const cedulaObj = history.state.cedula.cedula;
@@ -86,16 +90,14 @@ export class MenuPrincipalComponent {
     this.router.navigate(['/suspender-cliente'],{state:{transferenciaObj}});
   }
 
-  historial() {
+  verHistorial(){
     const cedulaObj = history.state.cedula.cedula;
-    this.router.navigate(['/historial'], { state: { cedula: cedulaObj } });
-  }
-
-  verHistorial() {
-    this.historial();
+    const cuentasObj = this.listCuentas;
+    const nombreCliente = document.getElementById('nombre-cliente')?.innerText || ''; // Obtener el nombre del cliente desde el DOM
+    const transferenciaObj  = {cedula:cedulaObj, cuentas:cuentasObj, nombre: nombreCliente}; // Agregar el nombre del cliente
+    this.router.navigate(['/historial'], { state: { cedula: cedulaObj, transferenciaObj } });
   }
   
-
-}
+  }
 
 

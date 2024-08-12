@@ -20,53 +20,41 @@ main {
 }
 
 header {
-    display: flex;
-    height: 70px;
     background-color: #042068;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-#logo {
-    display: flex;
-    align-items: center;
+    padding: 10px 0;
 }
 
 #logo img {
     height: 50px;
-    margin-right: 25px;
-    margin-left: 10px;
 }
 
 .nombre-banco {
     color: white;
     font-size: 25px;
-}
-
-#cliente {
-    position: absolute;
-    width: 461px;
-    height: 89px;
-    left: 867px;
-    top: 13px;
-}
-
-#cliente img {
-    position: absolute;
-    height: 50px;
-    margin-right: 25px;
     margin-left: 10px;
 }
 
-.nombre-cliente {
-    position: absolute;
-    color: white;
-    font-size: 20px;
-    margin-left: 100px;
-    margin-top: 10px;
+#cliente img {
+    height: 50px;
 }
 
+.nombre-cliente {
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    #cliente img {
+        margin-left: 0;
+    }
+    /* Ocultar el nombre del cliente en pantallas pequeñas */
+    .nombre-cliente {
+        display: none;
+    }
+}
 
 
 

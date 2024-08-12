@@ -57,6 +57,15 @@ export class LoginComponent implements OnInit {
     this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 
+  // Método para reenvío de código
+  reenviarCodigo(): void {
+    if (this.correo) {
+      this.enviarCorreo(this.correo);
+      this.toastr.success('Código de verificación reenviado', 'Reenvío Exitoso!');
+    } else {
+      this.toastr.error('No se pudo reenviar el código', 'Error en reenvío');
+    }
+  }
 
 
   //FUNCION PARA ENCRIPTAR LA CONTRASEÑA
