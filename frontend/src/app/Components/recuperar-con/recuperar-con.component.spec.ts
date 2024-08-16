@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ToastrModule, ToastrService } from 'ngx-toastr'; // Importa el ToastrModule y ToastrService
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
 
 import { RecuperarConComponent } from './recuperar-con.component';
 
@@ -10,7 +12,11 @@ describe('RecuperarConComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ RecuperarConComponent ],
-      imports: [ ToastrModule.forRoot() ], // Agrega ToastrModule en los imports
+      imports: [
+        HttpClientTestingModule, // Agrega HttpClientTestingModule
+        ReactiveFormsModule, // Agrega ReactiveFormsModule
+        ToastrModule.forRoot() // Agrega ToastrModule
+      ],
       providers: [ ToastrService ] // Asegúrate de que ToastrService esté en los providers
     })
     .compileComponents();
