@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MenuPrincipalComponent } from './menu-principal.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ClienteService } from 'src/app/services/cliente/cliente.service';
+import { ClienteService } from 'src/app/services/cliente/cliente.service'; // Importamos el servicio ClienteService
 
 describe('MenuPrincipalComponent', () => {
   let component: MenuPrincipalComponent;
@@ -24,6 +24,7 @@ describe('MenuPrincipalComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
 
 
 /*import { ComponentFixture, TestBed } from '@angular/core/testing';

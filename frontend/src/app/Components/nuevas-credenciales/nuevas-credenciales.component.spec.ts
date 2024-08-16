@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 import { NuevasCredencialesComponent } from './nuevas-credenciales.component';
-import { UsuarioService } from '../../services/usuario.service'; // Asegúrate de que la ruta sea correcta
+import { UsuarioService } from '../../services/usuario.service'; // Importar el servicio UsuarioService
 
 describe('NuevasCredencialesComponent', () => {
   let component: NuevasCredencialesComponent;
