@@ -1,23 +1,26 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: url("../../../assets/media/fondo1.avif") no-repeat center center fixed;
-  background-size: cover;
+/* Reseteo de márgenes y rellenos */
+* {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url(../../../assets/media/fondo1.avif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-main {
-  flex: 1;
-  padding: 20px; /* Ajusta según sea necesario */
-}
-
+/* Estilos del encabezado */
 header {
   display: flex;
   height: 70px;
-  background-color: #0a36a6;
+  background-color: #042068;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
@@ -30,8 +33,7 @@ header {
 
 .logo img {
   height: 50px;
-  margin-right: 25px;
-  margin-left: 10px;
+  margin: 0 25px 0 10px;
 }
 
 .nombre-banco {
@@ -39,6 +41,120 @@ header {
   font-size: 50px;
 }
 
+/* Estilos del formulario */
+.formulario {
+  background: rgb(128, 7, 7); 
+  border: 5px solid black; 
+  padding: 20px;
+  margin: 150px auto;
+  width: 500px;
+  border-radius: 2%;
+}
+
+.formulario h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 35px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  font-size: 20px;
+  width: 82%;
+  padding: 10px;
+  border: none;
+}
+#email, #cedula{
+  padding: 10px;
+}
+
+.input-contenedor {
+  margin-bottom: 20px;
+  border: 1px solid #aaa;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.icon {
+  min-width: 50px;
+  text-align: center;
+  color: #f5eded;
+}
+
+/* Estilos de botones */
+.button {
+  border: none;
+  color: white;
+  font-size: 20px;
+  background: #0f8abb;
+  padding: 10px 20px;
+  margin: 5px 0;
+  width: 200px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button:hover {
+  background: #042067;
+}
+
+.button:disabled {
+  background: rgb(230, 48, 41);
+}
+
+.invalid-feedback {
+  color: white;
+  background: rgb(230, 48, 41);
+}
+
+.small-button {
+  padding: 10px 15px; 
+  font-size: 16px;
+} 
+
+/* Enlaces */
+.forgot-link,
+.register-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.forgot-link p,
+.register-link p {
+  margin: 0;
+}
+
+a.forgot,
+a.sing-up {
+  display: block;
+  text-decoration: none;
+  position: relative;
+  text-decoration: underline;
+}
+
+a.forgot:hover,
+a.sing-up:hover {
+  color: aqua;
+}
+
+/* Estilos del pie de página */
+footer.footer {
+  background-color: #042068;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+/* Estilos de la sección de recuperación de contraseña */
 .recuperar-con-container {
   max-width: 400px;
   margin: 0 auto;
@@ -52,7 +168,8 @@ header {
   margin-bottom: 15px;
 }
 
-.error {
+.error,
+.error-message {
   color: red;
   font-size: 12px;
   margin-top: 5px;
@@ -63,11 +180,7 @@ header {
   margin-top: 10px;
 }
 
-.error-message {
-  color: red;
-  margin-top: 10px;
-}
-
+/* Botones de la sección de recuperación */
 .btn {
   width: 100%;
   padding: 10px;
@@ -115,10 +228,12 @@ header {
   background-color: #e0a800;
 }
 
+/* Sección de verificación de código */
 .code-verification-section {
   margin-top: 20px;
 }
 
+/* Grupo de botones */
 .button-group {
   display: flex;
   justify-content: space-between;

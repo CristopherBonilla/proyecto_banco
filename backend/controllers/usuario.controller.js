@@ -1,5 +1,6 @@
 'use strict'
 var Usuario = require('../models/usuario');
+var bcrypt = require('bcrypt');  // Importa bcrypt
 
 var fs = require('path');
 const path = require('path');
@@ -46,8 +47,6 @@ var controller = {
     logout: function(req, res){
         
             return res.status(200).send({ message: "Si valio"});
-
-
 /*
         req.session.destroy();
         res.redirect('/login');
@@ -108,25 +107,6 @@ var controller = {
         })
 
     },
-
-    /*actualizarContrasena: function (req, res) {
-        var params = req.body;
-        var cedula = params.cedula;
-        var nuevaPassword = params.nuevaPassword;
-
-        // Asegúrate de encriptar la nueva contraseña
-        Usuario.findOneAndUpdate(
-            { cedula: cedula },
-            { password: nuevaPassword },
-            { new: true },
-            (err, usuarioActualizado) => {
-                if (err) return res.status(500).send({ message: 'Error al actualizar la contraseña' });
-                if (!usuarioActualizado) return res.status(404).send({ message: 'Usuario no encontrado' });
-                return res.status(200).send({ message: 'Contraseña actualizada con éxito' });
-            }
-        );
-    },*/
-
     generarCodigoOTP: function (req, res){
 
         var params = req.body;
@@ -142,7 +122,6 @@ var controller = {
         return res.status(500).send({ otp });
 
     },
-
     validarUsername:function (req, res) {
         var params = req.body;
         var user = params.username;
@@ -153,7 +132,6 @@ var controller = {
             return res.status(200).send({message: true});
         })
     },
-
     verificarPregunta:function (req, res) {
         var params = req.body;
         var cedula = params.cedula;
@@ -169,8 +147,42 @@ var controller = {
                 return res.status(200).send({message: "La respuesta a la pregunta de seguridad no coincide"});
             }
         })
+    },
+
+    cambiarPassword: function (req, res) {
+        console.log("Solicitud recibida en /cambiar-password");
+        var params = req.body;
+        var cedula = params.cedula;
+        var nuevaPassword = params.nuevaPassword;
+    
+        // Buscar usuario por cédula
+        Usuario.findOne({ "cedula": cedula }, (err, usuario) => {
+            if (err) {
+                console.error("Error al buscar usuario:", err);
+                return res.status(500).send({ message: 'Error en la búsqueda del usuario' });
+            }
+    
+            if (!usuario) {
+                return res.status(404).send({ message: 'Usuario no encontrado' });
+            }
+    
+            // Actualizar el campo password con la nueva contraseña
+            usuario.password = nuevaPassword;
+    
+            // Guardar el usuario con la nueva contraseña
+            usuario.save((err) => {
+                if (err) {
+                    console.error("Error al guardar la nueva contraseña:", err);
+                    return res.status(500).send({ message: 'Error al actualizar la contraseña' });
+                }
+                console.log("Contraseña actualizada correctamente");
+                return res.status(200).send({ message: 'Contraseña actualizada correctamente' });
+            });
+        });
     }
-
-
+    
+    
+    
+    
 }
 module.exports = controller;

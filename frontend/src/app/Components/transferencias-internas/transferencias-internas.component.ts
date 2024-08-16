@@ -219,9 +219,7 @@ export class TransferenciasInternasComponent {
     const ubicacionBanco = 'Av. Ladrón de Guevara E11-253, Quito 170143, Ecuador';
   
     // Datos del cliente y la transferencia
-    
-    //const nombreCliente = 'Cliente'; // Puedes obtener esto dinámicamente si es necesario
-    const nombreCliente = document.getElementById('nombre-cliente')?.textContent 
+        const nombreCliente = document.getElementById('nombre-cliente')?.textContent 
 
     const fechaDescarga = new Date().toLocaleString('es-EC', {
       year: 'numeric',

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="icon" type="favicon/x-icon" href="../../../assets/media/Logo.png">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-
+  <link rel="stylesheet" href="../recuperar-con/recuperar-con.component.css">
 </head>
 
 <body>
@@ -19,9 +19,9 @@
     </div>
   </header>
   <div class="recuperar-con-container">
-    <h2>Recuperar Credenciales</h2>
+    <h2>¿Has olvidado tu contraseña?</h2>
 
-    <!-- Formulario para ingresar el correo y cédula -->
+    <!-- Formulario para ingresar el correo -->
     <form [formGroup]="recuperarConForm" (ngSubmit)="sendVerificationCode()">
       <div class="form-group">
         <label for="email">Correo electrónico</label>
@@ -31,7 +31,6 @@
           Introduce un correo electrónico válido.
         </div>
       </div>
-
       <div class="form-group">
         <label for="cedula">Cédula</label>
         <input type="text" id="cedula" formControlName="cedula" class="form-control" placeholder="Introduce tu cédula"
@@ -40,9 +39,9 @@
           Introduce una cédula válida.
         </div>
       </div>
-
       <div class="button-group">
-        <button type="submit" class="btn btn-primary" [disabled]="!recuperarConForm.valid || isCodeSent">
+
+        <button type="submit" class="btn btn-primary" [disabled]="!recuperarConForm.get('email')?.valid || isCodeSent">
           Enviar código
         </button>
         <button type="button" class="btn btn-secondary" (click)="cancelar()">
@@ -67,16 +66,17 @@
           Verificar código
         </button>
       </form>
-    </div>
 
-    <!-- Sección para enviar las credenciales -->
-    <div *ngIf="isCodeVerified" class="send-credentials-section">
-      <button type="button" class="btn btn-warning" (click)="enviarCredenciales()">
-        Enviar credenciales al correo
+      <!-- Botón de reenvío de código -->
+      <button class="btn btn-secondary mt-2" (click)="resendCode()"
+        [disabled]="!recuperarConForm.get('email')?.valid || !recuperarConForm.get('cedula')?.valid">
+        Reenviar código
       </button>
     </div>
+
   </div>
-</body><!-- Footer -->
+</body>
+<!-- Footer -->
 <footer class="footer">
   <p>© 2024 EPN Wallet. Todos los derechos reservados.</p>
 </footer>
