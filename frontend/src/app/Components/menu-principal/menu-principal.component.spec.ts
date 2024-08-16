@@ -34,7 +34,7 @@ describe('MenuPrincipalComponent', () => {
       imports: [HttpClientTestingModule],
       declarations: [MenuPrincipalComponent],
       providers: [
-        { provide: ClienteService, useClass: MockClienteService }
+        
         { provide: ClienteService, useClass: MockClienteService },
         { provide: CuentaService, useClass: MockCuentaService },
         { provide: HistoryService, useClass: MockHistoryService }
@@ -59,6 +59,7 @@ describe('MenuPrincipalComponent', () => {
     expect(component.listCuentas[1].tipo_cuenta).toBe('Cuenta Corriente');
   });
 });
+
 
 
 /*import { ComponentFixture, TestBed } from '@angular/core/testing';

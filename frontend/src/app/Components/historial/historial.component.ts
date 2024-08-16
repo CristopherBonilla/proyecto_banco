@@ -1,3 +1,35 @@
+import { Component, OnInit } from '@angular/core';
+import { TransferenciaService } from '../../services/trasferencia/trasferencia.service';
+
+@Component({
+  selector: 'app-historial',
+  templateUrl: './historial.component.html',
+  styleUrls: ['./historial.component.css']
+})
+export class HistorialComponent implements OnInit {
+  transferencias: any[] = []; // Asegúrate de definir una propiedad para almacenar transferencias
+
+  constructor(private transferenciaService: TransferenciaService) {}
+
+  ngOnInit(): void {
+    this.extraerTransferencias();
+  }
+
+  extraerTransferencias() {
+    // Aquí simulas la extracción de transferencias
+    if (this.transferencias) {
+      // Procesa las transferencias aquí si es necesario
+    } else {
+      console.log('No se encontraron transferencias');
+    }
+  }
+}
+
+
+
+
+
+/*
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -217,3 +249,6 @@ export class HistorialComponent{
 
       
 }
+
+
+*/

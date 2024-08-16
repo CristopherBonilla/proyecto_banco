@@ -1,37 +1,38 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
-import { ToastrModule } from 'ngx-toastr'; // Importa ToastrModule
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 import { HistorialComponent } from './historial.component';
-import { CuentaService } from '../../services/cuenta/cuenta.service'; // Importa el servicio si es necesario
-import { TransferenciaService } from '../../services/trasferencia/trasferencia.service'; // Importa el servicio si transferenciaObj viene de aquí
+import { TransferenciaService } from '../../services/trasferencia/trasferencia.service';
+import { of } from 'rxjs';
 
-describe('HistorialComponent', () => {
-  let component: HistorialComponent;
-  let fixture: ComponentFixture<HistorialComponent>;
-
-  // Mock del servicio si transferenciaObj proviene de TransferenciaService
-  const mockTransferenciaService = {
-    transferencias: { id: 123,
+// Mock del servicio TransferenciaService
+class MockTransferenciaService {
+  getTransferencias() {
+    return of([{
+      id: 123,
       cliente: {
         nombre: 'Juan Pérez',
         cuenta: '1234567890'
       },
       monto: 500,
       fecha: '2024-08-15'
-    }
-  };
+    }]);
+  }
+}
+
+describe('HistorialComponent', () => {
+  let component: HistorialComponent;
+  let fixture: ComponentFixture<HistorialComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ HistorialComponent ],
       imports: [ HttpClientModule, ToastrModule.forRoot() ],
       providers: [
-        CuentaService,
-        { provide: TransferenciaService, useValue: mockTransferenciaService }
+        { provide: TransferenciaService, useClass: MockTransferenciaService }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HistorialComponent);
     component = fixture.componentInstance;
@@ -41,12 +42,17 @@ describe('HistorialComponent', () => {
       component.transferencias = mockTransferenciaService.transferencias;
     }
 */
+
+    // Simula el comportamiento esperado
+    component.ngOnInit();
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
 });
 
 
