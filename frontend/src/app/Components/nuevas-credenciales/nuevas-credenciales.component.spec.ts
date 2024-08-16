@@ -5,7 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 import { NuevasCredencialesComponent } from './nuevas-credenciales.component';
+<<<<<<< HEAD
 import { UsuarioService } from '../../services/usuario.service'; // Importar el servicio UsuarioService
+=======
+import { UsuarioService } from '../../services/usuario.service'; // Asegúrate de que la ruta sea correcta
+>>>>>>> main
 
 describe('NuevasCredencialesComponent', () => {
   let component: NuevasCredencialesComponent;
@@ -56,4 +60,8 @@ describe('NuevasCredencialesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+<<<<<<< HEAD
 });*/
+=======
+});*/
+>>>>>>> main
