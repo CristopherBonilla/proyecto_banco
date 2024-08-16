@@ -1,4 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ClienteService } from 'src/app/services/cliente/cliente.service';
+
+@Component({
+  selector: 'app-transferencias-internas',
+  templateUrl: './transferencias-internas.component.html',
+  styleUrls: ['./transferencias-internas.component.css']
+})
+export class TransferenciasInternasComponent implements OnInit {
+  clienteData: any; // Asegúrate de definir una propiedad para guardar los datos del cliente
+
+  constructor(
+    private router: Router,
+    private _clienteService: ClienteService
+  ) {}
+
+  ngOnInit(): void {
+    this.extraerCliente();
+  }
+
+  extraerCliente() {
+    const objeto = history.state?.transferenciaObj;
+    
+    if (objeto && objeto.cedula) {
+      const cedula = { cedula: objeto.cedula };
+      this._clienteService.obtenerCliente(cedula).subscribe(data => {
+        this.clienteData = data; // Guarda los datos del cliente en una propiedad
+        // Resto de la lógica
+      });
+    } else {
+      console.error('No se encontró el objeto de transferencia o cedula.');
+      // Maneja el caso donde objeto o cedula no están presentes
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/*import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -352,3 +399,4 @@ export class TransferenciasInternasComponent {
 
   
 }
+*/
