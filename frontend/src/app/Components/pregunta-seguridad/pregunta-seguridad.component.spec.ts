@@ -1,6 +1,4 @@
 import { RouterTestingModule } from '@angular/router/testing';
-<<<<<<< HEAD
-=======
 import { PreguntaSeguridadComponent } from './pregunta-seguridad.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -41,9 +39,7 @@ describe('PreguntaSeguridadComponent', () => {
   });
 });
 
-/*import { ComponentFixture, TestBed } from '@angular/core/testing';
-
->>>>>>> main
+/*
 import { PreguntaSeguridadComponent } from './pregunta-seguridad.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -82,9 +78,5 @@ describe('PreguntaSeguridadComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-<<<<<<< HEAD
-});
-=======
 });
 */
->>>>>>> main
