@@ -311,4 +311,13 @@ footer.footer {
     width: 100%;
     bottom: 0;
   }
-    
+
+/* Media query para pantallas pequeñas (ocultar la barra lateral) */
+@media (max-width: 768px) {
+    .menu__side {
+        display: none; /* Oculta la barra lateral */
+    }
+    main {
+        padding-left: 0; /* Ajusta el contenido principal para que ocupe todo el ancho */
+    }
+}

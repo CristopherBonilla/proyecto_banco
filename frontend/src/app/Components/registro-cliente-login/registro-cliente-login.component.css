@@ -11,16 +11,16 @@ body {
 
 main {
     flex: 1;
-    padding: 20px; /* Ajusta según sea necesario */
+    padding: 10px;
 }
 
 header {
     display: flex;
-    height: 70px;
+    height: 60px;
     background-color: #0a36a6;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 5px 10px;
 }
 
 .logo {
@@ -29,42 +29,82 @@ header {
 }
 
 .logo img {
-    height: 50px;
-    margin-right: 25px;
-    margin-left: 10px;
+    height: 40px;
+    margin-right: 10px;
+    margin-left: 5px;
 }
 
 .nombre-banco {
     color: white;
-    font-size: 50px;
+    font-size: 24px; /* Tamaño reducido para móviles */
+    white-space: nowrap; /* Evita que el nombre del banco se divida en dos líneas */
 }
 
 .container {
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente para el contenedor */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para el contenedor */
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    width: 100%;
+    max-width: 100%; /* Máximo ancho para el contenedor */
 }
 
-/* Footer */
 footer {
     background-color: #042068;
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 15px 0;
     position: relative;
     width: 100%;
 }
 
-/* Ajusta los estilos de los errores de formulario */
 .text-danger {
     text-align: start;
-    margin-left: 6px;
+    margin-left: 4px;
     color: gray;
-    font-size: 0.9em; /* Ajusta el tamaño del texto si es necesario */
+    font-size: 0.85em;
 }
 
-/* CSS para resaltar el borde del input en rojo cuando hay un error */
 input.ng-invalid.ng-touched {
     border-color: red;
+}
+
+.mx-auto{
+    width: 100%;
+}
+
+.float-end{
+    width: auto;
+}
+
+@media (min-width: 768px) {
+    header {
+        height: 70px;
+    }
+
+    .logo img {
+        height: 50px;
+        margin-right: 25px;
+        margin-left: 10px;
+    }
+
+    .nombre-banco {
+        font-size: 40px; /* Tamaño original para pantallas grandes */
+    }
+
+    .container {
+        padding: 20px;
+        margin: 50px auto;
+        width: 500px; /* Ancho original para pantallas grandes */
+    }
+
+    footer {
+        padding: 20px 0;
+    }
+
+    .text-danger {
+        margin-left: 6px;
+        font-size: 0.9em;
+    }
 }
