@@ -1,35 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Component, OnInit } from '@angular/core';
+// import { Router } from '@angular/router';
 
-@Component({
-  selector: 'app-transferencias-internas-resumen',
-  templateUrl: './transferencias-internas-resumen.component.html',
-  styleUrls: ['./transferencias-internas-resumen.component.css']
-})
-export class TransferenciasInternasResumenComponent implements OnInit {
-  transferenciaObj: any = {}; // Inicializa transferenciaObj para evitar errores
+// @Component({
+//   selector: 'app-transferencias-internas-resumen',
+//   templateUrl: './transferencias-internas-resumen.component.html',
+//   styleUrls: ['./transferencias-internas-resumen.component.css']
+// })
+// export class TransferenciasInternasResumenComponent implements OnInit {
+//   transferenciaObj: any = {}; // Inicializa transferenciaObj para evitar errores
 
-  constructor(private router: Router) {}
+//   constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    // Obtener el estado de la navegación si está disponible
-    this.transferenciaObj = history.state.transferenciaObj || {};
-    this.extraerDatos();
-  }
+//   ngOnInit(): void {
+//     // Obtener el estado de la navegación si está disponible
+//     this.transferenciaObj = history.state.transferenciaObj || {};
+//     this.extraerDatos();
+//   }
 
-  extraerDatos() {
-    if (this.transferenciaObj && this.transferenciaObj.cliente) {
-      // Lógica para procesar transferenciaObj
-    } else {
-      console.error('transferenciaObj o cliente no está disponible');
-    }
-  }
-}
-
-
+//   extraerDatos() {
+//     if (this.transferenciaObj && this.transferenciaObj.cliente) {
+//       // Lógica para procesar transferenciaObj
+//     } else {
+//       console.error('transferenciaObj o cliente no está disponible');
+//     }
+//   }
+// }
 
 
-/*
+
+
+
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
@@ -132,4 +132,3 @@ export class TransferenciasInternasResumenComponent {
   }
 }
 
-*/
