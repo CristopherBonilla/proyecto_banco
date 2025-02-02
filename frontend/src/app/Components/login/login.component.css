@@ -119,7 +119,7 @@ a.forgot, a.sing-up {
   display: block;
   text-decoration: none;
   text-decoration: underline;
-  color: black;
+  color: rgb(205, 187, 187);
 }
 
 a.forgot:hover, a.sing-up:hover {
